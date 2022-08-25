@@ -3,7 +3,7 @@
 ## Database Schema Design
 
 `<insert database schema design here>`
-![Alt text](./png/Database%20Schema.png "Database Schema")
+![Alt text](/png/data%20schema.png "Database Schema")
 
 
 ## API Documentation
