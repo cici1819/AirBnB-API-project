@@ -1,7 +1,7 @@
 'use strict';
 
 module.exports = {
-  async up (queryInterface, Sequelize) {
+  async up(queryInterface, Sequelize) {
     /**
      * Add seed commands here.
      *
@@ -17,38 +17,33 @@ module.exports = {
         userId: 1,
         spotId: 1,
         review: "Great!! Amazing !",
-        stars:5
+        stars: 5
+      },
+      {
+        userId: 1,
+        spotId: 2,
+        review: "Good ",
+        stars: 4
       },
       {
         userId: 2,
-        spotId: 1,
-        review: "Good ",
-        stars:4
+        spotId: 3,
+        review: "Would rent again no problems at all",
+        stars: 5
       },
       {
         userId: 5,
-        spotId: 2,
-        review: "Would rent again no problems at all",
-        stars:5
+        spotId: 4,
+        review: "Awesome guy awesome house",
+        stars: 5
       },
       {
         userId: 4,
-        spotId: 3,
-        review: "Awesome guy awesome house",
-        starts:5
-      },
-      {
-        userId: 5,
         spotId: 5,
         review: "Great home!! Amazing views!",
-        stars:5
+        stars: 5
       },
-      {
-        userId: 3,
-        boatId: 4,
-        review: "Would rent again no problems at all.",
-        stars:5
-      }
+  
     ],
     )
   },
@@ -61,7 +56,7 @@ module.exports = {
      * await queryInterface.bulkDelete('People', null, {});
      */
 
-    await queryInterface.bulkDelete('Reviews',null, {
+    await queryInterface.bulkDelete('Reviews', null, {
 
     });
   }
