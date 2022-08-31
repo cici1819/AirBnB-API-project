@@ -38,12 +38,6 @@ module.exports = {
       url: "../AirBnB-API-project/png/extriors/stephan-bechert-yFV39g6AZ5o-unsplash.jpg",
       preview: true
     }
-
-
-
-
-
-
     ])
   },
 

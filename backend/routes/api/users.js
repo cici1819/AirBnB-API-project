@@ -7,6 +7,9 @@ const { User } = require('../../db/models');
 const { check } = require('express-validator');
 const { handleValidationErrors } = require('../../utils/validation');
 
+const { Op } = require("sequelize");
+
+
 
 
 // Sign up
@@ -36,13 +39,51 @@ router.post(
   '/',
   validateSignup,
   async (req, res) => {
-    const { email, password, username } = req.body;
-    const user = await User.signup({ email, username, password });
+    const { email, password, username, firstName, lastName } = req.body;
 
-    await setTokenCookie(res, user);
+    if(!username || !email){
+      res.status(400);
+      return res.json({
+          "message": "Validation error",
+          "statusCode": 400,
+          "errors": {
+            "email": "Invalid email",
+            "username": "Username is required",
+            "firstName": "First Name is required",
+            "lastName": "Last Name is required"
+          }
+      })
+  }
+    const sameName = await User.findOne({ where: { email } });
+    if (sameName) {
+      res.status(403);
+      res.json({
+        "message": "Forbidden, User already exits",
+        "statusCode":403,
+        "errors": {
+          "email": "User with that email already exits"
+      }
+      })
+    }
+    const sameEmail = await User.findOne({ where: { username } });
+    if (sameEmail) {
+      res.status(403)
+      res.json({
+        "message": "Forbidden, User already exists",
+        "statusCode":403,
+        "errors": {
+          "username": "User with that username already exits"
+      }
+      })
+    }
+    const user = await User.signup({ firstName,lastName,email, username, password });
+    const token = await setTokenCookie(res, user);
+    const newUser = user.toJSON();
+    newUser.token = token;
 
     return res.json({
-      user
+     newUser
+
     });
   }
 );

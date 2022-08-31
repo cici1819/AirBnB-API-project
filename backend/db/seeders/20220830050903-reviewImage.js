@@ -33,7 +33,7 @@ module.exports = {
       {
         reviewId: 5,
         url:'../AirBnB-API-project/png/insides/neonbrand-Wp7t4cWN-68-unsplash.jpg'
-      }
+      },
 
     ])
   },
