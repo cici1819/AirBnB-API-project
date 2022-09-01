@@ -13,10 +13,18 @@ module.exports = (sequelize, DataTypes) => {
       // define association here
       Review.belongsTo(models.User, { foreignKey: "userId" });
       Review.belongsTo(models.Spot, { foreignKey: "spotId" });
-      Review.hasMany(models.ReviewImage,{foreignKey:"reviewId"})
+      Review.hasMany(models.ReviewImage, {
+        foreignKey: "reviewId", onDelete: 'CASCADE',
+        hooks: true
+      })
     }
   }
   Review.init({
+    id: {
+      type: DataTypes.INTEGER,
+      autoIncrement: true,
+      primaryKey: true
+    },
     spotId: {
       type: DataTypes.INTEGER,
       allowNull: false
@@ -27,12 +35,15 @@ module.exports = (sequelize, DataTypes) => {
     },
     review: {
       type: DataTypes.TEXT,
-      allowNull:false
-
-  },
+      allowNull: false
+    },
     stars: {
       type: DataTypes.INTEGER,
-      allowNull: false
+      allowNull: false,
+      validate: {
+        min: 1,
+        max: 5
+      }
     }
   }, {
     sequelize,

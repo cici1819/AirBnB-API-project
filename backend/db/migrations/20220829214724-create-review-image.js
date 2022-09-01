@@ -14,8 +14,7 @@ module.exports = {
         references: { model: 'Reviews' },
       },
       url: {
-        type: Sequelize.STRING,
-        allowNull: false
+        type: Sequelize.STRING
       },
       createdAt: {
         allowNull: false,
