@@ -12,8 +12,8 @@ module.exports = (sequelize, DataTypes) => {
      * The `models/index` file will call this method automatically.
      */
     toSafeObject() {
-      const { id, fisrtName,lastName,username, email } = this; // context will be the User instance
-      return { id, username, email };
+      const { id, fisrtName, lastName, username, email } = this; // context will be the User instance
+      return { id, fisrtName, lastName, username, email };
     }
     validatePassword(password) {
       return bcrypt.compareSync(password, this.hashedPassword.toString());
@@ -23,7 +23,7 @@ module.exports = (sequelize, DataTypes) => {
       return User.scope("currentUser").findByPk(id);
     }
 
-    static async login({ firstName,lastName,username,credential, password }) {
+    static async login({ firstName, lastName, username, credential, password }) {
       const { Op } = require('sequelize');
       const user = await User.scope('loginUser').findOne({
         where: {
@@ -38,7 +38,7 @@ module.exports = (sequelize, DataTypes) => {
       }
     }
 
-    static async signup({ username, email, password,firstName,lastName }) {
+    static async signup({ username, email, password, firstName, lastName }) {
       const hashedPassword = bcrypt.hashSync(password);
       const user = await User.create({
         firstName,
@@ -53,10 +53,10 @@ module.exports = (sequelize, DataTypes) => {
 
     static associate(models) {
       // define association here
-      User.hasMany(models.Spot, { foreignKey: "ownerId", as:'Owner'});
+      User.hasMany(models.Spot, { foreignKey: "ownerId", as: 'Owner' });
 
       User.hasMany(models.Review, { foreignKey: "userId" });
-      User.hasMany(models.Booking,{foreignKey:"userId"})
+      User.hasMany(models.Booking, { foreignKey: "userId" })
     }
   }
   User.init({
@@ -95,27 +95,27 @@ module.exports = (sequelize, DataTypes) => {
     lastName: {
       type: DataTypes.STRING,
       allowNull: false
-      }
+    }
 
-    },
+  },
 
-   {
-    sequelize,
-    modelName: 'User',
-    defaultScope: {
-      attributes: {
-        exclude: ["hashedPassword", "email", "createdAt", "updatedAt"]
-      }
-    },
-    scopes: {
-      currentUser: {
-        attributes: { exclude: ["hashedPassword"] }
+    {
+      sequelize,
+      modelName: 'User',
+      defaultScope: {
+        attributes: {
+          exclude: ["hashedPassword", "email", "createdAt", "updatedAt"]
+        }
       },
-      loginUser: {
-        attributes: {}
-      }
-    },
+      scopes: {
+        currentUser: {
+          attributes: { exclude: ["hashedPassword"] }
+        },
+        loginUser: {
+          attributes: {}
+        }
+      },
 
-  });
+    });
   return User;
 };
