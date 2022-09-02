@@ -310,6 +310,7 @@ router.post('/', requireAuth, async (req, res, next) => {
         })
     }
     const newSpot = await Spot.create({
+        //ower
         ownerId: req.user.id,
         address,
         city,
