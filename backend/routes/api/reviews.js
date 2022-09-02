@@ -35,7 +35,12 @@ router.post('/:reviewId/images', requireAuth, async (req, res, next) => {
         reviewId: reviews.id,
         url,
     });
-    return res.json(newReview);
+    // delete newReview.updatedAt;
+    // delete newReview.createdAt;
+    return res.json({
+        id: newReview.id,
+        url,
+    });
 });
 
 
