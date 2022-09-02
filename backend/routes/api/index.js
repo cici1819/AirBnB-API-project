@@ -12,6 +12,7 @@ const { User } = require('../../db/models');
 const { requireAuth } = require('../../utils/auth.js');
 const reviewImageRouter = require('./reviewImages')
 const spotImageRouter = require('./spotImages')
+const bookingsRouter = require('./bookings')
 router.use(restoreUser);
 
 router.use('/session', sessionRouter);
@@ -21,6 +22,7 @@ router.use('/spots', spotsRouter);
 router.use('/reviews', reviewsRouter);
 router.use('/review-images', reviewImageRouter);
 router.use('/spot-images', spotImageRouter);
+router.use('/bookings', bookingsRouter);
 
 
 
