@@ -239,12 +239,6 @@ router.get('/:spotId', requireAuth, async (req, res, next) => {
     }
     );
 
-    //         model: User,
-    //
-    //     }]
-
-    // console.log(spotResult,"_______________________________")
-
     if (spotDetail) {
         //     const ower = await User.findByPk({
         //         where: {
@@ -350,8 +344,7 @@ router.post('/:spotId/images', requireAuth, async (req, res, next) => {
 
             spotImageObj.spotId = spotImage.spotId
             spotImageObj.url = spotImage.url
-            // if (spotImage) spotImageObj.previewImage = spotImage.url;
-            // if (!spotImage) spotImageObj.previewImage = null
+            
             delete spotImageObj.updatedAt;
             delete spotImageObj.createdAt;
             return res.json(spotImageObj);

@@ -50,7 +50,6 @@ router.post(
             user = await User.login({ credential, password });
 
         }catch(err){
-            // credential or password not provided
             res.status(400);
             return res.json({
                 "message": "Validation error",
