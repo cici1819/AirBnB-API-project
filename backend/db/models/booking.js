@@ -11,8 +11,8 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
-      Booking.belongsTo(models.User, { foreignKey: "userId" });
-      Booking.belongsTo(models.Spot, { foreignKey: "spotId" });
+      Booking.belongsTo(models.User, { foreignKey: "userId",onDelete: 'CASCADE',hook:true });
+      Booking.belongsTo(models.Spot, { foreignKey: "spotId",onDelete: 'CASCADE',hook:true });
     }
   }
   Booking.init({
@@ -51,12 +51,6 @@ module.exports = (sequelize, DataTypes) => {
   }, {
     sequelize,
     modelName: 'Booking',
-    indexes: [
-      {
-        unique: true,
-        fields: ['startDate', 'spotId', 'endDate'],
-      }
-    ]
   });
   return Booking;
 };

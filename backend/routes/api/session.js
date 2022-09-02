@@ -1,114 +1,93 @@
 // backend/routes/api/session.js
 const express = require('express')
-const { setTokenCookie, restoreUser } = require('../../utils/auth');
+
+const { setTokenCookie, restoreUser, requireAuth } = require('../../utils/auth');
 const { User } = require('../../db/models');
+
 const { check } = require('express-validator');
 const { handleValidationErrors } = require('../../utils/validation');
 
-
 const router = express.Router();
-
-
-// Log in
-const validateLogin = [
-  check('credential')
-    .exists({ checkFalsy: true })
-    .notEmpty()
-    .withMessage('Please provide a valid email or username.'),
-  check('password')
-    .exists({ checkFalsy: true })
-    .withMessage('Please provide a password.'),
-  handleValidationErrors
-];
-
-router.post(
-  '/',
-  validateLogin,
-  async (req, res, next) => {
-    const { credential, password } = req.body;
-    let user;
-    try {
-      user = await User.login({ credential, password });
-    } catch(err) {
-      return res.json({
-        "message": "Validation error",
-        "statusCode": 400,
-        "errors": {
-          "credential": "Email or username is required",
-          "password": "Password is required"
-        }
-    });
-    }
-    if (!user) {
-      const err = new Error('Login failed');
-      err.status = 401;
-      err.title = 'Login failed';
-      err.errors = ['The provided credentials were invalid.'];
-      return next(err);
-    }
-
-    const token = await setTokenCookie(res, user);
-    const newUser= user.toJSON();
-    newUser.token = token;
-    return res.json({
-      newUser
-    });
-  }
-);
-
-
-// backend/routes/api/session.js
-// ...
-
-// Log out
-router.delete(
-  '/',
-  (_req, res) => {
-    res.clearCookie('token');
-    return res.json({ message: 'success' });
-  }
-);
-
-// ...
-// backend/routes/api/session.js
-// ...
 
 // Restore session user
 router.get(
-  '/',
-  restoreUser,
-  (req, res) => {
-    const { user } = req;
-    if (user) {
-      return res.json({
-        user: user.toSafeObject()
-      });
-    } else return res.json({});
-  }
+    '/',
+    [restoreUser, requireAuth],
+    (req, res) => {
+        const { user } = req;
+        if (user) {
+            return res.json(
+                user.toSafeObject()
+            );
+        } else return res.json({});
+    }
 );
 
+const validateLogin = [
+    check('credential')
+        .exists({ checkFalsy: true })
+        .notEmpty()
+        .withMessage('Please provide a valid email or username.'),
+    check('password')
+        .exists({ checkFalsy: true })
+        .withMessage('Please provide a password.'),
+    handleValidationErrors
+];
 
+function isStringWithChars(input){
+    return (typeof input === 'string' && input.length > 0);
+}
 
+// Log in
+router.post(
+    '/',
+    async (req, res, next) => {
+        const { credential, password } = req.body;
 
+        let user;
 
+        try{
+            user = await User.login({ credential, password });
 
+        }catch(err){
+            // credential or password not provided
+            res.status(400);
+            return res.json({
+                "message": "Validation error",
+                "statusCode": 400,
+                "errors": {
+                  "credential": "Email or username is required",
+                  "password": "Password is required"
+                }
+            });
+        }
 
+        if (!user) {
+            res.status(401);
+            return res.json({
+                "message": "Invalid credentials",
+                "statusCode": 401
+            });
+        }
 
+        const token = await setTokenCookie(res, user);
 
+        const userObj = user.toJSON();
+        userObj.token = token;
 
+        return res.json(
+            userObj
+        );
+    }
+);
 
-
-
-
-
-
-
-
-
-
-
-
-
-
+// Log out
+router.delete(
+    '/',
+    (_req, res) => {
+        res.clearCookie('token');
+        return res.json({ message: 'success' });
+    }
+);
 
 module.exports = router;

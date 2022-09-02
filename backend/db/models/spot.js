@@ -1,4 +1,5 @@
 'use strict';
+const { check } = require('express-validator');
 const {
   Model
 } = require('sequelize');
@@ -11,10 +12,26 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
-      Spot.hasMany(models.Booking, { foreignKey: "spotId" });
-      Spot.hasMany(models.SpotImage, { foreignKey: "spotId" });
-      Spot.hasMany(models.Review, { foreignKey: "spotId" });
-      Spot.belongsTo(models.User, { foreignKey: "ownerId" });
+      Spot.hasMany(models.Booking, {
+        foreignKey: "spotId",
+        onDelete: 'CASCADE',
+        hooks: true
+      });
+      Spot.hasMany(models.SpotImage, {
+        foreignKey: "spotId",
+        onDelete: 'CASCADE',
+        hooks: true
+      });
+      Spot.hasMany(models.Review, {
+        foreignKey: "spotId",
+        onDelete: 'CASCADE',
+        hooks: true
+      });
+      Spot.belongsTo(models.User, {
+        foreignKey: "ownerId", as: 'Owner', onDelete: 'CASCADE',
+        hooks: true
+      });
+
     }
   }
   Spot.init({
@@ -40,11 +57,19 @@ module.exports = (sequelize, DataTypes) => {
     },
     lat: {
       type: DataTypes.DECIMAL,
-      allowNull: false
+      allowNull: false,
+      validate: {
+        min: -90,
+        max: 90
+      }
     },
     lng: {
       type: DataTypes.DECIMAL,
-      allowNull: false
+      allowNull: false,
+      validate: {
+        min: -180,
+        max: 180
+      }
     },
     name: {
       type: DataTypes.STRING,
@@ -56,7 +81,13 @@ module.exports = (sequelize, DataTypes) => {
     },
     price: {
       type: DataTypes.DECIMAL,
-      allowNull: false
+      allowNull: false,
+      validate: {
+        min: 0,
+        pricecheck(value) {
+          if (value < min) { throw new Error("price must be greater than or equal to 0") }
+        }
+      }
     }
   }, {
     sequelize,

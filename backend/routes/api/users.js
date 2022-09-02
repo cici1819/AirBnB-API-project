@@ -42,8 +42,7 @@ router.post(
     const { email, password, username, firstName, lastName } = req.body;
 
     if(!username || !email){
-      res.status(400);
-      return res.json({
+      return res.status(400).json({
           "message": "Validation error",
           "statusCode": 400,
           "errors": {
@@ -56,8 +55,7 @@ router.post(
   }
     const sameName = await User.findOne({ where: { email } });
     if (sameName) {
-      res.status(403);
-      res.json({
+      res.status(403).json({
         "message": "Forbidden, User already exits",
         "statusCode":403,
         "errors": {
@@ -67,8 +65,7 @@ router.post(
     }
     const sameEmail = await User.findOne({ where: { username } });
     if (sameEmail) {
-      res.status(403)
-      res.json({
+      res.status(403).json({
         "message": "Forbidden, User already exists",
         "statusCode":403,
         "errors": {
