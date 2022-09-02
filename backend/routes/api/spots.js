@@ -14,114 +14,10 @@ router.get('/', async (req, res, next) => {
     let { page, size, minLat,
         maxLat, minLng, maxLng,
         minPrice, maxPrice } = req.query;
-        const queryParames = {
-            where: {
-                lat: {
-
-                },
-                lng: {
-
-                },
-                price: {
-
-                }
-            }
-        };
-
-    if (minLat !== undefined) minLat = parseFloat(minLat);
-    if (minLat < -90 || minLat > 90) {
-        return res
-            .status(400)
-            .json({
-                "message": "Validation Error",
-                "statusCode": 400,
-                "errors": {
-                    "minLat": "Minimum latitude is invalid"
-                }
-            })
-    }else{
-        queryParames.where.lat[Op.gte] = minLat;
-    }
-
-
-    if (maxLat !== undefined) maxLat = parseFloat(maxLat);
-    if (maxLat < -90 || maxLat > 90) {
-        return res
-            .status(400)
-            .json({
-                "message": "Validation Error",
-                "statusCode": 400,
-                "errors": {
-                    "maxLat": "Maximum latitude is invalid"
-                }
-            })
-    }else{
-        queryParames.where.lat[Op.lte] = maxLat;
-    }
-
-    if (minLng !== undefined) minLng = parseFloat(minLng);
-    if (minLng < -180 || minLat > 180) {
-        return res
-            .status(400)
-            .json({
-                "message": "Validation Error",
-                "statusCode": 400,
-                "errors": {
-                    "minLat": "Minimum longitude is invalid"
-                }
-            })
-    }else{
-        queryParames.where.lng[Op.gte] = minLng;
-    }
-
-    if (maxLng !== undefined) maxLng = parseFloat(maxLng);
-    if (maxLng < -180 || maxLat > 180) {
-        return res
-            .status(400)
-            .json({
-                "message": "Validation Error",
-                "statusCode": 400,
-                "errors": {
-                    "minLat": "Maximum longitude is invalid"
-                }
-            })
-    }else{
-        queryParames.where.lng[Op.lte] = maxLng;
-    }
-
-    if (minPrice !== undefined) minPrice = parseFloat(minPrice);
-    if (minPrice < 0) {
-        return res
-            .status(400)
-            .json({
-                "message": "Validation Error",
-                "statusCode": 400,
-                "errors": {
-                    "minPrice": "Minimum price must be greater than or equal to 0"
-                }
-             })
-    }else{
-        queryParames.where.price[Op.gte] = minPrice;
-    }
-
-    if (maxPrice !== undefined) maxPrice = parseFloat(maxPrice);
-    if (maxPrice < 0) {
-        return res
-        .status(400)
-        .json({
-            "message": "Validation Error",
-            "statusCode": 400,
-            "errors": {
-                "minPrice": "Maximum price must be greater than or equal to 0"
-            }
-        })
-    }else{
-        queryParames.where.price[Op.lte] = maxPrice;
-    }
 
     if (!size || size > 20) size = 20;
     if (!page) page = 1;
-    if(page > 10) page = 10;
+    if (page > 10) page = 10;
     if (size < 0 || page < 0) {
         return res
             .status(400)
@@ -134,62 +30,165 @@ router.get('/', async (req, res, next) => {
                 }
             })
     };
-    if(minLat === undefined && maxLat === undefined){
+    size = parseInt(size);
+    page = parseInt(page);
 
-        delete queryParames.where.lat;
-    }
-
-    if(minLng === undefined && maxLng === undefined){
-
-        delete queryParames.where.lng;
-    }
-
-    if(minPrice === undefined && maxPrice === undefined){
-
-        delete queryParames.where.price;
+    let pagination = {};
+    if (page >= 0 && size >= 0) {
+        pagination.limit = size;
+        pagination.offset = size * (page - 1);
     }
 
 
+    let queryParames = [];
 
-size = parseInt(size);
-page = parseInt(page);
+    if (minLat) {
+        minLat = parseFloat(minLat);
+        if (minLat < -90 || minLat > 90) {
+            return res
+                .status(400)
+                .json({
+                    "message": "Validation Error",
+                    "statusCode": 400,
+                    "errors": {
+                        "minLat": "Minimum latitude is invalid"
+                    }
+                })
+        } else {
+            queryParames.push({
+                lat: { [Op.gte]: minLat }
+            })
+        }
+    };
 
-let pagination = {};
-if (page >= 0 && size >= 0) {
-    pagination.limit = size;
-    pagination.offset = size * (page - 1);
-}
+    if (maxLat) {
+        maxLat = parseFloat(maxLat);
+        if (maxLat < -90 || maxLat > 90) {
+            return res
+                .status(400)
+                .json({
+                    "message": "Validation Error",
+                    "statusCode": 400,
+                    "errors": {
+                        "maxLat": "Maximum latitude is invalid"
+                    }
+                })
+        } else {
+            queryParames.push({
+                lat: { [Op.lte]: maxLat }
+            })
+        }
+    };
 
 
-    const spots = await Spot.findAll({
-    queryParames,
-    ...pagination
-}
-);
-// console.log(spots,"%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%")
-let result = [];
-let spotsObj
-let avgRating
-for (let i = 0; i < spots.length; i++) {
-    spotsObj = spots[i].toJSON();
-    avgRating = await Review.findAll({
-        where: {
-            spotId: spots[i].id
-        },
-        attributes: [[Sequelize.fn('AVG', Sequelize.col('stars')), 'avgRating']]
+
+    if (minLng) {
+        minLng = parseFloat(minLng);
+        if (minLng < -180 || minLat > 180) {
+            return res
+                .status(400)
+                .json({
+                    "message": "Validation Error",
+                    "statusCode": 400,
+                    "errors": {
+                        "minLat": "Minimum longitude is invalid"
+                    }
+                })
+        } else {
+            queryParames.push({
+                lng: { [Op.gte]: minLng }
+            })
+        }
+    };
+
+    if (maxLng) {
+        maxLng = parseFloat(maxLng);
+        if (maxLng < -180 || maxLat > 180) {
+            return res
+                .status(400)
+                .json({
+                    "message": "Validation Error",
+                    "statusCode": 400,
+                    "errors": {
+                        "minLat": "Maximum longitude is invalid"
+                    }
+                })
+        } else {
+            queryParames.push({
+                lat: { [Op.lte]: maxLng }
+            })
+        }
+    }
+
+    if (minPrice) {
+        minPrice = parseFloat(minPrice);
+        if (minPrice < 0) {
+            return res
+                .status(400)
+                .json({
+                    "message": "Validation Error",
+                    "statusCode": 400,
+                    "errors": {
+                        "minPrice": "Minimum price must be greater than or equal to 0"
+                    }
+                })
+        } else {
+            queryParames.push({
+                price: { [Op.gte]: minPrice }
+            })
+        }
+    }
+
+
+    if (maxPrice) {
+        maxPrice = parseFloat(maxPrice);
+        if (maxPrice < 0) {
+            return res
+                .status(400)
+                .json({
+                    "message": "Validation Error",
+                    "statusCode": 400,
+                    "errors": {
+                        "minPrice": "Maximum price must be greater than or equal to 0"
+                    }
+                })
+        } else {
+            queryParames.push({
+                price: { [Op.lte]: maxPrice }
+            })
+        };
+    }
+
+        const spots = await Spot.findAll({
+            where: {
+                [Op.and]: queryParames
+            },
+            ...pagination
+        });
+        // console.log(spots,"%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%")
+        let result = [];
+        let spotsObj
+        let avgRating
+        for (let i = 0; i < spots.length; i++) {
+            spotsObj = spots[i].toJSON();
+            avgRating = await Review.findAll({
+                where: {
+                    spotId: spots[i].id
+                },
+                attributes: [[Sequelize.fn('AVG', Sequelize.col('stars')), 'avgRating']]
+            })
+            spotsObj.avgRating = avgRating[0].dataValues.avgRating;
+            const previewImage = await SpotImage.findByPk(spots[i].id, {
+                where: { preview: true },
+                attributes: ['url']
+            })
+            if (previewImage) spotsObj.previewImage = previewImage.url
+            if (!previewImage) spotsObj.previewImage = null
+            result.push(spotsObj)
+        }
+        return res.json({ Spots: result, page, size });
     })
-    spotsObj.avgRating = avgRating[0].dataValues.avgRating;
-    const previewImage = await SpotImage.findByPk(spots[i].id, {
-        where: { preview: true },
-        attributes: ['url']
-    })
-    if (previewImage) spotsObj.previewImage = previewImage.url
-    if (!previewImage) spotsObj.previewImage = null
 
-    result.push(spotsObj)
-}
-return res.json({ Spots: result, page, size });
-})
 
 // Get all spots  owned by the current user
 
@@ -344,14 +343,15 @@ router.post('/:spotId/images', requireAuth, async (req, res, next) => {
 
             spotImageObj.spotId = spotImage.spotId
             spotImageObj.url = spotImage.url
-            
+
             delete spotImageObj.updatedAt;
             delete spotImageObj.createdAt;
+            delete spotImageObj.spotId;
             return res.json(spotImageObj);
         }
         else (spotObj.ownerId !== req.user.id)
         return res.status(403).json({
-            "message": "Forbidden",
+            "message": "Forbidden. Sorry,you are not the owner",
             "statusCode": 403
         })
 
@@ -391,7 +391,7 @@ router.put('/:spotId', requireAuth, async (req, res, next) => {
         const editObj = editSpot.toJSON()
         if (editObj.ownerId !== req.user.id) {
             return res.status(403).json({
-                "message": "Forbidden",
+                "message": "Forbidden. Sorry,you are not the owner",
                 "statusCode": 403
             });
         } else {
@@ -431,7 +431,7 @@ router.delete('/:spotId', requireAuth, async (req, res, next) => {
         } else {
             res.status(403);
             return res.json({
-                "message": "Forbidden",
+                "message": "Forbidden.Sorry,you are not the owner",
                 "statusCode": 403
             })
         }
@@ -453,7 +453,7 @@ router.post('/:spotId/reviews', requireAuth, async (req, res, next) => {
         const spotObj = updateSpot.toJSON();
         if (spotObj.ownerId === req.user.id) {
             return res.status(403).json({
-                "message": "Forbidden",
+                "message": "Forbidden.Sorry,you are the owner",
                 "statusCode": 403
             })
         }
