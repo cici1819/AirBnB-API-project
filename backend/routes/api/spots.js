@@ -14,110 +14,110 @@ router.get('/', async (req, res, next) => {
     let { page, size, minLat,
         maxLat, minLng, maxLng,
         minPrice, maxPrice } = req.query;
-    //     const queryParames = {
-    //         where: {
-    //             lat: {
+        const queryParames = {
+            where: {
+                lat: {
 
-    //             },
-    //             lng: {
+                },
+                lng: {
 
-    //             },
-    //             price: {
+                },
+                price: {
 
-    //             }
-    //         }
-    //     };
+                }
+            }
+        };
 
-    // if (minLat !== undefined) minLat = parseFloat(minLat);
-    // if (minLat < -90 || minLat > 90) {
-    //     return res
-    //         .status(400)
-    //         .json({
-    //             "message": "Validation Error",
-    //             "statusCode": 400,
-    //             "errors": {
-    //                 "minLat": "Minimum latitude is invalid"
-    //             }
-    //         })
-    // }else{
-    //     queryParames.where.lat[Op.gte] = minLat;
-    // }
+    if (minLat !== undefined) minLat = parseFloat(minLat);
+    if (minLat < -90 || minLat > 90) {
+        return res
+            .status(400)
+            .json({
+                "message": "Validation Error",
+                "statusCode": 400,
+                "errors": {
+                    "minLat": "Minimum latitude is invalid"
+                }
+            })
+    }else{
+        queryParames.where.lat[Op.gte] = minLat;
+    }
 
 
-    // if (maxLat !== undefined) maxLat = parseFloat(maxLat);
-    // if (maxLat < -90 || maxLat > 90) {
-    //     return res
-    //         .status(400)
-    //         .json({
-    //             "message": "Validation Error",
-    //             "statusCode": 400,
-    //             "errors": {
-    //                 "maxLat": "Maximum latitude is invalid"
-    //             }
-    //         })
-    // }else{
-    //     queryParames.where.lat[Op.lte] = maxLat;
-    // }
+    if (maxLat !== undefined) maxLat = parseFloat(maxLat);
+    if (maxLat < -90 || maxLat > 90) {
+        return res
+            .status(400)
+            .json({
+                "message": "Validation Error",
+                "statusCode": 400,
+                "errors": {
+                    "maxLat": "Maximum latitude is invalid"
+                }
+            })
+    }else{
+        queryParames.where.lat[Op.lte] = maxLat;
+    }
 
-    // if (minLng !== undefined) minLng = parseFloat(minLng);
-    // if (minLng < -180 || minLat > 180) {
-    //     return res
-    //         .status(400)
-    //         .json({
-    //             "message": "Validation Error",
-    //             "statusCode": 400,
-    //             "errors": {
-    //                 "minLat": "Minimum longitude is invalid"
-    //             }
-    //         })
-    // }else{
-    //     queryParames.where.lng[Op.gte] = minLng;
-    // }
+    if (minLng !== undefined) minLng = parseFloat(minLng);
+    if (minLng < -180 || minLat > 180) {
+        return res
+            .status(400)
+            .json({
+                "message": "Validation Error",
+                "statusCode": 400,
+                "errors": {
+                    "minLat": "Minimum longitude is invalid"
+                }
+            })
+    }else{
+        queryParames.where.lng[Op.gte] = minLng;
+    }
 
-    // if (maxLng !== undefined) maxLng = parseFloat(maxLng);
-    // if (maxLng < -180 || maxLat > 180) {
-    //     return res
-    //         .status(400)
-    //         .json({
-    //             "message": "Validation Error",
-    //             "statusCode": 400,
-    //             "errors": {
-    //                 "minLat": "Maximum longitude is invalid"
-    //             }
-    //         })
-    // }else{
-    //     queryParames.where.lng[Op.lte] = maxLng;
-    // }
+    if (maxLng !== undefined) maxLng = parseFloat(maxLng);
+    if (maxLng < -180 || maxLat > 180) {
+        return res
+            .status(400)
+            .json({
+                "message": "Validation Error",
+                "statusCode": 400,
+                "errors": {
+                    "minLat": "Maximum longitude is invalid"
+                }
+            })
+    }else{
+        queryParames.where.lng[Op.lte] = maxLng;
+    }
 
-    // if (minPrice !== undefined) minPrice = parseFloat(minPrice);
-    // if (minPrice < 0) {
-    //     return res
-    //         .status(400)
-    //         .json({
-    //             "message": "Validation Error",
-    //             "statusCode": 400,
-    //             "errors": {
-    //                 "minPrice": "Minimum price must be greater than or equal to 0"
-    //             }
-    //          })
-    // }else{
-    //     queryParames.where.price[Op.gte] = minPrice;
-    // }
+    if (minPrice !== undefined) minPrice = parseFloat(minPrice);
+    if (minPrice < 0) {
+        return res
+            .status(400)
+            .json({
+                "message": "Validation Error",
+                "statusCode": 400,
+                "errors": {
+                    "minPrice": "Minimum price must be greater than or equal to 0"
+                }
+             })
+    }else{
+        queryParames.where.price[Op.gte] = minPrice;
+    }
 
-    // if (maxPrice !== undefined) maxPrice = parseFloat(maxPrice);
-    // if (maxPrice < 0) {
-    //     return res
-    //     .status(400)
-    //     .json({
-    //         "message": "Validation Error",
-    //         "statusCode": 400,
-    //         "errors": {
-    //             "minPrice": "Maximum price must be greater than or equal to 0"
-    //         }
-    //     })
-    // }else{
-    //     queryParames.where.price[Op.lte] = maxPrice;
-    // }
+    if (maxPrice !== undefined) maxPrice = parseFloat(maxPrice);
+    if (maxPrice < 0) {
+        return res
+        .status(400)
+        .json({
+            "message": "Validation Error",
+            "statusCode": 400,
+            "errors": {
+                "minPrice": "Maximum price must be greater than or equal to 0"
+            }
+        })
+    }else{
+        queryParames.where.price[Op.lte] = maxPrice;
+    }
 
     if (!size || size > 20) size = 20;
     if (!page) page = 1;
@@ -134,20 +134,20 @@ router.get('/', async (req, res, next) => {
                 }
             })
     };
-    // if(minLat === undefined && maxLat === undefined){
+    if(minLat === undefined && maxLat === undefined){
 
-    //     delete queryParames.where.lat;
-    // }
+        delete queryParames.where.lat;
+    }
 
-    // if(minLng === undefined && maxLng === undefined){
+    if(minLng === undefined && maxLng === undefined){
 
-    //     delete queryParames.where.lng;
-    // }
+        delete queryParames.where.lng;
+    }
 
-    // if(minPrice === undefined && maxPrice === undefined){
+    if(minPrice === undefined && maxPrice === undefined){
 
-    //     delete queryParames.where.price;
-    // }
+        delete queryParames.where.price;
+    }
 
 
 
@@ -161,7 +161,8 @@ if (page >= 0 && size >= 0) {
 }
 
 
-const spots = await Spot.findAll({
+    const spots = await Spot.findAll({
+    queryParames,
     ...pagination
 }
 );
