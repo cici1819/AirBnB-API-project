@@ -26,7 +26,7 @@ router.delete('/:imageId', requireAuth, async (req, res) => {
         } else {
 
             return res.status(403).json({
-                "message": "Forbidden",
+                "message": "Forbidden,this is not your spot",
                 "statusCode": 403
             });
         }

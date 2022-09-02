@@ -566,7 +566,7 @@ router.post('/:spotId/bookings', requireAuth, async (req, res, next) => {
         const spotsObj = spots.toJSON()
         if (spotsObj.ownerId === req.user.id) {
             return res.status(403).json({
-                "message": "Forbidden",
+                "message": "Forbidden.Sorry,you are the owner",
                 "statusCode": 403
             })
         }

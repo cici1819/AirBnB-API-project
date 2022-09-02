@@ -52,7 +52,7 @@ router.put('/:bookingId', requireAuth, async (req, res, next) => {
         const editObj = editBooking.toJSON();
         if (editObj.userId !== req.user.id) {
             return res.status(403).json({
-                "message": "Forbidden.Sorry, it's not your booking",
+                "message": "Forbidden.Sorry, this is not your booking",
                 "statusCode": 403
             });
         }
@@ -119,23 +119,6 @@ router.put('/:bookingId', requireAuth, async (req, res, next) => {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 // delete a booking
 
 router.delete('/:bookingId', requireAuth, async (req, res, next) => {
@@ -175,7 +158,7 @@ router.delete('/:bookingId', requireAuth, async (req, res, next) => {
 
             res.status(403);
             return res.json({
-                "message": "Forbidden",
+                "message": "Forbidden.Sorry,this is not your booking",
                 "statusCode": 403
             });
         }
