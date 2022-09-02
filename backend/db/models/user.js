@@ -12,7 +12,7 @@ module.exports = (sequelize, DataTypes) => {
      * The `models/index` file will call this method automatically.
      */
     toSafeObject() {
-      const { id, username, email } = this; // context will be the User instance
+      const { id, fisrtName,lastName,username, email } = this; // context will be the User instance
       return { id, username, email };
     }
     validatePassword(password) {
@@ -23,7 +23,7 @@ module.exports = (sequelize, DataTypes) => {
       return User.scope("currentUser").findByPk(id);
     }
 
-    static async login({ credential, password }) {
+    static async login({ firstName,lastName,username,credential, password }) {
       const { Op } = require('sequelize');
       const user = await User.scope('loginUser').findOne({
         where: {

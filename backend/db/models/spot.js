@@ -84,9 +84,7 @@ module.exports = (sequelize, DataTypes) => {
       allowNull: false,
       validate: {
         min: 0,
-        pricecheck(value) {
-          if (value < min) { throw new Error("price must be greater than or equal to 0") }
-        }
+        
       }
     }
   }, {
