@@ -4,36 +4,190 @@ const { setTokenCookie, requireAuth } = require('../../utils/auth');
 const { check } = require('express-validator');
 const { handleValidationErrors } = require('../../utils/validation');
 const { compare } = require('bcryptjs');
+const { Op } = require("sequelize");
 const router = express.Router();
 
 
 //get all spots
 router.get('/', async (req, res, next) => {
+    //query parameters
+    let { page, size, minLat,
+        maxLat, minLng, maxLng,
+        minPrice, maxPrice } = req.query;
+    //     const queryParames = {
+    //         where: {
+    //             lat: {
 
-    const spots = await Spot.findAll();
-    // console.log(spots,"%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%")
-    let result = [];
-    let spotsObj
-    let avgRating
-    for (let i = 0; i < spots.length; i++) {
-        spotsObj = spots[i].toJSON();
-        avgRating = await Review.findAll({
-            where: {
-                spotId: spots[i].id
-            },
-            attributes: [[Sequelize.fn('AVG', Sequelize.col('stars')), 'avgRating']]
-        })
-        spotsObj.avgRating = avgRating[0].dataValues.avgRating;
-        const previewImage = await SpotImage.findByPk(spots[i].id, {
-            where: { preview: true },
-            attributes: ['url']
-        })
-        if (previewImage) spotsObj.previewImage = previewImage.url
-        if (!previewImage) spotsObj.previewImage = null
+    //             },
+    //             lng: {
 
-        result.push(spotsObj)
-    }
-    return res.json({ Spots: result });
+    //             },
+    //             price: {
+
+    //             }
+    //         }
+    //     };
+
+    // if (minLat !== undefined) minLat = parseFloat(minLat);
+    // if (minLat < -90 || minLat > 90) {
+    //     return res
+    //         .status(400)
+    //         .json({
+    //             "message": "Validation Error",
+    //             "statusCode": 400,
+    //             "errors": {
+    //                 "minLat": "Minimum latitude is invalid"
+    //             }
+    //         })
+    // }else{
+    //     queryParames.where.lat[Op.gte] = minLat;
+    // }
+
+
+    // if (maxLat !== undefined) maxLat = parseFloat(maxLat);
+    // if (maxLat < -90 || maxLat > 90) {
+    //     return res
+    //         .status(400)
+    //         .json({
+    //             "message": "Validation Error",
+    //             "statusCode": 400,
+    //             "errors": {
+    //                 "maxLat": "Maximum latitude is invalid"
+    //             }
+    //         })
+    // }else{
+    //     queryParames.where.lat[Op.lte] = maxLat;
+    // }
+
+    // if (minLng !== undefined) minLng = parseFloat(minLng);
+    // if (minLng < -180 || minLat > 180) {
+    //     return res
+    //         .status(400)
+    //         .json({
+    //             "message": "Validation Error",
+    //             "statusCode": 400,
+    //             "errors": {
+    //                 "minLat": "Minimum longitude is invalid"
+    //             }
+    //         })
+    // }else{
+    //     queryParames.where.lng[Op.gte] = minLng;
+    // }
+
+    // if (maxLng !== undefined) maxLng = parseFloat(maxLng);
+    // if (maxLng < -180 || maxLat > 180) {
+    //     return res
+    //         .status(400)
+    //         .json({
+    //             "message": "Validation Error",
+    //             "statusCode": 400,
+    //             "errors": {
+    //                 "minLat": "Maximum longitude is invalid"
+    //             }
+    //         })
+    // }else{
+    //     queryParames.where.lng[Op.lte] = maxLng;
+    // }
+
+    // if (minPrice !== undefined) minPrice = parseFloat(minPrice);
+    // if (minPrice < 0) {
+    //     return res
+    //         .status(400)
+    //         .json({
+    //             "message": "Validation Error",
+    //             "statusCode": 400,
+    //             "errors": {
+    //                 "minPrice": "Minimum price must be greater than or equal to 0"
+    //             }
+    //          })
+    // }else{
+    //     queryParames.where.price[Op.gte] = minPrice;
+    // }
+
+    // if (maxPrice !== undefined) maxPrice = parseFloat(maxPrice);
+    // if (maxPrice < 0) {
+    //     return res
+    //     .status(400)
+    //     .json({
+    //         "message": "Validation Error",
+    //         "statusCode": 400,
+    //         "errors": {
+    //             "minPrice": "Maximum price must be greater than or equal to 0"
+    //         }
+    //     })
+    // }else{
+    //     queryParames.where.price[Op.lte] = maxPrice;
+    // }
+
+    if (!size || size > 20) size = 20;
+    if (!page) page = 1;
+    if(page > 10) page = 10;
+    if (size < 0 || page < 0) {
+        return res
+            .status(400)
+            .json({
+                "message": "Validation Error",
+                "statusCode": 400,
+                "errors": {
+                    "page": "Page must be greater than or equal to 1",
+                    "size": "Size must be greater than or equal to 1"
+                }
+            })
+    };
+    // if(minLat === undefined && maxLat === undefined){
+
+    //     delete queryParames.where.lat;
+    // }
+
+    // if(minLng === undefined && maxLng === undefined){
+
+    //     delete queryParames.where.lng;
+    // }
+
+    // if(minPrice === undefined && maxPrice === undefined){
+
+    //     delete queryParames.where.price;
+    // }
+
+
+
+size = parseInt(size);
+page = parseInt(page);
+
+let pagination = {};
+if (page >= 0 && size >= 0) {
+    pagination.limit = size;
+    pagination.offset = size * (page - 1);
+}
+
+
+const spots = await Spot.findAll({
+    ...pagination
+}
+);
+// console.log(spots,"%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%")
+let result = [];
+let spotsObj
+let avgRating
+for (let i = 0; i < spots.length; i++) {
+    spotsObj = spots[i].toJSON();
+    avgRating = await Review.findAll({
+        where: {
+            spotId: spots[i].id
+        },
+        attributes: [[Sequelize.fn('AVG', Sequelize.col('stars')), 'avgRating']]
+    })
+    spotsObj.avgRating = avgRating[0].dataValues.avgRating;
+    const previewImage = await SpotImage.findByPk(spots[i].id, {
+        where: { preview: true },
+        attributes: ['url']
+    })
+    if (previewImage) spotsObj.previewImage = previewImage.url
+    if (!previewImage) spotsObj.previewImage = null
+
+    result.push(spotsObj)
+}
+return res.json({ Spots: result, page, size });
 })
 
 // Get all spots  owned by the current user
@@ -441,11 +595,11 @@ router.post('/:spotId/bookings', requireAuth, async (req, res, next) => {
         if (booking.length) {
             for (let i = 0; i < booking.length; i++) {
                 let bookingObj = booking[i].toJSON();
-               let startDateData = bookingObj.startDate.toISOString();
+                let startDateData = bookingObj.startDate.toISOString();
                 startDateData = startDateData.substring(0, 10);
                 let endDateData = bookingObj.endDate.toISOString();
                 endDateData = endDateData.substring(0, 10);
-                if (endDate<= startDate) {
+                if (endDate <= startDate) {
                     return res.status(400).json(
                         {
                             "message": "Validation error",
@@ -458,27 +612,27 @@ router.post('/:spotId/bookings', requireAuth, async (req, res, next) => {
                 }
                 if (startDate <= currentDate ||
                     (startDate >= startDateData && startDate <= endDateData) ||
-                    (endDate>=startDateData && endDate <=endDateData)) {
-                    return res.status(403).json( {
+                    (endDate >= startDateData && endDate <= endDateData)) {
+                    return res.status(403).json({
                         "message": "Sorry, this spot is already booked for the specified dates",
                         "statusCode": 403,
                         "errors": {
-                          "startDate": "Start date conflicts with an existing booking",
-                          "endDate": "End date conflicts with an existing booking"
+                            "startDate": "Start date conflicts with an existing booking",
+                            "endDate": "End date conflicts with an existing booking"
                         }
-                      })
+                    })
                 }
             }
 
         }
-            const newbooking = await Booking.create({
-                spotId: spotsObj.id,
-                userId: req.user.id,
-                startDate: startDate,
-                endDate: endDate
-            })
+        const newbooking = await Booking.create({
+            spotId: spotsObj.id,
+            userId: req.user.id,
+            startDate: startDate,
+            endDate: endDate
+        })
 
-            return res.status(200).json(newbooking)
+        return res.status(200).json(newbooking)
 
     }
     else {
@@ -486,7 +640,7 @@ router.post('/:spotId/bookings', requireAuth, async (req, res, next) => {
             {
                 "message": "Spot couldn't be found",
                 "statusCode": 404
-              }
+            }
         )
     }
 })
