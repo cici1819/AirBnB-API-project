@@ -17,7 +17,7 @@ router.delete('/:imageId', requireAuth, async (req, res) => {
     })
     if (delReviewImage) {
         const deleteObj = delReviewImage.toJSON();
-        console.log(deleteObj,"**************************************")
+        // console.log(deleteObj,"**************************************")
         // if(deleteObj.reviewId)
         if (deleteObj.Review.userId === req.user.id) {
         await delReviewImage.destroy();
@@ -28,7 +28,7 @@ router.delete('/:imageId', requireAuth, async (req, res) => {
         } else {
 
           return  res.status(403).json({
-                "message": "Forbidden",
+                "message": "Forbidden.Sorry,this is not your review",
                 "statusCode": 403
             });
         }

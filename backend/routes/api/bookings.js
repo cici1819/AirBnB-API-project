@@ -52,7 +52,7 @@ router.put('/:bookingId', requireAuth, async (req, res, next) => {
         const editObj = editBooking.toJSON();
         if (editObj.userId !== req.user.id) {
             return res.status(403).json({
-                "message": "Forbidden",
+                "message": "Forbidden.Sorry, it's not your booking",
                 "statusCode": 403
             });
         }

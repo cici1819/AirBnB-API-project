@@ -17,6 +17,13 @@ router.post('/:reviewId/images', requireAuth, async (req, res, next) => {
                 "statusCode": 404
             })
     }
+    if (reviews.userId !== req.user.id) {
+        res.status(403)
+        return res.json({
+          "message": "Forbidden. Sorry,this is not your review.",
+          "statusCode": 403
+        })
+      }
     const images = await ReviewImage.findAll({
         where: {
             reviewId: reviews.id
@@ -102,7 +109,7 @@ router.put('/:reviewId', requireAuth, async (req, res, next) => {
         }
         else if (newReviewObj.userId !== req.user.id) {
             return res.status(403).json({
-                "message": "Forbidden",
+                "message": "Forbidden.Sorry,this is not your review.",
                 "statusCode": 403
             });
         }
@@ -139,7 +146,7 @@ router.delete('/:reviewId', requireAuth, async (req, res, next) => {
             });
         } else {
             return res.status(403).json({
-                "message": "Forbidden",
+                "message": "Forbidden.Sorry,this is not your review.",
                 "statusCode": 403
             });
         }
