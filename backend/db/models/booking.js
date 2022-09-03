@@ -34,11 +34,6 @@ module.exports = (sequelize, DataTypes) => {
       allowNull: false,
       validate: {
         isDate: true,
-        function(value) {
-          if (value > this.endDate) {
-            throw new Error('invalid startDate')
-          }
-        }
       }
     },
     endDate: {

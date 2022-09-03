@@ -1,27 +1,12 @@
 // backend/routes/api/session.js
-const express = require('express')
-
+const express = require('express');
 const { setTokenCookie, restoreUser, requireAuth } = require('../../utils/auth');
 const { User } = require('../../db/models');
-
 const { check } = require('express-validator');
 const { handleValidationErrors } = require('../../utils/validation');
-
 const router = express.Router();
 
-// Restore session user
-router.get(
-    '/',
-    [restoreUser, requireAuth],
-    (req, res) => {
-        const { user } = req;
-        if (user) {
-            return res.json(
-                user.toSafeObject()
-            );
-        } else return res.json({});
-    }
-);
+
 
 const validateLogin = [
     check('credential')
@@ -34,59 +19,66 @@ const validateLogin = [
     handleValidationErrors
 ];
 
-function isStringWithChars(input){
-    return (typeof input === 'string' && input.length > 0);
-}
 
 // Log in
-router.post(
-    '/',
-    async (req, res, next) => {
-        const { credential, password } = req.body;
+router.post('/', validateLogin, async (req, res, next) => {
 
-        let user;
+    const { credential, password } = req.body
 
-        try{
-            user = await User.login({ credential, password });
+    let user = await User.login({ credential, password })
 
-        }catch(err){
-            res.status(400);
-            return res.json({
-                "message": "Validation error",
-                "statusCode": 400,
-                "errors": {
-                  "credential": "Email or username is required",
-                  "password": "Password is required"
-                }
-            });
-        }
-
-        if (!user) {
-            res.status(401);
-            return res.json({
-                "message": "Invalid credentials",
-                "statusCode": 401
-            });
-        }
-
-        const token = await setTokenCookie(res, user);
-
-        const userObj = user.toJSON();
-        userObj.token = token;
-
-        return res.json(
-            userObj
-        );
+    if (!credential || !password) {
+        res.status(400)
+        return res.json({
+            "message": "Validation error",
+            "statusCode": 400,
+            "errors": {
+                "credential": "Email or username is required",
+                "password": "Password is required"
+            }
+        })
     }
-);
+
+    if (!user) {
+        res.status(401)
+        return res.json({
+            "message": "Invalid credentials",
+            "statusCode": 401
+        })
+    }
+    const token = await setTokenCookie(res, user)
+    user = user.toJSON()
+    user.token = token
+
+    return res.json(user)
+})
+
 
 // Log out
-router.delete(
-    '/',
-    (_req, res) => {
-        res.clearCookie('token');
-        return res.json({ message: 'success' });
+router.delete('/', (_req, res) => {
+    res.clearCookie('token');
+    return res.json({ message: 'success' })
+})
+
+
+// Restore  user
+router.get('/', [restoreUser, requireAuth], async (req, res) => {
+    const { user } = req
+
+    if (user) {
+        return res.json({
+            user: user.toSafeObject()
+        })
+    } else {
+        res.status(401)
+        return res.json({
+            message: "Authentication required",
+            statusCode: 401
+        })
     }
-);
+})
+
+
+
 
 module.exports = router;

@@ -15,8 +15,8 @@ router.get('/', async (req, res, next) => {
         maxLat, minLng, maxLng,
         minPrice, maxPrice } = req.query;
 
-    if (!size || size > 20) size = 20;
-    if (!page) page = 1;
+    if (size > 20 || isNaN(size)) size = 20;
+    if (isNaN(page)) page = 1;
     if (page > 10) page = 10;
     if (size < 0 || page < 0) {
         return res
@@ -159,35 +159,35 @@ router.get('/', async (req, res, next) => {
         };
     }
 
-        const spots = await Spot.findAll({
+    const spots = await Spot.findAll({
+        where: {
+            [Op.and]: queryParames
+        },
+        ...pagination
+    });
+    // console.log(spots,"%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%")
+    let result = [];
+    let spotsObj
+    let avgRating
+    for (let i = 0; i < spots.length; i++) {
+        spotsObj = spots[i].toJSON();
+        avgRating = await Review.findAll({
             where: {
-                [Op.and]: queryParames
+                spotId: spots[i].id
             },
-            ...pagination
-        });
-        // console.log(spots,"%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%")
-        let result = [];
-        let spotsObj
-        let avgRating
-        for (let i = 0; i < spots.length; i++) {
-            spotsObj = spots[i].toJSON();
-            avgRating = await Review.findAll({
-                where: {
-                    spotId: spots[i].id
-                },
-                attributes: [[Sequelize.fn('AVG', Sequelize.col('stars')), 'avgRating']]
-            })
-            spotsObj.avgRating = avgRating[0].dataValues.avgRating;
-            const previewImage = await SpotImage.findByPk(spots[i].id, {
-                where: { preview: true },
-                attributes: ['url']
-            })
-            if (previewImage) spotsObj.previewImage = previewImage.url
-            if (!previewImage) spotsObj.previewImage = null
-            result.push(spotsObj)
-        }
-        return res.json({ Spots: result, page, size });
-    })
+            attributes: [[Sequelize.fn('AVG', Sequelize.col('stars')), 'avgRating']]
+        })
+        spotsObj.avgRating = Number(parseFloat(avgRating[0].dataValues.avgRating).toFixed(1));
+        const previewImage = await SpotImage.findByPk(spots[i].id, {
+            where: { preview: true },
+            attributes: ['url']
+        })
+        if (previewImage) spotsObj.previewImage = previewImage.url
+        if (!previewImage) spotsObj.previewImage = null
+        result.push(spotsObj)
+    }
+    return res.json({ Spots: result, page, size });
+})
 
 
 // Get all spots  owned by the current user
@@ -208,7 +208,7 @@ router.get('/current', requireAuth, async (req, res, next) => {
             },
             attributes: [[Sequelize.fn('AVG', Sequelize.col('stars')), 'avgRating']]
         })
-        newObj.avgRating = currAvgrating[0].dataValues.avgRating;
+        newObj.avgRating = Number(parseFloat(currAvgrating[0].dataValues.avgRating).toFixed(1));
         const currImage = await SpotImage.findByPk(currSpots[i].id, {
             where: { preview: true },
             attributes: ['url']
@@ -267,7 +267,7 @@ router.get('/:spotId', requireAuth, async (req, res, next) => {
         });
         const spotResult = spotDetail.toJSON();
         spotResult.numReviews = totalRev;
-        spotResult.avgStarRating = avgRating[0].toJSON().avgRating;
+        spotResult.avgStarRating = Number(parseFloat(avgRating[0].toJSON().avgRating).toFixed(1));
         res.json(spotResult);
 
     } else {
@@ -452,12 +452,12 @@ router.post('/:spotId/reviews', requireAuth, async (req, res, next) => {
     const { review, stars } = req.body;
     if (updateSpot) {
         const spotObj = updateSpot.toJSON();
-        if (spotObj.ownerId === req.user.id) {
-            return res.status(403).json({
-                "message": "Forbidden.Sorry,you are the owner",
-                "statusCode": 403
-            })
-        }
+        // if (spotObj.ownerId === req.user.id) {
+        //     return res.status(403).json({
+        //         "message": "Forbidden.Sorry,you are the owner",
+        //         "statusCode": 403
+        //     })
+        // }
         const spotReview = await Review.findOne({
             where: {
                 userId: req.user.id,

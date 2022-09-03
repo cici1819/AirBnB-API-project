@@ -5,6 +5,7 @@ const { User } = require('../db/models');
 
 const { secret, expiresIn } = jwtConfig;
 
+// Sends a JWT Cookie
 const setTokenCookie = (res, user) => {
   // Create the token.
   const token = jwt.sign(
@@ -25,6 +26,7 @@ const setTokenCookie = (res, user) => {
 
   return token;
 };
+
 const restoreUser = (req, res, next) => {
   // token parsed from cookies
   const { token } = req.cookies;
@@ -53,26 +55,10 @@ const restoreUser = (req, res, next) => {
 const requireAuth = function (req, _res, next) {
   if (req.user) return next();
 
-  const err = new Error('Unauthorized');
-  err.title = 'Unauthorized';
-  err.errors = ['Unauthorized'];
-  err.status = 401;
-  return next(err);
-}
-// const sameAuth = function (req, _res, next) {
-//   const { userName, email } = req.body;
-
-//   req.users =  User.findAll({
-//     attributs:['userName','email']
-//   })
-//   req.users.forEach(el => {
-//     if (el.userName === userName || el.email === email) {
-//       const newerr = new Error('Forbidden');
-//       newerr.errors = ['Forbidden'];
-//       err.status = 403;
-//       return next(newerr)
-//     }
-
-//   })
+  return _res.status(401).json({
+    "message": "Authentication required",
+    "statusCode": 401
+  });
+};
 
 module.exports = { setTokenCookie, restoreUser, requireAuth };
