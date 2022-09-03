@@ -32,9 +32,13 @@ router.get('/', async (req, res, next) => {
     };
     size = parseInt(size);
     page = parseInt(page);
+    if (page === 0 || size === 0) {
+        page = 1
+        size = 20
+    };
 
     let pagination = {};
-    if (page >= 0 && size >= 0) {
+    if (page > 0 && size > 0) {
         pagination.limit = size;
         pagination.offset = size * (page - 1);
     }
@@ -590,10 +594,10 @@ router.post('/:spotId/bookings', requireAuth, async (req, res, next) => {
         if (booking.length) {
             for (let i = 0; i < booking.length; i++) {
                 let bookingObj = booking[i].toJSON();
-                let startDateData = bookingObj.startDate.toISOString();
-                startDateData = startDateData.substring(0, 10);
-                let endDateData = bookingObj.endDate.toISOString();
-                endDateData = endDateData.substring(0, 10);
+                let startDateData = bookingObj.startDate
+                // startDateData = startDateData.substring(0, 10);
+                let endDateData = bookingObj.endDate
+                // endDateData = endDateData.substring(0, 10);
                 if (endDate <= startDate) {
                     return res.status(400).json(
                         {
