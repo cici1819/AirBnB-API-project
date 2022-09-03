@@ -98,10 +98,12 @@ router.put('/:bookingId', requireAuth, async (req, res, next) => {
         }
         const updataBooking = await editBooking.update(
             {
-                startDate, endDate
+                startDate: startDate,
+                endDate: endDate
             }
 
         )
+
         return res.json(updataBooking);
     }
 

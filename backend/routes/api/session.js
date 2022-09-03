@@ -66,9 +66,9 @@ router.get('/', [restoreUser, requireAuth], async (req, res) => {
     const { user } = req
 
     if (user) {
-        return res.json({
-            user: user.toSafeObject()
-        })
+        return res.json(
+            user.toSafeObject()
+        )
     } else {
         res.status(401)
         return res.json({

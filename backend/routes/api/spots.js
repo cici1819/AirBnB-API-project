@@ -14,9 +14,9 @@ router.get('/', async (req, res, next) => {
     let { page, size, minLat,
         maxLat, minLng, maxLng,
         minPrice, maxPrice } = req.query;
+        if (!page || isNaN(page)) page = 1
+        if (!size || isNaN(size)||size>20) size = 20
 
-    if (size > 20 || isNaN(size)) size = 20;
-    if (isNaN(page)) page = 1;
     if (page > 10) page = 10;
     if (size < 0 || page < 0) {
         return res
@@ -177,7 +177,7 @@ router.get('/', async (req, res, next) => {
             },
             attributes: [[Sequelize.fn('AVG', Sequelize.col('stars')), 'avgRating']]
         })
-        spotsObj.avgRating = Number(parseFloat(avgRating[0].dataValues.avgRating).toFixed(1));
+        spotsObj.avgRating = Number(parseFloat(avgRating[0].dataValues.avgRating).toFixed(2));
         const previewImage = await SpotImage.findByPk(spots[i].id, {
             where: { preview: true },
             attributes: ['url']
@@ -208,7 +208,7 @@ router.get('/current', requireAuth, async (req, res, next) => {
             },
             attributes: [[Sequelize.fn('AVG', Sequelize.col('stars')), 'avgRating']]
         })
-        newObj.avgRating = Number(parseFloat(currAvgrating[0].dataValues.avgRating).toFixed(1));
+        newObj.avgRating = Number(parseFloat(currAvgrating[0].dataValues.avgRating).toFixed(2));
         const currImage = await SpotImage.findByPk(currSpots[i].id, {
             where: { preview: true },
             attributes: ['url']
@@ -267,7 +267,7 @@ router.get('/:spotId', requireAuth, async (req, res, next) => {
         });
         const spotResult = spotDetail.toJSON();
         spotResult.numReviews = totalRev;
-        spotResult.avgStarRating = Number(parseFloat(avgRating[0].toJSON().avgRating).toFixed(1));
+        spotResult.avgStarRating = Number(parseFloat(avgRating[0].toJSON().avgRating).toFixed(2));
         res.json(spotResult);
 
     } else {
