@@ -11,6 +11,7 @@
     "sequelize-cli": "npm run --prefix backend sequelize-cli",
     "start": "npm start --prefix backend",
     "dev:frontend": "npm install --prefix frontend start"
+    
   },
   "keywords": [],
   "author": "",
