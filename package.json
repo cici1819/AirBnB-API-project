@@ -1,7 +1,6 @@
 {
   "name": "authenticate-me",
   "version": "1.0.0",
-  "description": "",
   "main": "index.js",
   "scripts": {
     "heroku-postbuild": "npm run build --prefix frontend",
@@ -17,5 +16,15 @@
   "license": "ISC",
   "dependencies": {
     "bcryptjs": "^2.4.3"
-  }
+  },
+  "devDependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/cici1819/AirBnB-API-project.git"
+  },
+  "bugs": {
+    "url": "https://github.com/cici1819/AirBnB-API-project/issues"
+  },
+  "homepage": "https://github.com/cici1819/AirBnB-API-project#readme",
+  "description": ""
 }
