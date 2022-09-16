@@ -14,8 +14,8 @@ router.get('/', async (req, res, next) => {
     let { page, size, minLat,
         maxLat, minLng, maxLng,
         minPrice, maxPrice } = req.query;
-        if (!page || isNaN(page)) page = 1
-        if (!size || isNaN(size)||size>20) size = 20
+    if (!page || isNaN(page)) page = 1
+    if (!size || isNaN(size) || size > 20) size = 20
 
     if (page > 10) page = 10;
     if (size < 0 || page < 0) {
@@ -497,7 +497,7 @@ router.post('/:spotId/reviews', requireAuth, async (req, res, next) => {
 
 //get a review by spotId
 router.get('/:spotId/reviews', requireAuth, async (req, res, next) => {
-    // let newArr = [];
+
     const spots = await Spot.findByPk(req.params.spotId);
     if (spots) {
         const spotObj = spots.toJSON()
@@ -579,15 +579,7 @@ router.post('/:spotId/bookings', requireAuth, async (req, res, next) => {
                 spotId: spotsObj.id
             }
         })
-        // console.log(booking,"--------------------------------------------------")
-        // const bookingObj = booking.toJSON();
-        // const getDate = () => {
-        //     let newDate = new Date();
-        //     let year = newDate.getFullYear();
-        //     let month = newDate.getMonth() + 1;
-        //     let d = newDate.getDay();
-        //     return year + '-' + month + '-' + d;
-        // }
+
         let currentDate = new Date();
         currentDate = currentDate.toISOString();
         currentDate = currentDate.substring(0, 10);
@@ -595,9 +587,7 @@ router.post('/:spotId/bookings', requireAuth, async (req, res, next) => {
             for (let i = 0; i < booking.length; i++) {
                 let bookingObj = booking[i].toJSON();
                 let startDateData = bookingObj.startDate
-                // startDateData = startDateData.substring(0, 10);
                 let endDateData = bookingObj.endDate
-                // endDateData = endDateData.substring(0, 10);
                 if (endDate <= startDate) {
                     return res.status(400).json(
                         {
