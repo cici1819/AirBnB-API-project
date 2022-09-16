@@ -60,9 +60,9 @@ router.put('/:bookingId', requireAuth, async (req, res, next) => {
         currentDate = currentDate.toISOString();
         currentDate = currentDate.substring(0, 10)
         let startDateData = editObj.startDate
-        // startDateData = startDateData.substring(0, 10);
+
         let endDateData = editObj.endDate
-        // endDateData = endDateData.substring(0, 10);
+
 
         if (endDate <= startDate) {
             return res.status(400).json(
