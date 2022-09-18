@@ -23,7 +23,7 @@ router.post(
     async (req, res, next) => {
         const { credential, password } = req.body;
 
-        const user = await User.login({ credential, password });
+        let user = await User.login({ credential, password });
 
         if (!user) {
             return res.status(401).json({
@@ -33,6 +33,7 @@ router.post(
         }
 
         else {
+            console.log(user);
             const token = await setTokenCookie(res, user);
             user = user.toJSON()
             user.token = token;
