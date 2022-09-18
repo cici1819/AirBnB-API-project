@@ -1,5 +1,4 @@
-// frontend/src/store/csrf.js
-import Cookies from 'js-cookie';
+import Cookies from "js-cookie";
 
 export async function csrfFetch(url, options = {}) {
     // set options.method to 'GET' if there is no method
@@ -27,6 +26,14 @@ export async function csrfFetch(url, options = {}) {
     return res;
 }
 
+// call this to get the "XSRF-TOKEN" cookie, should only be used in development
 export function restoreCSRF() {
     return csrfFetch('/api/csrf/restore');
 }
+// window.store.dispatch(window.sessionActions.signup({
+//     username: 'NewUser789',
+//     email: 'new3444@user.io',
+//     password: 'password',
+//     firstName: "cici",
+//     lastName:"cheng"
+//   }));

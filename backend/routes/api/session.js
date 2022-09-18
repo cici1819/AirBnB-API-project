@@ -1,12 +1,10 @@
 // backend/routes/api/session.js
-const express = require('express');
-const { setTokenCookie, restoreUser, requireAuth } = require('../../utils/auth');
+const express = require('express')
+const { setTokenCookie, restoreUser } = require('../../utils/auth');
 const { User } = require('../../db/models');
+const router = express.Router();
 const { check } = require('express-validator');
 const { handleValidationErrors } = require('../../utils/validation');
-const router = express.Router();
-
-
 
 const validateLogin = [
     check('credential')
@@ -18,67 +16,53 @@ const validateLogin = [
         .withMessage('Please provide a password.'),
     handleValidationErrors
 ];
-
-
 // Log in
-router.post('/', validateLogin, async (req, res, next) => {
+router.post(
+    '/',
+    validateLogin,
+    async (req, res, next) => {
+        const { credential, password } = req.body;
 
-    const { credential, password } = req.body
+        const user = await User.login({ credential, password });
 
-    let user = await User.login({ credential, password })
+        if (!user) {
+            return res.status(401).json({
+                "message": "Invalid credentials",
+                "statusCode": 401
+            })
+        }
 
-    if (!credential || !password) {
-        res.status(400)
-        return res.json({
-            "message": "Validation error",
-            "statusCode": 400,
-            "errors": {
-                "credential": "Email or username is required",
-                "password": "Password is required"
-            }
-        })
+        else {
+            const token = await setTokenCookie(res, user);
+            user = user.toJSON()
+            user.token = token;
+            return res.json(user);
+        }
     }
-
-    if (!user) {
-        res.status(401)
-        return res.json({
-            "message": "Invalid credentials",
-            "statusCode": 401
-        })
-    }
-    const token = await setTokenCookie(res, user)
-    user = user.toJSON()
-    user.token = token
-
-    return res.json(user)
-})
-
+);
 
 // Log out
-router.delete('/', (_req, res) => {
-    res.clearCookie('token');
-    return res.json({ message: 'success' })
-})
+router.delete(
+    '/',
+    (_req, res) => {
+        res.clearCookie('token');
+        return res.json({ message: 'success' });
+    }
+);
 
 
 // Restore  user
-router.get('/', [restoreUser, requireAuth], async (req, res) => {
-    const { user } = req
-
-    if (user) {
-        return res.json(
-            user.toSafeObject()
-        )
-    } else {
-        res.status(401)
-        return res.json({
-            message: "Authentication required",
-            statusCode: 401
-        })
+router.get(
+    '/',
+    restoreUser,
+    (req, res) => {
+        const { user } = req;
+        if (user) {
+            return res.json(
+                user.toSafeObject()
+            );
+        } else return res.json({});
     }
-})
-
-
-
+);
 
 module.exports = router;
