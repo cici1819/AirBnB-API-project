@@ -71,6 +71,18 @@ module.exports = {
       address: '1245 Innes Ave',
       lat: 34.071422,
       lng: -118.249808
+    },
+    {
+      name: '3 bedroom unit right near Dodger Stadium',
+      description: '3 bedroom unit minutes from LA Dodgers stadium. Beautiful Views nearby.',
+      ownerId: 5,
+      city: 'Los Angeles',
+      state: "CA",
+      country: "United States",
+      price: 158,
+      address: '1333 Innes Ave',
+      lat: 34.071425,
+      lng: -118.249807
     }
 
     ]);

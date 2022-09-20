@@ -227,7 +227,7 @@ router.get('/current', requireAuth, async (req, res, next) => {
 })
 
 //get all spots detail by id
-router.get('/:spotId', requireAuth, async (req, res, next) => {
+router.get('/:spotId',  async (req, res, next) => {
     const spotDetail = await Spot.findByPk(req.params.spotId, {
         //eagerly loading
         include: [{
