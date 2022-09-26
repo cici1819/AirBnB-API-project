@@ -4,10 +4,12 @@ import { useDispatch, useSelector } from "react-redux";
 import { Route, Switch } from "react-router-dom";
 import SignupForm from "./components/SignupFormModal";
 import * as sessionActions from "./store/session";
-import * as spotsActions from "./store/spots";
+// import * as spotsActions from "./store/spots";
 import Navigation from "./components/Navigation";
 import Spots from "./components/Spots";
 import SingleSpot from "./components/SingleSpot";
+import AddSpotForm from "./components/AddSpotForm";
+import UpdateSpotForm from "./components/UpdateSpotForm";
 
 function App() {
   const dispatch = useDispatch();
@@ -27,16 +29,19 @@ function App() {
       {isLoaded && (
         <Switch>
           <Route exact path="/">
-          <Spots />
+            <Spots />
           </Route>
           <Route path="/signup">
             <SignupForm />
           </Route>
-          <Route  path="/spots/:spotId">
+          <Route exact path='/spots/update/:spotId'>
+            <UpdateSpotForm />
+          </Route>
+          <Route path="/spots/:spotId">
             <SingleSpot />
-            </Route>
-          <Route  path="/spots">
-          <Spots />
+          </Route>
+          <Route path="/spots">
+          <AddSpotForm />
           </Route>
 
         </Switch>

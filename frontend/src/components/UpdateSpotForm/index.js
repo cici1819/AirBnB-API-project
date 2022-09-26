@@ -1,13 +1,34 @@
 import React, { useState, useEffect } from 'react'
+import {  useParams } from 'react-router-dom';
 import { useHistory } from 'react-router-dom';
 import { useDispatch, useSelector } from "react-redux";
 import * as spotsActions from "../../store/spots";
+import './updateSpotForm.css'
 
-const AddSpotForm = () => {
+const UpdateSpotForm = () => {
 
     const sessionUser = useSelector((state) => state.session.user);
     const dispatch = useDispatch();
     const history = useHistory();
+    const { spotId } = useParams();
+    const spot = useSelector(state => state.spots.spot)
+    useEffect(() => {
+        dispatch(spotsActions.getOneSpot(spotId))
+    }, [dispatch, spotId])
+
+    useEffect(() => {
+        if (spot) {
+            setAddress(spot.address);
+            setCity(spot.city);
+            setState(spot.state);
+            setCountry(spot.country);
+            setLat(spot.lat);
+            setLng(spot.lng);
+            setName(spot.name);
+            setDescription(spot.description);
+            setPrice(spot.price);
+        }
+    }, [spot]);
 
     const [name, setName] = useState("");
     const [description, setDescription] = useState("");
@@ -17,9 +38,7 @@ const AddSpotForm = () => {
     const [country, setCountry] = useState("");
     const [lat, setLat] = useState("");
     const [lng, setLng] = useState("");
-
     const [price, setPrice] = useState("");
-    const [url, setUrl] = useState("");
     const [validationErrors, setValidationErrors] = useState([]);
     const [hasSubmitted, setHasSubmitted] = useState(false);
 
@@ -37,15 +56,18 @@ const AddSpotForm = () => {
 
         if (name.length === 0) {
             errors.push("Name is required");
-        } else if (name.length > 49) {
+        }
+        else if (name.length > 49) {
             errors.push("Name must be less than 50 characters");
         }
-
         if (description.length === 0) {
             errors.push("Description is required");
-        } else if (description.length > 255) {
+        }
+
+        else if (description.length > 255) {
             errors.push("Description must be less than 256 characters");
         }
+
 
         if (address.length === 0) {
             errors.push("Address is required");
@@ -118,7 +140,7 @@ const AddSpotForm = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
         setHasSubmitted(true);
-        if (validationErrors.length) return alert(`Validation Erroes Cannot Submit`);
+        if (validationErrors.length) return alert(`Validation Errors Cannot Submit`);
         const newSpot = {
             name,
             description,
@@ -131,29 +153,13 @@ const AddSpotForm = () => {
             price
         }
 
-
-
-
-        const addSpot = dispatch(spotsActions.addSpot(newSpot)).then((res) => {
+        const updatedSpot = dispatch(spotsActions.editSpot(newSpot,spotId)).then((res) => {
             const data = res.json();
             if (data && data.errors) setValidationErrors(data.errors);
         })
-        if (addSpot) {
-            // const SpotImages = ({
-            //     url: image,
-            //     preview:true
-
-            // })
+        if (updatedSpot) {
             setValidationErrors([]);
-            history.push(`/spots/${addSpot.id}`);
-
-            // if (img) {
-            //     const newImg = { url, preview: true }
-            //     // const createdImg = await dispatch(spotsActions.addSpotImg(addSpot.id, newImg));
-            //     if (createdImg) setValidationErrors([]);
-            //     const data = await res.json();
-            //     if (data && data.errors) setValidationErrors(data.errors);
-            // }
+            history.push(`/spots/${updatedSpot.id}`);
 
         }
 
@@ -161,7 +167,8 @@ const AddSpotForm = () => {
     };
 
     return (
-        <form onSubmit={handleSubmit} className="add-spot-form">
+
+        <form onSubmit={handleSubmit} className="updateSpot-form">
             <div className='errors-div'>
                 {validationErrors.length > 0 && (
                     <ul className="errors">
@@ -287,12 +294,13 @@ const AddSpotForm = () => {
             </div> */}
             <div className='addSpot-button'>
                 <button type="submit"
-                    disabled={hasSubmitted && validationErrors.length > 0}
-                >Submit</button>
+             disabled={hasSubmitted && validationErrors.length > 0}
+                >
+                    Update your Spot</button>
             </div>
         </form>
     );
 }
 
 
-export default AddSpotForm
+export default UpdateSpotForm

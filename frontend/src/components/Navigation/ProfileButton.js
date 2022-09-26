@@ -37,8 +37,20 @@ function ProfileButton({ user }) {
             </button>
             {sessionUser&& showMenu && (
                     <ul className="profile-dropdown">
-                    <li>{user.username}</li>
-                    <li>{user.email}</li>
+                        <li>Welcome, {user.username}</li>
+                        <li>{user.email}</li>
+                        {/* <li>
+                            <button onClick={YourSpots} className ="your-spot"> Your Spots
+                            </button>
+                        </li>
+                        <li>
+                            <button onClick={YourReviews} className ="your-reviews"> Your Reviews
+                            </button>
+                        </li>
+                        <li>
+                            <button onClick={AddSpot} className ="add-spot"> Create a Spot
+                            </button>
+                        </li> */}
                     <li>
                         <button onClick={logout} className="log-out">Log Out</button>
                     </li>

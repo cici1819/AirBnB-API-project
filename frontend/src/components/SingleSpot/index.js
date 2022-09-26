@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
-import { getOneSpot } from '../../store/spots';
+import * as spotsActions from "../../store/spots";
 import './SingleSpot.css'
 
 const SingleSpot = () => {
@@ -15,7 +15,7 @@ const SingleSpot = () => {
 
 
     useEffect(() => {
-        dispatch(getOneSpot(spotId))
+        dispatch(spotsActions.getOneSpot(spotId))
         // console.log("dispatch+++++++++++++++++",)
     }, [dispatch, spotId])
 
@@ -29,11 +29,7 @@ const SingleSpot = () => {
         <div className='singlespot-details'>
             <h2>{spot.name}</h2>
 
-            <div className='spot-imgs'>
-                {spot.SpotImages.map(img => (
-                    <img  src={img.url} alt={img.url} className='img-details' />
-                ))}
-            </div>
+
 
 
             <div className='spot-reviews'>
@@ -53,7 +49,12 @@ const SingleSpot = () => {
                 {`${spot.city}, ${spot.state}, ${spot.country}`}
             </span>
             </div>
-
+            
+            <div className='spot-imgs'>
+                {spot.SpotImages.map(img => (
+                    <img  src={img.url} alt={img.url} className='img-details' />
+                ))}
+            </div>
 
             <div className='spot-owner'>
                 <h3>Owner: {spot.Owner.firstName} {spot.Owner.lastName}</h3>

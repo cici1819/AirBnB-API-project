@@ -28,13 +28,17 @@ function Navigation({ isLoaded }) {
   return (
     <div className='header'>
       <NavLink exact to="/" claseeName="link-home">
-          <img src={logo} className="logo" alt="Aircnc-logo" />
-          <h1 className='title'>Aircnc</h1>
+        <img src={logo} className="logo" alt="Aircnc-logo" />
+        <h1 className='title'>Aircnc</h1>
       </NavLink>
       <nav className='user-auth'>
-      {isLoaded && sessionLinks}
-     </nav>
-
+        {isLoaded && sessionLinks}
+      </nav>
+      <nav className='creat-spot'>
+        <NavLink to="/spots" className='creat-spot-link'>
+          <button className='create-spot-button'>Become a Host</button>
+        </NavLink>
+      </nav>
     </div>
 
   );
