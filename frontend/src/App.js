@@ -1,8 +1,8 @@
 // frontend/src/App.js
 import React, { useState, useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { Route, Switch } from "react-router-dom";
-import SignupForm from "./components/SignupFormModal";
+// import SignupForm from "./components/SignupFormModal";
 import * as sessionActions from "./store/session";
 // import * as spotsActions from "./store/spots";
 import Navigation from "./components/Navigation";
@@ -31,9 +31,9 @@ function App() {
           <Route exact path="/">
             <Spots />
           </Route>
-          <Route path="/signup">
+          {/* <Route path="/signup">
             <SignupForm />
-          </Route>
+          </Route> */}
           <Route exact path='/spots/update/:spotId'>
             <UpdateSpotForm />
           </Route>
