@@ -39,8 +39,9 @@ function SignupForm() {
                 </ul>
                 <div className="input-email">
                     <label>
-                        Email
+
                         <input
+                            placeholder="Email"
                             type="text"
                             value={email}
                             onChange={(e) => setEmail(e.target.value)}
@@ -51,8 +52,9 @@ function SignupForm() {
 
                 <div className="input-username">
                     <label>
-                        Username
+
                         <input
+                            placeholder="Username"
                             type="text"
                             value={username}
                             onChange={(e) => setUsername(e.target.value)}
@@ -62,8 +64,9 @@ function SignupForm() {
                 </div>
                 <div className="input-firstName">
                     <label>
-                        First Name
+
                         <input
+                            placeholder="First Name"
                             type="text"
                             value={firstName}
                             onChange={(e) => setfirstName(e.target.value)}
@@ -73,8 +76,9 @@ function SignupForm() {
                 </div>
                 <div className="input-lastName">
                     <label>
-                        Last Name
+
                         <input
+                            placeholder="Last Name"
                             type="text"
                             value={lastName}
                             onChange={(e) => setlastName(e.target.value)}
@@ -84,26 +88,28 @@ function SignupForm() {
                 </div>
                 <div className="input-password">
                     <label>
-                    Password
-                    <input
-                        type="password"
-                        value={password}
-                        onChange={(e) => setPassword(e.target.value)}
-                        required
-                    />
+
+                        <input
+                            placeholder="Password"
+                            type="password"
+                            value={password}
+                            onChange={(e) => setPassword(e.target.value)}
+                            required
+                        />
                     </label>
                 </div>
                 <div className="confirm-password">
-                <label>
-                    Confirm Password
-                    <input
-                        type="password"
-                        value={confirmPassword}
-                        onChange={(e) => setConfirmPassword(e.target.value)}
-                        required
-                    />
-                </label>
-               </div>
+                    <label>
+
+                        <input
+                            placeholder="Confirm Password"
+                            type="password"
+                            value={confirmPassword}
+                            onChange={(e) => setConfirmPassword(e.target.value)}
+                            required
+                        />
+                    </label>
+                </div>
                 <button type="submit" className="sign-up">Sign Up</button>
             </div>
 

@@ -38,7 +38,7 @@ function ProfileButton({ user }) {
             <div className="menu-div">
                 <button onClick={openMenu} className="user-button">
                     <i className="fa-solid fa-bars"></i>
-                    <i class="fa-solid fa-circle-user"></i>
+                    <i className="fa-solid fa-circle-user"></i>
                 </button>
                 {showMenu && (
                     <ul className="profile-dropdown">
@@ -53,9 +53,9 @@ function ProfileButton({ user }) {
                             <li>
                                 <NavLink className='my-review' to={'/reviews/current'}>My Reviews</NavLink>
                             </li>
-                            <li>
+                            {/* <li>
                                 <NavLink className='add-spot' to={'/spots'}>Become a Host</NavLink>
-                            </li>
+                            </li> */}
                         </div>
                         <li>
                             <button onClick={logout} className="log-out">Log Out</button>

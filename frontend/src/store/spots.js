@@ -1,3 +1,4 @@
+import { useParams } from "react-router-dom";
 import { csrfFetch } from "./csrf";
 //  action type
 const LOAD_SPOTS = "spots/LOAD_SPOTS";
@@ -20,16 +21,13 @@ const loadOneSpot = (spot) => ({
     spot
 })
 
-const loadUserSpots = (spots) => ({
-
-    type: USER_SPOTS,
-    spots
-
-})
-const addImg = (spotId, img) => ({
+const addImg = (spot, img) => ({
     type: ADD_IMG,
-    spotId,
-    img
+    payload: {
+        spot,
+        img
+    }
+
 })
 
 
@@ -53,6 +51,7 @@ export const getAllSpots = () => async dispatch => {
     if (response.ok) {
         const spots = await response.json();
         dispatch(loadAllSpots(spots));
+        return spots;
     }
 }
 
@@ -77,7 +76,8 @@ export const getUserSpots = () => async dispatch => {
 
     if (response.ok) {
         const userSpots = await response.json();
-        dispatch(loadUserSpots(userSpots));
+        dispatch(loadAllSpots(userSpots));
+        return userSpots;
     }
 }
 
@@ -100,6 +100,8 @@ export const getUserSpots = () => async dispatch => {
 
 // Thunk action add a spot
 export const addSpot = (spot) => async dispatch => {
+    console.log('................. Spot' ,spot)
+    let { url } = spot;
     const response = await csrfFetch(`/api/spots`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
@@ -107,8 +109,23 @@ export const addSpot = (spot) => async dispatch => {
     });
     if (response.ok) {
         const newSpot = await response.json();
+        console.log("..........newSpot",newSpot)
         dispatch(addOneSpot(newSpot));
-        return newSpot;
+        const resImg = await csrfFetch(`/api/spots/${newSpot.id}/images`, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+                url,
+                preview: true
+            })
+        });
+
+        if (resImg.ok) {
+            const spotImage = await resImg.json();
+            dispatch(addImg(newSpot, spotImage));
+            return newSpot;
+        };
+
     }
 }
 
@@ -120,6 +137,7 @@ export const editSpot = (spotId, spot) => async dispatch => {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(spot)
     })
+    console.log ("update spot222222222222" + response)
     if (response.ok) {
         const updatedSpot = await response.json();
         dispatch(updateSpot(updatedSpot));
@@ -139,7 +157,7 @@ export const removeSpot = (spotId) => async dispatch => {
     }
 }
 
-
+// spots reducer
 
 const initialState = {
     allSpots: {},
@@ -160,18 +178,19 @@ const spotsReducer = (state = initialState, action) => {
             newState.allSpots = allSpots;
             return newState;
 
-            // console.log('newState++++++++++++++++++++++++ ', newState)
+        // console.log('newState++++++++++++++++++++++++ ', newState)
 
         case ONE_SPOT:
             newState = { ...state };
-            newState.spot= action.spot
-              console.log("%%%%%%%%%%%%%%%%%%%%%%%",action.spot)
+            newState.spot = action.spot
+             console.log("XXXXXXXXXXXXXXXX NewState", newState)
             return newState;
 
-        // case ADD_IMG:
-        //     newState = { ...state }
-        //     newState.spot.SpotImages = [action.spotId.url]
-        //     return newState;
+        case ADD_IMG:
+            newState = { ...state }
+            newState.spot=action.payload.spot
+            newState.spot.SpotImages = [action.payload.img]
+            return newState;
 
 
 
@@ -179,15 +198,18 @@ const spotsReducer = (state = initialState, action) => {
             newState = { ...state };
             newState.allSpots = { ...state.allSpots, [action.spot.id]: action.spot };
             newState.spot = { ...state.spot, ...action.spot }
+            // console.log("add spot action newState", newState)
             return newState;
         case UPDATE_SPOT:
             newState = { ...state };
             newState.allSpots = { ...state.allSpots, [action.spot.id]: action.spot }
             newState.spot = { ...state.spot, ...action.spot };
+            console.log("update spot newState 33333333333333:",action.spot)
             return newState;
         case DELETE_SPOT:
             newState = { ...state };
-            delete newState[action.spotId]
+            delete newState.allSpots[action.spotId]
+            newState.spot = {};
             return newState;
 
         default:

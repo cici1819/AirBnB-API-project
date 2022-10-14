@@ -13,7 +13,9 @@ const validateLogin = [
         .withMessage('Please provide a valid email or username.'),
     check('password')
         .exists({ checkFalsy: true })
-        .withMessage('Please provide a password.'),
+        .isLength({ min: 6 })
+        .withMessage('Please provide a valid password.'),
+
     handleValidationErrors
 ];
 // Log in

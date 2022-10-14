@@ -5,6 +5,7 @@ import { useSelector } from 'react-redux';
 import ProfileButton from './ProfileButton';
 import LoginFormModal from '../LoginFormModal/index';
 import SignupFormModal from '../SignupFormModal/index';
+import AddSpotFormModal from '../AddSpotFormModal';
 // import LoginForm from '../LoginFormModal/LoginForm';
 // import SignupForm from '../SignupFormModal/SignupForm';
 // import { Modal } from '../../context/Modal';
@@ -12,7 +13,7 @@ import logo from "../../images/logo.png"
 import './Navigation.css';
 import { useEffect, useState } from 'react';
 
-function Navigation({ isLoaded, loginModal, setLoginModal }) {
+function Navigation({ isLoaded }) {
   const sessionUser = useSelector(state => state.session.user);
   const [showMenu, setShowMenu] = useState(false);
   // const [showSignupModal, setShowSignupModal] = useState(false);
@@ -85,11 +86,12 @@ function Navigation({ isLoaded, loginModal, setLoginModal }) {
       <nav className='user-auth'>
         {isLoaded && sessionLinks}
       </nav>
-      {/* <nav className='creat-spot'>
-        <NavLink to="/spots" className='creat-spot-link'>
-          <button className='create-spot-button'>Become a Host</button>
-        </NavLink>
-      </nav> */}
+      <nav className='creat-spot'>
+        {/* <NavLink to="/spots" className='creat-spot-link'> */}
+          {/* <div className='create-spot-button'>Become a Host</div> */}
+        {/* </NavLink> */}
+        <AddSpotFormModal />
+      </nav>
     </div>
 
   );

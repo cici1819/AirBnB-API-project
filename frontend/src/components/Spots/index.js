@@ -1,20 +1,20 @@
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+
 import { useHistory } from 'react-router-dom';
 import * as spotsActions from "../../store/spots";
-import "./spots.css"
+import "./Spots.css"
 
 //get all spots
 const Spots = () => {
-    const spots = useSelector(state => {
-        return state.spots.allSpots;
-    });
+    const spots = useSelector(state => state.spots.allSpots);
+    //  const spot = useSelector(state=>state.spots.spot)
     const spotsArr = Object.values(spots);
-    // console.log('=============', spots)
+    // console.log('all spots...................' + spots)
     const dispatch = useDispatch();
     const history = useHistory();
     const goToSpot = (spotId) => {
-        //    dispatch(getOneSpot(spotId))
+        // dispatch(spotsActions.getOneSpot(spotId))
         history.push(`/spots/${spotId}`)
     }
 
@@ -26,7 +26,7 @@ const Spots = () => {
 
     return (
         <div className='card'>
-            {spotsArr.map(spot => (
+            {spotsArr.map(spot => spot.previewImage && (
                 <div key={spot.id}>
 
                     <div className='spot-card' onClick={() => goToSpot(spot.id)} >
@@ -38,9 +38,9 @@ const Spots = () => {
                             <span className='night'>night</span>
                         </div>
                     </div>
-                    <div className='spot-avgRating'>
+                    <div className='spot-avgRating-all-spots'>
                         <i className="fa-sharp fa-solid fa-star"></i>
-                        {spot.avgRating && Number(spot.avgRating).toFixed(1)}
+                        <span>{!Number(spot.avgRating) ? 'New' : Number(spot.avgRating).toFixed(1)}</span>
                     </div>
                 </div>
 

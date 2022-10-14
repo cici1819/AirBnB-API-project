@@ -1,89 +1,95 @@
 import React, { useState, useEffect } from 'react'
+// import { useParams } from 'react-router-dom';
 import { useHistory } from 'react-router-dom';
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import * as spotsActions from "../../store/spots";
+import './UpdateSpotForm.css'
 
-const AddSpotForm = () => {
+const UpdateSpotForm = ({ spot,setShowModal }) => {
 
-    const sessionUser = useSelector((state) => state.session.user);
+    // const sessionUser = useSelector((state) => state.session.user);
     const dispatch = useDispatch();
     const history = useHistory();
+    // const { spotId } = useParams();
 
-    const [name, setName] = useState("");
-    const [description, setDescription] = useState("");
-    const [address, setAddress] = useState("");
-    const [city, setCity] = useState("");
-    const [state, setState] = useState("");
-    const [country, setCountry] = useState("");
-    const [lat, setLat] = useState("");
-    const [lng, setLng] = useState("");
+    // const spot = useSelector(state => state.spots.spot)
 
-    const [price, setPrice] = useState("");
-    const [url, setUrl] = useState("");
+    const [address, setAddress] = useState(spot?.address);
+    const [city, setCity] = useState(spot?.city);
+    const [state, setState] = useState(spot?.state);
+    const [country, setCountry] = useState(spot?.country);
+    const [lat, setLat] = useState(spot?.lat);
+    const [lng, setLng] = useState(spot?.lng);
+    const [name, setName] = useState(spot?.name);
+    const [description, setDescription] = useState(spot?.description);
+    const [price, setPrice] = useState(spot?.price);
+
     const [validationErrors, setValidationErrors] = useState([]);
     const [hasSubmitted, setHasSubmitted] = useState(false);
+     console.log("updatedSpot, spot ~~~~~~~~~~~@@@@",spot)
+
+    // useEffect(() => {
+    //     dispatch(spotsActions.getOneSpot(spotId))
+
+    // }, [dispatch, spotId])
 
 
-    if (!sessionUser) {
-        alert("Please log in or Sign Up");
-        history.push("/");
-    }
     useEffect(() => {
-        // if (!address && !city && !state && !country && !name && !description && !price) {
-        //     setValidationErrors([]);
-        //     return;
-        // } else {
+
         const errors = [];
 
-        if (name.length === 0) {
+        if (!name.length) {
             errors.push("Name is required");
-        } else if (name.length > 49) {
-            errors.push("Name must be less than 50 characters");
         }
-
-        if (description.length === 0) {
+        else if (name.length > 30) {
+            errors.push("Name must be less than 30 characters");
+        }
+        if (!description.length) {
             errors.push("Description is required");
-        } else if (description.length > 255) {
-            errors.push("Description must be less than 256 characters");
         }
 
-        if (address.length === 0) {
+        else if (description.length > 500) {
+            errors.push("Description must be less than 500 characters");
+        }
+
+
+        if (!address.length) {
             errors.push("Address is required");
-        } else if (address.length > 255) {
-            errors.push("Address must be less than 256 characters");
+        } else if (address.length > 100) {
+            errors.push("Address must be less than 100 characters");
         }
-        if (country.length === 0) {
+        if (!country.length) {
             errors.push("Country is required");
-        } else if (country.length > 255) {
-            errors.push("Country must be less than 256 characters");
+        } else if (country.length > 50) {
+            errors.push("Country must be less than 50 characters");
         }
 
-        if (state.length === 0) {
+        if (!state.length) {
             errors.push("State is required");
-        } else if (state.length > 255) {
-            errors.push("State must be less than 256 characters");
+        } else if (state.length > 50) {
+            errors.push("State must be less than 50 characters");
         }
 
-        if (city.length === 0) {
+        if (!city.length) {
             errors.push("City is required");
-        } else if (city.length > 255) {
-            errors.push("City must be less than 256 characters");
+        } else if (city.length > 50) {
+            errors.push("City must be less than 50 characters");
         }
-        if (!lat) {
-            errors.push("Latitude is required")
+        if (!lat||isNaN(lat)) {
+            errors.push("Latitude is required and must be number between -90 and 90")
         } else if (lat < -90 || lat > 90) {
             errors.push("Latitude must be between -90 and 90");
         }
-        if (!lng) {
-            errors.push("Longitude is required")
+        if (!lng||isNaN(lng)) {
+            errors.push("Longitude is requiredand must be number between -180 and 180")
         } else if (lng < -180 || lng > 180) {
             errors.push("Longitude must be between -180 and 180");
         }
 
         if (!price) {
             errors.push("Price is required");
-        } else if (price < 0) {
-            errors.push("Price must be greater than 0");
+        } else if (price < 0 ||isNaN(price)) {
+            errors.push("Price must be a number and greater than 0");
         }
 
         setValidationErrors(errors);
@@ -101,24 +107,10 @@ const AddSpotForm = () => {
         lng,
     ]);
 
-    const reset = () => {
-        setName("");
-        setAddress("");
-        setCity("");
-        setCountry("");
-        setState("");
-        setDescription("");
-        setLat("");
-        setLng("");
-        setPrice("");
-        setValidationErrors([]);
-        setHasSubmitted(false);
-    }
-
     const handleSubmit = async (e) => {
         e.preventDefault();
         setHasSubmitted(true);
-        if (validationErrors.length) return alert(`Validation Erroes Cannot Submit`);
+        if (validationErrors.length) return alert(`Validation Errors Cannot Submit`);
         const newSpot = {
             name,
             description,
@@ -130,50 +122,42 @@ const AddSpotForm = () => {
             lng,
             price
         }
+        if (!validationErrors.length) {
+            console.log("updatedSpot spot.id ??????????///" ,spot.id)
+            const updatedSpot = await dispatch(spotsActions.editSpot(+spot.id,newSpot, ))
+
+            if (updatedSpot) {
+                setValidationErrors([]);
+                setShowModal(false)
+                 history.push(`/spots/${updatedSpot.id}`);
+                // history.push("/");
+
+            }
 
 
+        };
+    }
 
-
-        const addSpot = dispatch(spotsActions.addSpot(newSpot)).then((res) => {
-            const data = res.json();
-            if (data && data.errors) setValidationErrors(data.errors);
-        })
-        if (addSpot) {
-            // const SpotImages = ({
-            //     url: image,
-            //     preview:true
-
-            // })
-            setValidationErrors([]);
-            history.push(`/spots/${addSpot.id}`);
-
-            // if (img) {
-            //     const newImg = { url, preview: true }
-            //     // const createdImg = await dispatch(spotsActions.addSpotImg(addSpot.id, newImg));
-            //     if (createdImg) setValidationErrors([]);
-            //     const data = await res.json();
-            //     if (data && data.errors) setValidationErrors(data.errors);
-            // }
-
-        }
-
-        reset();
-    };
 
     return (
-        <form onSubmit={handleSubmit} className="add-spot-form">
+
+        <form onSubmit={handleSubmit} className="updateSpot-form">
             <div className='errors-div'>
-                {validationErrors.length > 0 && (
-                    <ul className="errors">
+                {hasSubmitted && validationErrors.length > 0 && (
+                    // <div className='error-list'>
+                        <ul className="errors">
                         {validationErrors.map((error) => <li className="error">{error}</li>)}
                     </ul>
+                    //  {/* </div> */}
+
                 )}
 
             </div>
             <div className='spot-name'>
                 <label>
-                    Name
+
                     <input
+                        placeholder='Name'
                         type="text"
                         value={name}
                         onChange={(e) => setName(e.target.value)}
@@ -183,8 +167,9 @@ const AddSpotForm = () => {
             </div>
             <div className='description'>
                 <label>
-                    Description
+
                     <textarea
+                        placeholder='Description'
                         value={description}
                         onChange={(e) => setDescription(e.target.value)}
                         required
@@ -193,8 +178,9 @@ const AddSpotForm = () => {
             </div>
             <div className='price'>
                 <label>
-                    Price
+
                     <input
+                        placeholder='Price'
                         type="text"
                         value={price}
                         onChange={(e) => setPrice(e.target.value)}
@@ -204,8 +190,9 @@ const AddSpotForm = () => {
             </div>
             <div className='address'>
                 <label>
-                    Address
+
                     <input
+                        placeholder='Address'
                         type="text"
                         value={address}
                         onChange={(e) => setAddress(e.target.value)}
@@ -216,8 +203,9 @@ const AddSpotForm = () => {
             </div>
             <div className='city'>
                 <label>
-                    City
+
                     <input
+                        placeholder='City'
                         type="text"
                         value={city}
                         onChange={(e) => setCity(e.target.value)}
@@ -227,8 +215,9 @@ const AddSpotForm = () => {
             </div>
             <div className='state'>
                 <label>
-                    State
+
                     <input
+                        placeholder='State'
                         type="text"
                         value={state}
                         onChange={(e) => setState(e.target.value)}
@@ -239,8 +228,9 @@ const AddSpotForm = () => {
 
             <div>
                 <label>
-                    Country
+
                     <input
+                        placeholder='Country'
                         type="text"
                         value={country}
                         onChange={(e) => setCountry(e.target.value)}
@@ -251,8 +241,9 @@ const AddSpotForm = () => {
 
             <div className='lat'>
                 <label>
-                    Latitude
+
                     <input
+                        placeholder='Latitude'
                         type="text"
                         value={lat}
                         onChange={(e) => setLat(e.target.value)}
@@ -263,8 +254,9 @@ const AddSpotForm = () => {
 
             <div className='lon'>
                 <label>
-                    Longitude
+
                     <input
+                        placeholder='Longitude'
                         type="text"
                         value={lng}
                         onChange={(e) => setLng(e.target.value)}
@@ -288,11 +280,12 @@ const AddSpotForm = () => {
             <div className='addSpot-button'>
                 <button type="submit"
                     disabled={hasSubmitted && validationErrors.length > 0}
-                >Submit</button>
+                >
+                    Update your Spot</button>
             </div>
         </form>
     );
 }
 
 
-export default AddSpotForm
+export default UpdateSpotForm

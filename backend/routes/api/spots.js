@@ -312,7 +312,8 @@ router.post('/', requireAuth, async (req, res, next) => {
                 "price": "Price per day is required"
             }]
         })
-    }
+    } 
+
     const newSpot = await Spot.create({
         //ower
         ownerId: req.user.id,
@@ -496,7 +497,7 @@ router.post('/:spotId/reviews', requireAuth, async (req, res, next) => {
 );
 
 //get a review by spotId
-router.get('/:spotId/reviews', requireAuth, async (req, res, next) => {
+router.get('/:spotId/reviews', async (req, res, next) => {
 
     const spots = await Spot.findByPk(req.params.spotId);
     if (spots) {

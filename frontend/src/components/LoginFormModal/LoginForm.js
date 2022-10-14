@@ -15,9 +15,15 @@ function LoginForm() {
         return dispatch(sessionActions.login({ credential, password })).catch(
             async (res) => {
                 const data = await res.json();
+                console.log("printing data...." + data.statusCode);
                 if (data && data.errors) setErrors(data.errors);
+                if (data && data.statusCode === 401) setErrors([data.message]);
             }
         );
+        // console.log ("?????????????????????", user)
+
+        // return user;
+
     };
 
     return (
@@ -33,9 +39,10 @@ function LoginForm() {
                 </ul>
                 <div className="input-info">
                     <label>
-                        Username or Email
+
                     </label>
                     <input
+                        placeholder=" Username or Email"
                         type="text"
                         value={credential}
                         onChange={(e) => setCredential(e.target.value)}
@@ -44,9 +51,10 @@ function LoginForm() {
                 </div>
                 <div className="input-password">
                     <label>
-                        Password
+
                     </label>
                     <input
+                        placeholder="Password"
                         type="password"
                         value={password}
                         onChange={(e) => setPassword(e.target.value)}
