@@ -5,7 +5,9 @@ import { useSelector } from 'react-redux';
 import ProfileButton from './ProfileButton';
 import LoginFormModal from '../LoginFormModal/index';
 import SignupFormModal from '../SignupFormModal/index';
+import LoginButton from './LoginButton';
 import AddSpotFormModal from '../AddSpotFormModal';
+
 // import LoginForm from '../LoginFormModal/LoginForm';
 // import SignupForm from '../SignupFormModal/SignupForm';
 // import { Modal } from '../../context/Modal';
@@ -46,13 +48,9 @@ function Navigation({ isLoaded }) {
   } else {
     sessionLinks = (
       <>
-        <LoginFormModal
-          setShowMenu={setShowMenu}
-          closeMenu={closeMenu} />
+        <LoginFormModal />
 
-        <SignupFormModal
-          setShowMenu={setShowMenu}
-          closeMenu={closeMenu} />
+        <SignupFormModal />
       </>
     );
   }
@@ -88,7 +86,7 @@ function Navigation({ isLoaded }) {
       </nav>
       <nav className='creat-spot'>
         {/* <NavLink to="/spots" className='creat-spot-link'> */}
-          {/* <div className='create-spot-button'>Become a Host</div> */}
+        {/* <div className='create-spot-button'>Become a Host</div> */}
         {/* </NavLink> */}
         <AddSpotFormModal />
       </nav>
