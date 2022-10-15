@@ -5,20 +5,20 @@ import { useSelector } from 'react-redux';
 import ProfileButton from './ProfileButton';
 import LoginFormModal from '../LoginFormModal/index';
 import SignupFormModal from '../SignupFormModal/index';
-import LoginButton from './LoginButton';
 import AddSpotFormModal from '../AddSpotFormModal';
-
 // import LoginForm from '../LoginFormModal/LoginForm';
 // import SignupForm from '../SignupFormModal/SignupForm';
 // import { Modal } from '../../context/Modal';
 import logo from "../../images/logo.png"
 import './Navigation.css';
 import { useEffect, useState } from 'react';
+import LoginButton from './LoginButton';
 
 function Navigation({ isLoaded }) {
   const sessionUser = useSelector(state => state.session.user);
   const [showMenu, setShowMenu] = useState(false);
-  // const [showSignupModal, setShowSignupModal] = useState(false);
+  const [showLoginModal,setShowLoginModal]= useState(false)
+   const [showSignupModal, setShowSignupModal] = useState(false);
 
 
   const openMenu = () => {
@@ -48,46 +48,41 @@ function Navigation({ isLoaded }) {
   } else {
     sessionLinks = (
       <>
-        <LoginFormModal />
 
-        <SignupFormModal />
+        <LoginButton
+          setShowLoginModal={setShowLoginModal}
+          setShowSignupModal={setShowSignupModal}
+        />
       </>
     );
   }
 
   return (
+
     <div className='header'>
       <NavLink exact to="/" className="link-home">
         <img src={logo} className="logo" alt="Aircnc-logo" />
         <h1 className='title'>Aircnc</h1>
       </NavLink>
-      {/* <div className='drop-down2'>
-        <button
-          onClick={openMenu}
-          className="user-button">
-          <i className="fa-solid fa-bars"></i>
-          <i class="fa-solid fa-circle-user"></i>
-        </button>
-        {showMenu && (
-          <div>
-            <LoginFormModal
-              setShowMenu={setShowMenu}
-              closeMenu={closeMenu} />
+      <div className='login-modal'>
+        <LoginFormModal
 
-            <SignupFormModal
-              setShowMenu={setShowMenu}
-              closeMenu={closeMenu} />
-          </div>
-        )} */}
+          showLoginModal={showLoginModal}
+          setShowLoginModal={setShowLoginModal}
 
-      {/* </div> */}
+        />
+        <SignupFormModal
+
+          showSignupModal={showSignupModal}
+          setShowSignupModal={setShowSignupModal}
+
+        />
+
+      </div>
       <nav className='user-auth'>
         {isLoaded && sessionLinks}
       </nav>
       <nav className='creat-spot'>
-        {/* <NavLink to="/spots" className='creat-spot-link'> */}
-        {/* <div className='create-spot-button'>Become a Host</div> */}
-        {/* </NavLink> */}
         <AddSpotFormModal />
       </nav>
     </div>

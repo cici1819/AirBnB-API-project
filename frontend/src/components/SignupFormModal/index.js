@@ -1,17 +1,17 @@
-// frontend/src/components/LoginFormModal/index.js
-import React, { useState } from 'react';
+// frontend/src/components/signupModal/index.js
+import React from 'react';
 import { Modal } from '../../context/Modal';
 import SignupForm from './SignupForm';
 
-function SignupFormModal() {
-  const [showModal, setShowModal] = useState(false);
+function SignupFormModal({ showSignupModal, setShowSignupModal }) {
+  // const [showModal, setShowModal] = useState(false);
 
   return (
     <>
-      <div className='sign-up' onClick={() => setShowModal(true)}>
-      sign up</div>
-      {showModal && (
-        <Modal onClose={() => setShowModal(false)}>
+      {/* <div className='sign-up' onClick={() => setShowSignupModal(true)}>
+      </div> */}
+      {showSignupModal && (
+        <Modal onClose={() => setShowSignupModal(false)}>
           <SignupForm />
         </Modal>
       )}

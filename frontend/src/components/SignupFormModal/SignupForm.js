@@ -32,6 +32,10 @@ function SignupForm() {
     };
 
     return (
+        <>
+            <div className="signup-header">
+              Sign Up
+            </div>
         <form onSubmit={handleSubmit}>
             <div className="sign-up-form">
                 <ul>
@@ -113,7 +117,8 @@ function SignupForm() {
                 <button type="submit" className="sign-up">Sign Up</button>
             </div>
 
-        </form>
+            </form>
+            </>
     );
 }
 
