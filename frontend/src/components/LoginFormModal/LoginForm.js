@@ -3,7 +3,7 @@ import * as sessionActions from "../../store/session";
 import { useDispatch } from "react-redux";
 import '../LoginFormModal/LoginForm.css'
 
-function LoginForm({setShowLoginModal}) {
+function LoginForm({ setShowLoginModal }) {
     const dispatch = useDispatch();
     const [credential, setCredential] = useState("");
     const [password, setPassword] = useState("");
@@ -28,51 +28,53 @@ function LoginForm({setShowLoginModal}) {
 
     return (
         <>
-            <div className="login-header">
-                Log in
+            <div className="login-form-div">
+                {/* <div className="login-header">
+                    Log in
+                </div> */}
+                <form onSubmit={handleSubmit} className="login-form">
+                    <ul>
+                        {errors.map((error, idx) => (
+                            <li key={idx}>{error}</li>
+                        ))}
+                    </ul>
+                    <div className="input-info">
+                        <label>
+
+                        </label>
+                        <input
+                            placeholder=" Username or Email"
+                            type="text"
+                            value={credential}
+                            onChange={(e) => setCredential(e.target.value)}
+                            required
+                        />
+                    </div>
+                    <div className="input-password">
+                        <label>
+
+                        </label>
+                        <input
+                            placeholder="Password"
+                            type="password"
+                            value={password}
+                            onChange={(e) => setPassword(e.target.value)}
+                            required
+                        />
+                    </div>
+                    <div className="login-button">
+                        <button type="submit" className="submit-button">Log in</button>
+                    </div>
+                    <div className="Demo-button">
+                        <button type='submit'
+                            onClick={() => {
+                                setCredential('Demo-lition')
+                                setPassword('password')
+                                // setShowLoginModal(false)
+                            }}> Demo user</button>
+                    </div>
+                </form>
             </div>
-            <form onSubmit={handleSubmit} className="login-form">
-                <ul>
-                    {errors.map((error, idx) => (
-                        <li key={idx}>{error}</li>
-                    ))}
-                </ul>
-                <div className="input-info">
-                    <label>
-
-                    </label>
-                    <input
-                        placeholder=" Username or Email"
-                        type="text"
-                        value={credential}
-                        onChange={(e) => setCredential(e.target.value)}
-                        required
-                    />
-                </div>
-                <div className="input-password">
-                    <label>
-
-                    </label>
-                    <input
-                        placeholder="Password"
-                        type="password"
-                        value={password}
-                        onChange={(e) => setPassword(e.target.value)}
-                        required
-                    />
-                </div>
-                <div className="login-button">
-                    <button type="submit" className="submit-button">Log in</button>
-                </div>
-                <div className="Demo-button">
-                    <button type='submit'
-                        onClick={() => {
-                            setCredential('Demo-lition')
-                            setPassword('password')
-                            // setShowLoginModal(false)
-                        }}> Demo user</button>
-                </div>
-            </form>
         </>
     );
 }

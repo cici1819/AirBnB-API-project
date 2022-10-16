@@ -27,32 +27,38 @@ const LoginButton = ({setShowSignupModal,setShowLoginModal}) => {
 
     return (
         <>
-            <div className='dropdown-menu'>
+            <div className='home-page-button'>
                 <div className='profile-button-div'>
-                    <button onClick={openMenu} className='profile-button'>
+                    <button onClick={openMenu} className='pofile-button'>
+                        <div className='s-fa-bar'>
                         <i className="fa-solid fa-bars"></i>
-                        <i className="fa-regular fa-user"></i>
+                        </div>
+                        <div className='s-user'>
+                        <i class="fa-solid fa-circle-user"></i>
+                      </div>
+
                     </button>
                 </div>
-
+             </div>
                 {showMenu && (
-                    <div className='login-dropdown'>
-                    <div className='login-signup-div'>
+                    <div  className='login-dropMenu'>
+                    {/* <div className='login-signup-div'> */}
                         <div className='login-div'
                         onClick={()=>setShowLoginModal(true)}
                         >
                          Log In
-                        </div>
+                    </div>
+                     {/* </div> */}
                         <div className='signup-div'
                         onClick={()=>setShowSignupModal(true)}
                         >
                           Sign Up
                         </div>
-                    </div>
+
 
                 </div>)}
 
-            </div>
+
         </>
     )
 }

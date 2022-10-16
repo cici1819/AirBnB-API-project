@@ -17,7 +17,7 @@ function ProfileButton({ user }) {
         setShowMenu(true);
     };
     //  const sessionUser = useSelector(state => state.session.user);
-     const closeMenu = () => {
+    const closeMenu = () => {
         setShowMenu(false);
     };
 
@@ -36,33 +36,51 @@ function ProfileButton({ user }) {
     return (
         <>
             <div className="menu-div">
-                <button onClick={openMenu} className="user-button">
-                    <i className="fa-solid fa-bars"></i>
-                    <i class="fa-solid fa-circle-user"></i>
+                <button onClick={openMenu} className="pofile-button">
+                    <div className='s-fa-bar'>
+                        <i className="fa-solid fa-bars"></i>
+                    </div>
+                    <div className='s-user'>
+                        <i class="fa-solid fa-circle-user"></i>
+                    </div>
                 </button>
-                {showMenu && (
-                    <ul className="profile-dropdown">
-                        <div className="user-info">
-                            <li>Welcome, {user.username}</li>
-                            <li>{user.email}</li>
+            </div>
+            {showMenu && (
+                <div id='profile-dropdown'>
+                    {/* <ul className="profile-drop-menu"> */}
+                    <div className="user-info">
+                        <div className="user-name">
+                            Welcome,
+                            {user.username}
                         </div>
-                        <div className="user-spot-info">
-                            <li>
-                                <NavLink className='my-spots' to={'/spots/current'}>My Spots</NavLink>
-                            </li>
-                            <li>
-                                <NavLink className='my-review' to={'/reviews/current'}>My Reviews</NavLink>
-                            </li>
-                            {/* <li>
+                        <div className="user-email">
+                            {user.email}
+                        </div>
+
+                    </div>
+                    {/* <div className="user-spot-info"> */}
+
+                        <div className='user-spot-info'>
+                            <NavLink to={'/spots/current'}>My Spots</NavLink>
+                        </div>
+
+                        <div className='user-spot-info'>
+                            <NavLink to={'/reviews/current'}>My Reviews</NavLink>
+                        </div>
+
+                        <div onClick={logout} className="user-spot-info" id="log-out">Log Out</div>
+
+                        {/* <li>
                                 <NavLink className='add-spot' to={'/spots'}>Become a Host</NavLink>
                             </li> */}
-                        </div>
-                        <li>
-                            <button onClick={logout} className="log-out">Log Out</button>
-                        </li>
-                    </ul>
-                )}
-                {/* {!sessionUser && (
+                    {/* </div> */}
+
+
+
+                    {/* </ul> */}
+                </div>
+            )}
+            {/* {!sessionUser && (
                 <ul className="profile-dropdown2">
                     <LoginFormModal
                         setShowMenu={setShowMenu}
@@ -76,7 +94,7 @@ function ProfileButton({ user }) {
 
                 </ul>
             )} */}
-            </div>
+
 
         </>
     );

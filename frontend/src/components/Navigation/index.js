@@ -17,8 +17,8 @@ import LoginButton from './LoginButton';
 function Navigation({ isLoaded }) {
   const sessionUser = useSelector(state => state.session.user);
   const [showMenu, setShowMenu] = useState(false);
-  const [showLoginModal,setShowLoginModal]= useState(false)
-   const [showSignupModal, setShowSignupModal] = useState(false);
+  const [showLoginModal, setShowLoginModal] = useState(false)
+  const [showSignupModal, setShowSignupModal] = useState(false);
 
 
   const openMenu = () => {
@@ -58,13 +58,19 @@ function Navigation({ isLoaded }) {
   }
 
   return (
+    <>
 
-    <div className='header'>
-      <NavLink exact to="/" className="link-home">
-        <img src={logo} className="logo" alt="Aircnc-logo" />
-        <h1 className='title'>Aircnc</h1>
-      </NavLink>
-      <div className='login-modal'>
+      <div className='header'>
+        <NavLink exact to="/" className="link-home">
+          <img src={logo} className="logo" alt="Aircnc-logo" />
+          <h1 className='title'>aircnc</h1>
+        </NavLink>
+
+      <nav className='creat-spot'>
+        <AddSpotFormModal />
+      </nav>
+
+      <div className='open-login-menu'>
         <LoginFormModal
 
           showLoginModal={showLoginModal}
@@ -82,10 +88,8 @@ function Navigation({ isLoaded }) {
       <nav className='user-auth'>
         {isLoaded && sessionLinks}
       </nav>
-      <nav className='creat-spot'>
-        <AddSpotFormModal />
-      </nav>
-    </div>
+      </div>
+    </>
 
   );
 }
