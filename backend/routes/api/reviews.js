@@ -20,10 +20,10 @@ router.post('/:reviewId/images', requireAuth, async (req, res, next) => {
     if (reviews.userId !== req.user.id) {
         res.status(403)
         return res.json({
-          "message": "Forbidden. Sorry,this is not your review.",
-          "statusCode": 403
+            "message": "Forbidden. Sorry,this is not your review.",
+            "statusCode": 403
         })
-      }
+    }
     const images = await ReviewImage.findAll({
         where: {
             reviewId: reviews.id
@@ -56,11 +56,12 @@ router.post('/:reviewId/images', requireAuth, async (req, res, next) => {
 //get all reviews of current user
 router.get('/current', requireAuth, async (req, res, next) => {
     let newArr = [];
-    let reviewObj;
+    // let reviewObj;
     const reviews = await Review.findAll({
         where: {
             userId: req.user.id
         },
+        raw:true,nest:true,
         include: [
             {
                 model: User,
@@ -77,20 +78,21 @@ router.get('/current', requireAuth, async (req, res, next) => {
             }]
     });
     for (let i = 0; i < reviews.length; i++) {
-        reviewObj = reviews[i].toJSON();
+       let review = reviews[i]
 
         const previewImage = await SpotImage.findByPk(reviews[i].id, {
-            where: { preview: true },
+            where: { spotId: review.spotId, preview: true },
             attributes: ['url'],
             raw: true
         })
         if (previewImage) {
-            reviewObj.Spot.previewImage = previewImage.url
+            review.Spot.previewImage = previewImage.url
         }
+
         if (!previewImage) {
-            reviewObj.Spot.previewImage = null
+            review.Spot.previewImage = null
         }
-        newArr.push(reviewObj)
+        newArr.push(review)
     }
 
     return res.status(200).json({ Reviews: newArr })
