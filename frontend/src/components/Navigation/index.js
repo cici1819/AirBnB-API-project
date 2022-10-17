@@ -63,7 +63,7 @@ function Navigation({ isLoaded }) {
       <div className='header'>
         <NavLink exact to="/" className="link-home">
           <img src={logo} className="logo" alt="Aircnc-logo" />
-          <h1 className='title'>aircnc</h1>
+          <h1 className='title'>Aircnc</h1>
         </NavLink>
 
       <nav className='creat-spot'>

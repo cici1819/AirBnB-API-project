@@ -1,0 +1,31 @@
+.user-review-title{
+    position: relative;
+    /* color: aqua; */
+   /* margin-left: 50px; */
+    font-size: 15px;
+   text-align: center;
+   /* color: rgb(255, 56, 92); */
+   font-weight: 500;
+   margin-top: -20px;
+}
+.review-Lists{
+    display: flex;
+    flex-direction: column;
+    margin-left: 500px;
+
+}
+.deleteReview-button{
+    border: none;
+    width: 10%;
+    height: 35px;
+    background-color:rgb(255, 56, 92);
+    color:white;
+    border-radius: 8px;
+    font-weight: 600;
+    /* margin-left:25%; */
+
+    margin-left: 450px;
+}
+.deleteReview-div{
+    margin-top: -35px;
+}

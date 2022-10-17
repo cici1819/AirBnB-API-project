@@ -1,0 +1,58 @@
+.user-spots{
+    display:flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    gap :15px;
+    justify-content: flex-start;
+     margin-left: 110px;
+    /* margin-right: 15px; */
+    font-size: 13px;
+    font-weight: 600;
+    /* font-family:  monospace; */
+    margin-top: -10px;
+}
+.title-user {
+   position: relative;
+    /* color: aqua; */
+   /* margin-left: 50px; */
+    font-size: 15px;
+   text-align: center;
+   /* color: rgb(255, 56, 92); */
+   font-weight: 500;
+}
+.spot-card {
+   margin-top: 40px;
+}
+.edit-div {
+    margin-top: 10px;
+    display: flex;
+    justify-content: flex-end;
+}
+.delete-button{
+    margin-top: 20px;
+    border: none;
+    width: 30%;
+    height: 35px;
+    background-color:rgb(255, 56, 92);
+    color:white;
+    border-radius: 8px;
+    font-weight: 600;
+    margin-right: 10px;
+}
+.updateSpot-button{
+    margin-top: 20px;
+    border: none;
+    width: 30%;
+    height: 35px;
+    background-color:rgb(255, 56, 92);
+    color:white;
+    border-radius: 8px;
+    font-weight: 600;
+    margin-right: 120px;
+}
+.user-none-spots {
+    display:flex;
+    justify-content: center;
+    font-size: 15px;
+    color: darkgray;
+}

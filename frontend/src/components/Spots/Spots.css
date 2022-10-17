@@ -1,4 +1,42 @@
 .spot-image {
-     height: 300px;
-     width: 500px;
+     height: 280px;
+     width: 313px;
+     border-radius: 10px;
+
+}
+
+.card {
+     display:flex;
+     flex-wrap: wrap;
+     flex-direction: row;
+     gap :15px;
+     justify-content: flex-start;
+      margin-left: 110px;
+     /* margin-right: 15px; */
+     font-size: 13px;
+     font-weight: 600;
+     /* font-family:  monospace; */
+     margin-top: -20px;
+}
+.location{
+     margin-top: 5px;
+     margin-bottom: 5px;
+}
+.price{
+     display: flex;
+     flex-direction: row;
+     gap:5px;
+}
+
+.night{
+     font-weight: 400;
+}
+.spot-avgRating-all-spots{
+     position: relative;
+     margin-left: 270px;
+     margin-top: -40px;
+}
+
+.spot-card{
+     margin-top: 25px;
 }

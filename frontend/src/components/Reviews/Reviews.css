@@ -1,0 +1,55 @@
+.review-div{
+    /* background-color: black; */
+    width:100%;
+     height: auto;
+}
+.spot-avgRating-all-reviews span{
+  font-size: 16px;
+  font-weight: 600;
+}
+/* .review-Lists{
+  position: relative;
+    display: flex;
+    flex-direction: column;
+
+    margin-right:100px;
+    background-color: black;
+} */
+.review-wrap{
+    display: flex;
+
+    position: relative;
+    flex-direction: column;
+    justify-content: flex-start;
+    gap:5px;
+}
+.review-creators{
+    margin-top: 10px;
+    margin-bottom: 5px;
+    font-size: 16px;
+    font-weight: 600;
+}
+.review-contents{
+    font-size: 13px;
+    font-weight: 400;
+    margin-bottom: 10px;
+    font-style:italic;
+    color: rgb(54, 54, 54)
+}
+.review-div1{
+    border: none;
+    width: 50%;
+    height: 35px;
+    background-color:rgb(255, 56, 92);
+    color:white;
+    border-radius: 8px;
+    font-weight: 600;
+    margin-left:25%;
+    margin-top: 25px;
+}
+.user-none-reviews {
+   display:flex;
+   justify-content: center;
+   font-size: 15px;
+   color: darkgray;
+}

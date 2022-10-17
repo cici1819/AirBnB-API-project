@@ -33,92 +33,113 @@ function SignupForm() {
 
     return (
         <>
-            <div className="signup-header">
-              Sign Up
+            <div className="signup-form-div">
+
+                <form onSubmit={handleSubmit} className="signup-form">
+                    <div className="signup-header">
+                        Sign Up
+                    </div>
+                    <div className="error-div">
+                        <ul>
+                            {errors.map((error, idx) => <li key={idx}>{error}</li>)}
+                        </ul>
+                    </div>
+
+                    <div className="sign-up-form">
+                        <div className="input-email">
+                            <label>
+                                <div className="input-m" >
+                                    Email
+                                </div>
+                                <input
+                                    placeholder="Email"
+                                    type="text"
+                                    value={email}
+                                    onChange={(e) => setEmail(e.target.value)}
+                                    required
+                                />
+                            </label>
+                        </div>
+
+                        <div className="input-username2">
+                            <label>
+                                <div className="input-m" >
+                                    Username
+                                </div>
+                                <input
+                                    placeholder="Username"
+                                    type="text"
+                                    value={username}
+                                    onChange={(e) => setUsername(e.target.value)}
+                                    required
+                                />
+                            </label>
+                        </div>
+                        <div className="input-firstName">
+                            <label>
+                                <div className="input-m" >
+                                    First Name
+                                </div>
+                                <input
+                                    placeholder="First Name"
+                                    type="text"
+                                    value={firstName}
+                                    onChange={(e) => setfirstName(e.target.value)}
+                                    required
+                                />
+                            </label>
+                        </div>
+                        <div className="input-lastName">
+                            <label>
+                                <div className="input-m" >
+                                    Last Name
+                                </div>
+                                <input
+                                    placeholder="Last Name"
+                                    type="text"
+                                    value={lastName}
+                                    onChange={(e) => setlastName(e.target.value)}
+                                    required
+                                />
+                            </label>
+                        </div>
+                        <div className="input-password">
+                            <label>
+                                <div className="input-m" >
+                                    Password
+                                </div>
+                                <input
+                                    placeholder="Password"
+                                    type="password"
+                                    value={password}
+                                    onChange={(e) => setPassword(e.target.value)}
+                                    required
+                                />
+                            </label>
+                        </div>
+                        <div className="confirm-password">
+                            <label>
+                                <div className="input-m" >
+                                    Confirm Password
+                                </div>
+                                <input
+                                    placeholder="Confirm Password"
+                                    type="password"
+                                    value={confirmPassword}
+                                    onChange={(e) => setConfirmPassword(e.target.value)}
+                                    required
+                                />
+                            </label>
+                        </div>
+                    </div>
+                    <div className="sign-up-button">
+                        <button type="submit" className="sign-up">Sign Up</button>
+
+                    </div>
+                </form>
+
             </div>
-        <form onSubmit={handleSubmit}>
-            <div className="sign-up-form">
-                <ul>
-                    {errors.map((error, idx) => <li key={idx}>{error}</li>)}
-                </ul>
-                <div className="input-email">
-                    <label>
-
-                        <input
-                            placeholder="Email"
-                            type="text"
-                            value={email}
-                            onChange={(e) => setEmail(e.target.value)}
-                            required
-                        />
-                    </label>
-                </div>
-
-                <div className="input-username">
-                    <label>
-
-                        <input
-                            placeholder="Username"
-                            type="text"
-                            value={username}
-                            onChange={(e) => setUsername(e.target.value)}
-                            required
-                        />
-                    </label>
-                </div>
-                <div className="input-firstName">
-                    <label>
-
-                        <input
-                            placeholder="First Name"
-                            type="text"
-                            value={firstName}
-                            onChange={(e) => setfirstName(e.target.value)}
-                            required
-                        />
-                    </label>
-                </div>
-                <div className="input-lastName">
-                    <label>
-
-                        <input
-                            placeholder="Last Name"
-                            type="text"
-                            value={lastName}
-                            onChange={(e) => setlastName(e.target.value)}
-                            required
-                        />
-                    </label>
-                </div>
-                <div className="input-password">
-                    <label>
-
-                        <input
-                            placeholder="Password"
-                            type="password"
-                            value={password}
-                            onChange={(e) => setPassword(e.target.value)}
-                            required
-                        />
-                    </label>
-                </div>
-                <div className="confirm-password">
-                    <label>
-
-                        <input
-                            placeholder="Confirm Password"
-                            type="password"
-                            value={confirmPassword}
-                            onChange={(e) => setConfirmPassword(e.target.value)}
-                            required
-                        />
-                    </label>
-                </div>
-                <button type="submit" className="sign-up">Sign Up</button>
-            </div>
-
-            </form>
-            </>
+        </>
     );
 }
 

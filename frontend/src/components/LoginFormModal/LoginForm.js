@@ -11,56 +11,101 @@ function LoginForm({ setShowLoginModal }) {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        setErrors([]);
-        return dispatch(sessionActions.login({ credential, password })).then(setShowLoginModal(false)).catch(
-            async (res) => {
+        let isError = false;
+        dispatch(sessionActions.login({ credential, password }))
+            .catch(async (res) => {
                 const data = await res.json();
                 console.log("printing data...." + data.statusCode);
                 if (data && data.errors) setErrors(data.errors);
-                if (data && data.statusCode === 401) setErrors([data.message]);
-            }
-        );
-        // console.log ("?????????????????????", user)
+                else if (data && data.statusCode === 401) setErrors([data.message]);
+                isError = true;
+            })
+            .then(() => {
+                // console.log("data...." + data.statusCode);
+                if (!isError) setShowLoginModal(false);
+            })
+        // .then((res) => {
+        //     // console.log("then.....");
+        //     console.log("then.......");
+        //     console.log("res.json....." + res.json());
+        //     setShowLoginModal(false)
+        // })
 
-        // return user;
 
-    };
+
+         setErrors([]);
+    }
+
+    // .then(setShowLoginModal(false))
+    // const data = login.json();
+    // if (data.errorrs && data.statusCode === 401) setErrors(data.message);
+    // else if (data && data.errors) setErrors(data.errors);
+    // else setShowLoginModal(false)
+
+
+    // return login
+    // if (login && !data.errors) {
+    //
+    //     setShowLoginModal(false);
+    // }
+
+
+    // console.log ("?????????????????????", user)
+    // return user;
+    //     if (logIn) {
+    // setShowLoginModal(false)
+
 
     return (
         <>
+
+
+
             <div className="login-form-div">
-                {/* <div className="login-header">
-                    Log in
-                </div> */}
+
                 <form onSubmit={handleSubmit} className="login-form">
-                    <ul>
-                        {errors.map((error, idx) => (
-                            <li key={idx}>{error}</li>
-                        ))}
-                    </ul>
-                    <div className="input-info">
-                        <label>
-
-                        </label>
-                        <input
-                            placeholder=" Username or Email"
-                            type="text"
-                            value={credential}
-                            onChange={(e) => setCredential(e.target.value)}
-                            required
-                        />
+                    <div className="login-header">
+                        <div className="log-in"> Log in</div>
+                        <div className="wel-title">Welcome to aircnc</div>
                     </div>
-                    <div className="input-password">
-                        <label>
+                    <div className="errors-div">
+                        <ul>
+                            {errors?.map((error, idx) => (
+                                <li key={idx}>{error}</li>
+                            ))}
+                        </ul>
+                    </div>
 
-                        </label>
-                        <input
-                            placeholder="Password"
-                            type="password"
-                            value={password}
-                            onChange={(e) => setPassword(e.target.value)}
-                            required
-                        />
+                    <div className="input-info">
+                        <div className="input-username">
+                            <div className="input-m" >
+                                Username or Email
+                            </div>
+                            <input
+                                placeholder=" Username or Email"
+                                type="text"
+                                value={credential}
+                                onChange={(e) => setCredential(e.target.value)}
+                                required
+                            />
+
+                        </div>
+
+                        <div className="input-password" >
+                            <label htmlfor="input-p">
+                                <div className="input-m" >
+                                    Password
+                                </div>
+                            </label>
+                            <input id="input-p"
+                                placeholder="Password"
+                                type="password"
+                                value={password}
+                                onChange={(e) => setPassword(e.target.value)}
+                                required
+                            />
+                        </div>
+
                     </div>
                     <div className="login-button">
                         <button type="submit" className="submit-button">Log in</button>
@@ -70,11 +115,12 @@ function LoginForm({ setShowLoginModal }) {
                             onClick={() => {
                                 setCredential('Demo-lition')
                                 setPassword('password')
-                                // setShowLoginModal(false)
+                                //  setShowLoginModal(false)
                             }}> Demo user</button>
                     </div>
                 </form>
             </div>
+
         </>
     );
 }

@@ -101,6 +101,8 @@ const initialState = {
 const reviewsReducer = (state = initialState, action) => {
     console.log("running###################")
     let newState;
+    // let userData = {}
+    // let spotData = {}
     switch (action.type) {
         case ALL_REVIEWS:
             let spot = {};
@@ -112,10 +114,13 @@ const reviewsReducer = (state = initialState, action) => {
             return newState
 
         case USER_REVIEWS:
-            newState = { ...state, user: { ...state.user } }
+            newState = { ...state, user: { ...state.user } ,spot:{...state.spot}}
             action.reviews.Reviews.forEach(review => {
                 newState.user[review.id] = review
+                newState.spot[review.id] = review.Spot
+
             });
+
             return newState;
 
         case CREATE_REVIEW:

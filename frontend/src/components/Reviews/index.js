@@ -7,7 +7,7 @@ import AddReviewFormModal from "../AddReviewModal";
 import './Reviews.css'
 
 
-const Reviews = ({reviews}) => {
+const Reviews = ({ reviews }) => {
     const spot = useSelector(state => {
         return state.spots.spot
     });
@@ -25,22 +25,30 @@ const Reviews = ({reviews}) => {
         dispatch(reviewsActions.getAllReviews(spotId))
     }, [dispatch, spotId])
 
-      if (!reviews) return null
+    if (!reviews) return null
 
     return (
         <div className="review-div">
             <div className='spot-avgRating-all-reviews'>
                 <i className="fa-sharp fa-solid fa-star"></i>
                 <span>{!Number(spot.avgStarRating) ? "New" : Number(spot.avgStarRating).toFixed(1)}</span>
+
+                <span id='dots'> • </span>
+
+                <span className='numReviews2'>{spot.numReviews} reviews
+                </span>
             </div>
-            <div className="review-Lists">
+            <div className="review-wrap">
+            {/* <div className="review-Lists"> */}
                 {reviews && reviewsArr.map(review => (
                     <div className="review-details" key={review.id}>
                         <div className="review-creators">{review.User?.firstName}</div>
                         <div className="review-contents">{review.review}</div>
                     </div>
                 ))}
+            {/* </div> */}
             </div>
+
             {/* <div className="add-review-div"> */}
             {sessionUser && sessionUser.id !== spot?.ownerId && (
                 <div className="add-review-button">
