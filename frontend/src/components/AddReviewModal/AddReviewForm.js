@@ -9,7 +9,7 @@ const AddReviewForm = ({ setShowModal}) => {
     const dispatch = useDispatch();
     const history = useHistory();
     const { spotId } = useParams();
-    console.log("%%%%%%%%%%%%%%% SpotId", spotId)
+    // console.log("%%%%%%%%%%%%%%% SpotId", spotId)
     //   const spot = useSelector(state => state.spots.spot)
     const [review, setReview] = useState('')
     const [stars, setStars] = useState('')
@@ -54,7 +54,7 @@ const AddReviewForm = ({ setShowModal}) => {
                     setValidationErrors(["Validation Errors Cannot Submit"]);
                 }
             });
-        console.log("addAReview in add review^^^^^^^^^^^", addReview)
+        // console.log("addAReview in add review^^^^^^^^^^^", addReview)
         if (addReview) {
             setValidationErrors([]);
             setShowModal(false);

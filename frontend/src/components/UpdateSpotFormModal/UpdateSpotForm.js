@@ -123,7 +123,7 @@ const UpdateSpotForm = ({ spot, setShowModal }) => {
             price
         }
         if (!validationErrors.length) {
-            console.log("updatedSpot spot.id ??????????///", spot.id)
+            // console.log("updatedSpot spot.id ??????????///", spot.id)
             const updatedSpot = await dispatch(spotsActions.editSpot(+spot.id, newSpot,))
 
             if (updatedSpot) {

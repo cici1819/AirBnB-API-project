@@ -15,7 +15,7 @@ function LoginForm({ setShowLoginModal }) {
         dispatch(sessionActions.login({ credential, password }))
             .catch(async (res) => {
                 const data = await res.json();
-                console.log("printing data...." + data.statusCode);
+                // console.log("printing data...." + data.statusCode);
                 if (data && data.errors) setErrors(data.errors);
                 else if (data && data.statusCode === 401) setErrors([data.message]);
                 isError = true;
@@ -23,7 +23,7 @@ function LoginForm({ setShowLoginModal }) {
             .then(() => {
                 // console.log("data...." + data.statusCode);
                 if (!isError) {
-                   console.log("setShowLoginModal false$$$$$$$$$$$$$")
+                //    console.log("setShowLoginModal false$$$$$$$$$$$$$")
                     setShowLoginModal(false)
                 }
                 ;

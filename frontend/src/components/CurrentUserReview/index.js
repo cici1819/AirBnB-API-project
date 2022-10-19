@@ -21,12 +21,6 @@ const CurrentUserReviews = () => {
         <h2>Sorry, you have not created any review yet, please click add a review </h2>
     </div>)
 
-    // for (let i = 0; i < currReviewArr.length; i++) {
-    //    let newReview = currReviewArr[i]
-    // }
-    //  if (newReview.has)
-
-    console.log(currReviewArr,"QQQQQQQQQQQQQQ")
 
     return (
         <>

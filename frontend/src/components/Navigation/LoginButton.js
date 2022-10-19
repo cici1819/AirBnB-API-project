@@ -45,7 +45,9 @@ const LoginButton = ({setShowSignupModal,setShowLoginModal}) => {
                     {/* <div className='login-signup-div'> */}
                     <div className='login-div'
                         onClick={() => {
-                            console.log("loginon click running````````````")
+
+                            // console.log("loginon click running````````````")
+
                             setShowLoginModal(true)
                         }
                         }
@@ -55,7 +57,9 @@ const LoginButton = ({setShowSignupModal,setShowLoginModal}) => {
                      {/* </div> */}
                         <div className='signup-div'
                         onClick={() => {
-                            console.log("signup clickruning!!!!!!!!!!!")
+
+                            // console.log("signup clickruning!!!!!!!!!!!")
+
                             setShowSignupModal(true)
 
                         } }

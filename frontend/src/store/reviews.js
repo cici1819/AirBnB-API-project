@@ -63,13 +63,13 @@ export const getUserReviews = () => async dispatch => {
 // Thunk action create a review by spotId
 
 export const createAReview = (review, spotId) => async dispatch => {
-    console.log("spotId***************** createAReview", spotId)
+    // console.log("spotId***************** createAReview", spotId)
     const response = await csrfFetch(`/api/spots/${spotId}/reviews`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(review)
     });
-    console.log('res$$$$$$$$$$$ in createAReview', response)
+    // console.log('res$$$$$$$$$$$ in createAReview', response)
     if (response.ok) {
         const newReview = await response.json();
         dispatch(addAReview(newReview));
@@ -99,7 +99,7 @@ const initialState = {
 }
 
 const reviewsReducer = (state = initialState, action) => {
-    console.log("running###################")
+    // console.log("running###################")
     let newState;
     let spot = {};
     // let userData = {}

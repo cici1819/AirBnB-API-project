@@ -11,16 +11,16 @@ const Reviews = ({ reviews}) => {
     const spot = useSelector(state => {
         return state.spots.spot
     });
-    console.log("spot--------------", spot)
+    // console.log("spot--------------", spot)
     const sessionUser = useSelector(state => state.session.user);
     const dispatch = useDispatch();
     const { spotId } = useParams();
 
     // const reviews = useSelector(state => state.reviews.spot)
     const reviewsArr = Object.values(reviews);
-    console.log("reviews~~~~~~~~~~", reviewsArr)
+    // console.log("reviews~~~~~~~~~~", reviewsArr)
     //  console.log("Reviews************",reviewsActions.getAllReviews)
-    console.log("spotId@@@@@@@@@@@@@@@@@", spotId)
+    // console.log("spotId@@@@@@@@@@@@@@@@@", spotId)
     useEffect(() => {
         dispatch(reviewsActions.getAllReviews(spotId))
     }, [dispatch, spotId])

@@ -19,7 +19,7 @@ const SingleSpot = () => {
     const dispatch = useDispatch();
     const { spotId } = useParams();
     const spot = useSelector(state => state.spots.spot);
-    console.log(spot, "state.spots.spot >>>>>>>>>>>>>>>>>")
+    // console.log(spot, "state.spots.spot >>>>>>>>>>>>>>>>>")
     // console.log('single @@@@@@@@@@@@@@@@@@@@', spotId)
     const sessionUser = useSelector(state => state.session.user);
 

@@ -9,7 +9,7 @@ function DeleteSpot({spot}) {
   // const spot = useSelector(state => state.spots.spot);
   //  const spot = useSelector(state => state);
   // console.log("sate!!!!!!!!!!! delete",state)
-  console.log("delete spot, &&&&&&&&&&&&&&&,spot",spot)
+  // console.log("delete spot, &&&&&&&&&&&&&&&,spot",spot)
   const dispatch = useDispatch();
   const history = useHistory();
 
