@@ -22,7 +22,11 @@ function LoginForm({ setShowLoginModal }) {
             })
             .then(() => {
                 // console.log("data...." + data.statusCode);
-                if (!isError) setShowLoginModal(false);
+                if (!isError) {
+                   console.log("setShowLoginModal false$$$$$$$$$$$$$")
+                    setShowLoginModal(false)
+                }
+                ;
             })
 
 
@@ -69,7 +73,7 @@ function LoginForm({ setShowLoginModal }) {
                         </div>
 
                         <div className="input-password" >
-                            <label htmlfor="input-p">
+                            <label htmlFor="input-p">
                                 <div className="input-m" >
                                     Password
                                 </div>

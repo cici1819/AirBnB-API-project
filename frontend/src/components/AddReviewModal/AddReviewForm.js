@@ -4,8 +4,8 @@ import { useDispatch, useSelector } from "react-redux";
 import * as reviewsActions from "../../store/reviews"
 import "./AddReviewForm.css"
 
-const AddReviewForm = ({ setShowModal,sessionUser }) => {
-    // const sessionUser = useSelector((state) => state.session.user);
+const AddReviewForm = ({ setShowModal}) => {
+    const sessionUser = useSelector((state) => state.session.user);
     const dispatch = useDispatch();
     const history = useHistory();
     const { spotId } = useParams();

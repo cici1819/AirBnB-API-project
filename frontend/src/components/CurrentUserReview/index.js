@@ -21,7 +21,12 @@ const CurrentUserReviews = () => {
         <h2>Sorry, you have not created any review yet, please click add a review </h2>
     </div>)
 
+    // for (let i = 0; i < currReviewArr.length; i++) {
+    //    let newReview = currReviewArr[i]
+    // }
+    //  if (newReview.has)
 
+    console.log(currReviewArr,"QQQQQQQQQQQQQQ")
 
     return (
         <>
@@ -39,9 +44,13 @@ const CurrentUserReviews = () => {
                             <div className="review-spot" >
 
                                 <div className="r-img">
-
+{/*
+                                    <img src={review.Spot?.previewImage} alt={review.Spot?.description}></img> */}
+                                    <NavLink to = {`/spots/${review.Spot?.id}`} className="r-img">
                                     <img src={review.Spot?.previewImage} alt={review.Spot?.description}></img>
-                               
+
+                                    </NavLink>
+
                                     {/* <img src={review.Spot?.previewImage} alt={review.Spot?.description}></img> */}
                                 </div>
 

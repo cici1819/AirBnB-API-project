@@ -101,11 +101,12 @@ const initialState = {
 const reviewsReducer = (state = initialState, action) => {
     console.log("running###################")
     let newState;
+    let spot = {};
     // let userData = {}
     // let spotData = {}
     switch (action.type) {
         case ALL_REVIEWS:
-            let spot = {};
+
             newState = { ...state };
             action.reviews.Reviews.forEach(review => {
                 spot[review.id] = review
@@ -114,14 +115,23 @@ const reviewsReducer = (state = initialState, action) => {
             return newState
 
         case USER_REVIEWS:
-            newState = { ...state, user: { ...state.user } ,spot:{...state.spot}}
-            action.reviews.Reviews.forEach(review => {
-                newState.user[review.id] = review
-                newState.spot[review.id] = review.Spot
+             newState = { user: {} ,spot:{}}
+                action.reviews.Reviews.forEach(review => {
+                    newState.user[review.id] = review
+                    newState.spot[review.id] = review.Spot
 
-            });
+                });
+                newState.spot = {}
+                return newState;
+            // newState = {...state};
+            // // console.log("#####################user-review",action)
+            // action.reviews.Reviews.forEach(review => {
+            //     newState[review.id] = review
+            //     //         // newState.spot[review.id] = review.Spot
+            // });
+            // console.log("")
 
-            return newState;
+            // return newState;
 
         case CREATE_REVIEW:
             newState = {spot: {...state.spot}, user: {...state.user}}

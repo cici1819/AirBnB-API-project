@@ -52,7 +52,7 @@ const Reviews = ({ reviews}) => {
             {/* <div className="add-review-div"> */}
             {sessionUser && sessionUser.id !== spot?.ownerId && (
                 <div className="add-review-button">
-                    <AddReviewFormModal  sessionUser={sessionUser} />
+                    <AddReviewFormModal />
                 </div>
             )}
             {/* </div> */}

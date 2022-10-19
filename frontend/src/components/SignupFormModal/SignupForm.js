@@ -5,7 +5,7 @@ import { Redirect } from "react-router-dom";
 import * as sessionActions from "../../store/session";
 import './SignupForm.css';
 
-function SignupForm({setShowSignupModal}) {
+function SignupForm({ setShowSignupModal }) {
     const dispatch = useDispatch();
     // const history = useHistory();
     const sessionUser = useSelector((state) => state.session.user);
@@ -24,16 +24,24 @@ function SignupForm({setShowSignupModal}) {
         if (password === confirmPassword) {
 
             setErrors([]);
-             dispatch(sessionActions.signup({ email, username, password, firstName, lastName })).then(()=> setShowSignupModal(false))
+            let isError = false;
+            dispatch(sessionActions.signup({ email, username, password, firstName, lastName }))
                 .catch(async (res) => {
                     const data = await res.json();
                     if (data && data.errors) setErrors(data.errors);
-
+                    isError = true;
+                }).then(() => {
+                    // console.log("data...." + data.statusCode);
+                    if (!isError) {
+                        //    console.log("setShowsignupModal false$$$$$$$$$$$$$")
+                        setShowSignupModal(false)
+                    }
+                    ;
                 })
 
         }
 
-        return setErrors(['Confirm Password field must be the same as the Password field']);
+        // return setErrors(['Confirm Password field must be the same as the Password field']);
     };
     // if (sessionUser) return <Redirect to="/" />;
     return (

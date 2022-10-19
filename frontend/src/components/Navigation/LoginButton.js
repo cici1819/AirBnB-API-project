@@ -34,7 +34,7 @@ const LoginButton = ({setShowSignupModal,setShowLoginModal}) => {
                         <i className="fa-solid fa-bars"></i>
                         </div>
                         <div className='s-user'>
-                        <i class="fa-solid fa-circle-user"></i>
+                        <i className="fa-solid fa-circle-user"></i>
                       </div>
 
                     </button>
@@ -43,14 +43,22 @@ const LoginButton = ({setShowSignupModal,setShowLoginModal}) => {
                 {showMenu && (
                     <div  className='login-dropMenu'>
                     {/* <div className='login-signup-div'> */}
-                        <div className='login-div'
-                        onClick={()=>setShowLoginModal(true)}
+                    <div className='login-div'
+                        onClick={() => {
+                            console.log("loginon click running````````````")
+                            setShowLoginModal(true)
+                        }
+                        }
                         >
                          Log In
                     </div>
                      {/* </div> */}
                         <div className='signup-div'
-                        onClick={()=>setShowSignupModal(true)}
+                        onClick={() => {
+                            console.log("signup clickruning!!!!!!!!!!!")
+                            setShowSignupModal(true)
+
+                        } }
                         >
                           Sign Up
                         </div>
