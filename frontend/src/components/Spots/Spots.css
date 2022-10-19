@@ -4,7 +4,9 @@
      border-radius: 10px;
 
 }
-
+.spot-image:hover{
+   cursor: pointer;
+}
 .card {
      display:flex;
      flex-wrap: wrap;
