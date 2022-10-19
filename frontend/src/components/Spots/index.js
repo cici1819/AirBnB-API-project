@@ -31,7 +31,7 @@ const Spots = () => {
 
                     <div className='spot-card' onClick={() => goToSpot(spot.id)} >
 
-                        <img className='spot-image' src={spot.previewImage} alt={spot.description} />
+                        <img className='spot-image' src={spot?.previewImage} alt={spot.description} />
                         <div className='location'>{`${spot.city}, ${spot.state}`}</div>
                         <div className='price'>
                             <span className='number'>{`$${spot.price}`}</span>
