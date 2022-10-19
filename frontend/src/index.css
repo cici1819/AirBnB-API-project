@@ -34,3 +34,23 @@ input:focus::placeholder{
     font-weight: 500;
 
 }
+
+@media screen and (min-width:1700px) {
+    body{
+      margin: 0,auto;
+      /* background-color: aqua; */
+
+    }
+    /* .singlespot-details{
+         /* display: flex;
+         align-items: center;
+         background-color: antiquewhite; */
+    /* } */
+    /* .spot-img-prview{
+        background-color:red;
+    } */
+    .spot-images {
+    margin-left: 260px;
+
+    }
+  }
