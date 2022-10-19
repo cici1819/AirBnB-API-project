@@ -26,7 +26,7 @@ const Spots = () => {
 
     return (
         <div className='card'>
-            {spotsArr.map(spot => spot.previewImage && (
+            {spotsArr.map(spot => spot?.previewImage && (
                 <div key={spot.id}>
 
                     <div className='spot-card' onClick={() => goToSpot(spot.id)} >
