@@ -24,36 +24,13 @@ function LoginForm({ setShowLoginModal }) {
                 // console.log("data...." + data.statusCode);
                 if (!isError) setShowLoginModal(false);
             })
-        // .then((res) => {
-        //     // console.log("then.....");
-        //     console.log("then.......");
-        //     console.log("res.json....." + res.json());
-        //     setShowLoginModal(false)
-        // })
+
 
 
 
          setErrors([]);
     }
 
-    // .then(setShowLoginModal(false))
-    // const data = login.json();
-    // if (data.errorrs && data.statusCode === 401) setErrors(data.message);
-    // else if (data && data.errors) setErrors(data.errors);
-    // else setShowLoginModal(false)
-
-
-    // return login
-    // if (login && !data.errors) {
-    //
-    //     setShowLoginModal(false);
-    // }
-
-
-    // console.log ("?????????????????????", user)
-    // return user;
-    //     if (logIn) {
-    // setShowLoginModal(false)
 
 
     return (
@@ -66,7 +43,7 @@ function LoginForm({ setShowLoginModal }) {
                 <form onSubmit={handleSubmit} className="login-form">
                     <div className="login-header">
                         <div className="log-in"> Log in</div>
-                        <div className="wel-title">Welcome to aircnc</div>
+                        <div className="wel-title">Welcome to Aircnc</div>
                     </div>
                     <div className="errors-div">
                         <ul>

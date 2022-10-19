@@ -14,7 +14,7 @@ module.exports = {
     */
     await queryInterface.bulkInsert('Reviews', [
       {
-        userId: 1,
+        userId: 2,
         spotId: 1,
         review: "Great!! Amazing !",
         stars: 5
@@ -49,6 +49,45 @@ module.exports = {
         review: "Great views!",
         stars: 5
       },
+      {
+        userId: 4,
+        spotId: 7,
+        review: "A wonderful stay!",
+        stars: 5
+      },
+      {
+        userId: 5,
+        spotId: 8,
+        review: "Second time here with a group, had a great stay, hope to be back!",
+        stars: 5
+      },
+      {
+        userId: 3,
+        spotId: 9,
+        review: "Amazing place ! Definitely one of a kind",
+        stars: 5
+      },
+      {
+        userId: 1,
+        spotId: 10,
+        review: "Some people come to take pictures. Others come to get a good look at themselves",
+        stars: 5
+
+      },
+      {
+        userId: 1,
+        spotId: 11,
+        review: "Great location and great charm, great communication. A must-visit if you're planning to stay in the bend area.",
+        stars: 5
+      },
+
+      {
+        userId: 3,
+        spotId: 12,
+        review: "This place was amazing! Very true to the listing photos and description. Clean, cozy, and definitely a place I'd go back to.",
+        stars: 4
+      }
+
     ],
     )
   },

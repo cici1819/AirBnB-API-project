@@ -60,7 +60,7 @@ const CurrentUserSpots = () => {
                             {sessionUser && sessionUser.id === spot?.ownerId && (
                                 <div className='edit-div'>
                                     <UpdateSpotFormModal spot={spot} />
-                                    <DeleteSpot />
+                                    <DeleteSpot spot={spot} />
                                 </div>
 
                             )}

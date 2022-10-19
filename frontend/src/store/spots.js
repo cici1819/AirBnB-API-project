@@ -100,7 +100,7 @@ export const getUserSpots = () => async dispatch => {
 
 // Thunk action add a spot
 export const addSpot = (spot) => async dispatch => {
-    console.log('................. Spot' ,spot)
+    console.log('................. Spot', spot)
     let { url } = spot;
     const response = await csrfFetch(`/api/spots`, {
         method: 'POST',
@@ -109,7 +109,7 @@ export const addSpot = (spot) => async dispatch => {
     });
     if (response.ok) {
         const newSpot = await response.json();
-        console.log("..........newSpot",newSpot)
+        console.log("..........newSpot", newSpot)
         dispatch(addOneSpot(newSpot));
         const resImg = await csrfFetch(`/api/spots/${newSpot.id}/images`, {
             method: 'POST',
@@ -137,7 +137,7 @@ export const editSpot = (spotId, spot) => async dispatch => {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(spot)
     })
-    console.log ("update spot222222222222" + response)
+    console.log("update spot222222222222" + response)
     if (response.ok) {
         const updatedSpot = await response.json();
         dispatch(updateSpot(updatedSpot));
@@ -147,6 +147,7 @@ export const editSpot = (spotId, spot) => async dispatch => {
 
 // Thunk action delete a spot
 export const removeSpot = (spotId) => async dispatch => {
+    console.log("deletecation____________,spotId", spotId)
     const response = await csrfFetch(`/api/spots/${spotId}`, {
         method: 'DELETE'
     });
@@ -166,29 +167,41 @@ const initialState = {
 
 const spotsReducer = (state = initialState, action) => {
     let newState;
+    let allSpots = {};
     switch (action.type) {
         case LOAD_SPOTS:
         case USER_SPOTS:
             newState = { ...state };
-            let allSpots = {};
+            // let allSpots = {};
             action.spots.Spots.forEach(spot => {
                 allSpots[spot.id] = spot;
             });
             // console.log('ALL SPOTS REDUCED', allSpots)
             newState.allSpots = allSpots;
+            newState.spot = {};
             return newState;
+
+        // case USER_SPOTS:
+        //     newState = { ...state };
+        //     // let allSpots = {};
+        //     action.spots.Spots.forEach(spot => {
+        //         allSpots[spot.id] = spot;
+        //     });
+        //     // console.log('ALL SPOTS REDUCED', allSpots)
+        //     newState.allSpots = allSpots;
+        //     return newState;
 
         // console.log('newState++++++++++++++++++++++++ ', newState)
 
         case ONE_SPOT:
             newState = { ...state };
             newState.spot = action.spot
-             console.log("XXXXXXXXXXXXXXXX NewState", newState)
+            console.log("XXXXXXXXXXXXXXXX NewState", newState)
             return newState;
 
         case ADD_IMG:
             newState = { ...state }
-            newState.spot=action.payload.spot
+            newState.spot = action.payload.spot
             newState.spot.SpotImages = [action.payload.img]
             return newState;
 
@@ -204,13 +217,19 @@ const spotsReducer = (state = initialState, action) => {
             newState = { ...state };
             newState.allSpots = { ...state.allSpots, [action.spot.id]: action.spot }
             newState.spot = { ...state.spot, ...action.spot };
-            console.log("update spot newState 33333333333333:",action.spot)
+            // console.log("update spot newState 33333333333333:",action.spot)
             return newState;
         case DELETE_SPOT:
             newState = { ...state };
+            // console.log("delete***************,spotId", spotId);
+            // console.log("delete***************,action", action);
+            // console.log("delete@@@@@@@@@@@@@@@@22",newState.allSpots)
             delete newState.allSpots[action.spotId]
+            // console.log("delete***************,spotId", spotId)
+            // console.log("delete***************,action", action)
             newState.spot = {};
             return newState;
+
 
         default:
             return state;

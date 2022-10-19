@@ -10,7 +10,9 @@
     width: 60px;
     border-radius: 50%;
 }
-
+.spot-imgs-prview{
+    margin-left: 5px;
+}
 .spot-owner {
     margin-top: 10px;
     border-bottom: 1px solid rgb(224, 221, 221);
@@ -201,10 +203,10 @@
 .spot-description1{
     margin-top: -5px;
 }
-.reviews-details{
+.reviews{
     display: flex;
     flex-direction: column;
     /* justify-content: flex-start; */
-   
+
 
 }

@@ -5,8 +5,11 @@ import { useDispatch, useSelector } from 'react-redux';
 import * as spotsActions from "../../store/spots";
 
 
-function DeleteSpot() {
-  const spot = useSelector(state => state.spots.spot);
+function DeleteSpot({spot}) {
+  // const spot = useSelector(state => state.spots.spot);
+  //  const spot = useSelector(state => state);
+  // console.log("sate!!!!!!!!!!! delete",state)
+  console.log("delete spot, &&&&&&&&&&&&&&&,spot",spot)
   const dispatch = useDispatch();
   const history = useHistory();
 

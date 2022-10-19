@@ -53,7 +53,7 @@
 
 }
 
-.add-spot-form input:focus {
+.update-spot-form input:focus {
     opacity: 100%;
 }
 

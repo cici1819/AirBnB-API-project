@@ -40,8 +40,8 @@ const AddSpotForm = ({ setShowModal }) => {
         const errors = [];
         if (!name.length) {
             errors.push("Name is required");
-        } else if (name.length > 30) {
-            errors.push("Name must be less than 30 characters");
+        } else if (name.length > 100) {
+            errors.push("Name must be less than 100 characters");
         }
 
         if (!description.length) {
@@ -73,13 +73,13 @@ const AddSpotForm = ({ setShowModal }) => {
             errors.push("City must be less than 50 characters");
         }
         if (!lat || isNaN(lat)) {
-            errors.push("Latitude is required and must be number between -90 and 90")
+            errors.push("Latitude is required and must be number between -90 to 90")
         }
         else if (lat < -90 || lat > 90) {
             errors.push("Latitude must be between -90 and 90");
         }
         if (!lng || isNaN(lng)) {
-            errors.push("Longitude is required and must be number between -180 and 180")
+            errors.push("Longitude is required and must be number between -180 to 180")
         }
         else if (lng < -180 || lng > 180) {
             errors.push("Longitude must be between -180 and 180");
@@ -159,7 +159,7 @@ const AddSpotForm = ({ setShowModal }) => {
 
             setShowModal(false)
 
-            history.push('/');
+            history.push(`/spots/${addSpot.id}`);
 
         }
 
@@ -192,7 +192,7 @@ const AddSpotForm = ({ setShowModal }) => {
                                         Name
                                     </div>
                                     <input
-                                        placeholder='Name'
+                                        placeholder='1-100 characters'
                                         type="text"
                                         value={name}
                                         onChange={(e) => setName(e.target.value)}
@@ -207,7 +207,7 @@ const AddSpotForm = ({ setShowModal }) => {
                                         Description
                                     </div>
                                     <input
-                                        placeholder='Description'
+                                        placeholder='1-500 characters'
                                         value={description}
                                         onChange={(e) => setDescription(e.target.value)}
                                         required
@@ -224,7 +224,7 @@ const AddSpotForm = ({ setShowModal }) => {
                                     </div>
                                     <div className='price-input'>
                                         <input
-                                            placeholder='price'
+                                            placeholder='Must be a number'
                                             value={price}
                                             onChange={(e) => setPrice(e.target.value)}
                                             required
@@ -244,7 +244,7 @@ const AddSpotForm = ({ setShowModal }) => {
                                         Address
                                     </div>
                                     <input
-                                        placeholder='Address'
+                                        placeholder='1-100 characters'
                                         type="text"
                                         value={address}
                                         onChange={(e) => setAddress(e.target.value)}
@@ -259,7 +259,7 @@ const AddSpotForm = ({ setShowModal }) => {
                                         City
                                     </div>
                                     <input
-                                        placeholder='City'
+                                        placeholder='1-50 characters'
                                         type="text"
                                         value={city}
                                         onChange={(e) => setCity(e.target.value)}
@@ -273,7 +273,7 @@ const AddSpotForm = ({ setShowModal }) => {
                                         State
                                     </div>
                                     <input
-                                        placeholder='State'
+                                        placeholder='1-50 characters'
                                         type="text"
                                         value={state}
                                         onChange={(e) => setState(e.target.value)}
@@ -288,7 +288,7 @@ const AddSpotForm = ({ setShowModal }) => {
                                         Country
                                     </div>
                                     <input
-                                        placeholder='Country'
+                                        placeholder='1-50 characters'
                                         type="text"
                                         value={country}
                                         onChange={(e) => setCountry(e.target.value)}
@@ -303,7 +303,7 @@ const AddSpotForm = ({ setShowModal }) => {
                                         Latitude
                                     </div>
                                     <input
-                                        placeholder='Latitude'
+                                        placeholder='Between -90 to 90'
                                         type="text"
                                         // min="-90"
                                         // max="90"
@@ -320,7 +320,7 @@ const AddSpotForm = ({ setShowModal }) => {
                                         Longitude
                                     </div>
                                     <input
-                                        placeholder='Longitude'
+                                        placeholder='Between -180 to 180'
                                         type="text"
                                         // min="-120"
                                         // max="120"
@@ -337,7 +337,7 @@ const AddSpotForm = ({ setShowModal }) => {
                                         Preview Image Url
                                     </div>
                                     <input
-                                        placeholder='Preview Image Url'
+                                        placeholder='Vaild url (.jpg,.png,.jpeg)'
                                         type="text"
                                         value={url}
                                         onChange={(e) => setUrl(e.target.value)}
@@ -354,7 +354,7 @@ const AddSpotForm = ({ setShowModal }) => {
                         <button type="submit"
                             disabled={hasSubmitted && validationErrors.length > 0}
                             className="addSpot-button"
-                        >Submit</button>
+                        >creat spot</button>
                     </div>
                 </form>
             </div>

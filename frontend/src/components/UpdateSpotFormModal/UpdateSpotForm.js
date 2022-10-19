@@ -26,7 +26,7 @@ const UpdateSpotForm = ({ spot, setShowModal }) => {
 
     const [validationErrors, setValidationErrors] = useState([]);
     const [hasSubmitted, setHasSubmitted] = useState(false);
-    console.log("updatedSpot, spot ~~~~~~~~~~~@@@@", spot)
+    // console.log("updatedSpot, spot ~~~~~~~~~~~@@@@", spot)
 
     // useEffect(() => {
     //     dispatch(spotsActions.getOneSpot(spotId))
@@ -41,8 +41,8 @@ const UpdateSpotForm = ({ spot, setShowModal }) => {
         if (!name.length) {
             errors.push("Name is required");
         }
-        else if (name.length > 30) {
-            errors.push("Name must be less than 30 characters");
+        else if (name.length > 100) {
+            errors.push("Name must be less than 100 characters");
         }
         if (!description.length) {
             errors.push("Description is required");
@@ -130,7 +130,7 @@ const UpdateSpotForm = ({ spot, setShowModal }) => {
                 setValidationErrors([]);
                 setShowModal(false)
                 history.push(`/spots/${updatedSpot.id}`);
-                // history.push("/");
+                // history.push("/spots/current");
 
             }
 
@@ -138,152 +138,6 @@ const UpdateSpotForm = ({ spot, setShowModal }) => {
         };
     }
 
-
-    // // return (
-    // //     <>
-    //         {/* <div className='update-spot-wrap2'>
-    //             <form onSubmit={handleSubmit} className="updateSpot-form">
-    //                 <div className='update-spot-title'>
-    //                     <h3>Edit Spot</h3>
-    //                 </div>
-    //                 <div className='errorslist-div'>
-    //                     {hasSubmitted && validationErrors.length > 0 && (
-    //                         // <div className='error-list'>
-    //                         <ul className="errors">
-    //                             {validationErrors.map((error) => <li className="error">{error}</li>)}
-    //                         </ul>
-    //                         //  {/* </div> */}
-
-    //                     )}
-    //                 </div>
-    //                 <div className='spot-input-info2'>
-
-    //                     <div className='spot-name'>
-    //                         <label>
-
-    //                             <input
-    //                                 placeholder='Name'
-    //                                 type="text"
-    //                                 value={name}
-    //                                 onChange={(e) => setName(e.target.value)}
-    //                                 required
-    //                             />
-    //                         </label>
-    //                     </div>
-    //                     <div className='description'>
-    //                         <label>
-
-    //                             <input
-    //                                 placeholder='Description'
-    //                                 value={description}
-    //                                 onChange={(e) => setDescription(e.target.value)}
-    //                                 required
-    //                             ></input>
-    //                         </label>
-    //                     </div>
-    //                     <div className='price'>
-    //                         <label>
-
-    //                             <input
-    //                                 placeholder='Price'
-    //                                 type="text"
-    //                                 value={price}
-    //                                 onChange={(e) => setPrice(e.target.value)}
-    //                                 required
-    //                             />
-    //                         </label>
-    //                     </div>
-    //                     <div className='address'>
-    //                         <label>
-
-    //                             <input
-    //                                 placeholder='Address'
-    //                                 type="text"
-    //                                 value={address}
-    //                                 onChange={(e) => setAddress(e.target.value)}
-    //                                 required
-
-    //                             />
-    //                         </label>
-    //                     </div>
-    //                     <div className='city'>
-    //                         <label>
-
-    //                             <input
-    //                                 placeholder='City'
-    //                                 type="text"
-    //                                 value={city}
-    //                                 onChange={(e) => setCity(e.target.value)}
-    //                                 required
-    //                             />
-    //                         </label>
-    //                     </div>
-    //                     <div className='state'>
-    //                         <label>
-
-    //                             <input
-    //                                 placeholder='State'
-    //                                 type="text"
-    //                                 value={state}
-    //                                 onChange={(e) => setState(e.target.value)}
-    //                                 required
-    //                             />
-    //                         </label>
-    //                     </div>
-
-    //                     <div>
-    //                         <label>
-
-    //                             <input
-    //                                 placeholder='Country'
-    //                                 type="text"
-    //                                 value={country}
-    //                                 onChange={(e) => setCountry(e.target.value)}
-    //                                 required
-    //                             />
-    //                         </label>
-    //                     </div>
-
-    //                     <div className='lat'>
-    //                         <label>
-
-    //                             <input
-    //                                 placeholder='Latitude'
-    //                                 type="text"
-    //                                 value={lat}
-    //                                 onChange={(e) => setLat(e.target.value)}
-    //                                 required
-    //                             />
-    //                         </label>
-    //                     </div>
-
-    //                     <div className='lon'>
-    //                         <label>
-
-    //                             <input
-    //                                 placeholder='Longitude'
-    //                                 type="text"
-    //                                 value={lng}
-    //                                 onChange={(e) => setLng(e.target.value)}
-    //                                 required
-    //                             />
-    //                         </label>
-    //                     </div>
-    //                 </div>
-
-
-
-
-    //                 <div className='updateSpot-form-button'>
-    //                     <button type="submit"
-    //                         disabled={hasSubmitted && validationErrors.length > 0}
-    //                     >
-    //                         Update your Spot</button>
-    //                 </div>
-    //             </form >
-    //         </div >
-    //     </>
-    // ); */}
     return (
         <>
             <div className='add-spot-wrap2'>
@@ -310,7 +164,6 @@ const UpdateSpotForm = ({ spot, setShowModal }) => {
                                         Name
                                     </div>
                                     <input
-                                        placeholder='Name'
                                         type="text"
                                         value={name}
                                         onChange={(e) => setName(e.target.value)}
@@ -325,8 +178,7 @@ const UpdateSpotForm = ({ spot, setShowModal }) => {
                                         Description
                                     </div>
                                     <input
-                                        placeholder='Description'
-                                        value={description}
+                                      value={description}
                                         onChange={(e) => setDescription(e.target.value)}
                                         required
                                     ></input>
@@ -342,7 +194,6 @@ const UpdateSpotForm = ({ spot, setShowModal }) => {
                                     </div>
                                     <div className='price-input'>
                                         <input
-                                            placeholder='price'
                                             value={price}
                                             onChange={(e) => setPrice(e.target.value)}
                                             required
@@ -362,7 +213,6 @@ const UpdateSpotForm = ({ spot, setShowModal }) => {
                                         Address
                                     </div>
                                     <input
-                                        placeholder='Address'
                                         type="text"
                                         value={address}
                                         onChange={(e) => setAddress(e.target.value)}
@@ -377,7 +227,6 @@ const UpdateSpotForm = ({ spot, setShowModal }) => {
                                         City
                                     </div>
                                     <input
-                                        placeholder='City'
                                         type="text"
                                         value={city}
                                         onChange={(e) => setCity(e.target.value)}
@@ -391,8 +240,7 @@ const UpdateSpotForm = ({ spot, setShowModal }) => {
                                         State
                                     </div>
                                     <input
-                                        placeholder='State'
-                                        type="text"
+                                      type="text"
                                         value={state}
                                         onChange={(e) => setState(e.target.value)}
                                         required
@@ -405,8 +253,7 @@ const UpdateSpotForm = ({ spot, setShowModal }) => {
                                     <div className='input-m'>
                                         Country
                                     </div>
-                                    <input
-                                        placeholder='Country'
+                                   <input
                                         type="text"
                                         value={country}
                                         onChange={(e) => setCountry(e.target.value)}
@@ -421,7 +268,6 @@ const UpdateSpotForm = ({ spot, setShowModal }) => {
                                         Latitude
                                     </div>
                                     <input
-                                        placeholder='Latitude'
                                         type="text"
                                         // min="-90"
                                         // max="90"
@@ -438,7 +284,6 @@ const UpdateSpotForm = ({ spot, setShowModal }) => {
                                         Longitude
                                     </div>
                                     <input
-                                        placeholder='Longitude'
                                         type="text"
                                         // min="-120"
                                         // max="120"
@@ -449,7 +294,7 @@ const UpdateSpotForm = ({ spot, setShowModal }) => {
                                 </label>
                             </div>
 
-                
+
                         </div>
 
                     </div>

@@ -5,8 +5,9 @@ import { Redirect } from "react-router-dom";
 import * as sessionActions from "../../store/session";
 import './SignupForm.css';
 
-function SignupForm() {
+function SignupForm({setShowSignupModal}) {
     const dispatch = useDispatch();
+    // const history = useHistory();
     const sessionUser = useSelector((state) => state.session.user);
     const [email, setEmail] = useState("");
     const [username, setUsername] = useState("");
@@ -21,16 +22,20 @@ function SignupForm() {
     const handleSubmit = (e) => {
         e.preventDefault();
         if (password === confirmPassword) {
+
             setErrors([]);
-            return dispatch(sessionActions.signup({ email, username, password, firstName, lastName }))
+             dispatch(sessionActions.signup({ email, username, password, firstName, lastName })).then(()=> setShowSignupModal(false))
                 .catch(async (res) => {
                     const data = await res.json();
                     if (data && data.errors) setErrors(data.errors);
-                });
+
+                })
+
         }
+
         return setErrors(['Confirm Password field must be the same as the Password field']);
     };
-
+    // if (sessionUser) return <Redirect to="/" />;
     return (
         <>
             <div className="signup-form-div">
@@ -52,7 +57,7 @@ function SignupForm() {
                                     Email
                                 </div>
                                 <input
-                                    placeholder="Email"
+                                    placeholder="validate Email (@)"
                                     type="text"
                                     value={email}
                                     onChange={(e) => setEmail(e.target.value)}
@@ -67,7 +72,7 @@ function SignupForm() {
                                     Username
                                 </div>
                                 <input
-                                    placeholder="Username"
+                                    placeholder="length more than 4"
                                     type="text"
                                     value={username}
                                     onChange={(e) => setUsername(e.target.value)}
@@ -109,7 +114,7 @@ function SignupForm() {
                                     Password
                                 </div>
                                 <input
-                                    placeholder="Password"
+                                    placeholder="length more than 6"
                                     type="password"
                                     value={password}
                                     onChange={(e) => setPassword(e.target.value)}
@@ -123,7 +128,7 @@ function SignupForm() {
                                     Confirm Password
                                 </div>
                                 <input
-                                    placeholder="Confirm Password"
+                                    placeholder="length more than 6"
                                     type="password"
                                     value={confirmPassword}
                                     onChange={(e) => setConfirmPassword(e.target.value)}

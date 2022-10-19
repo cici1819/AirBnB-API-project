@@ -7,7 +7,7 @@ import AddReviewFormModal from "../AddReviewModal";
 import './Reviews.css'
 
 
-const Reviews = ({ reviews }) => {
+const Reviews = ({ reviews}) => {
     const spot = useSelector(state => {
         return state.spots.spot
     });
@@ -42,8 +42,8 @@ const Reviews = ({ reviews }) => {
             {/* <div className="review-Lists"> */}
                 {reviews && reviewsArr.map(review => (
                     <div className="review-details" key={review.id}>
-                        <div className="review-creators">{review.User?.firstName}</div>
-                        <div className="review-contents">{review.review}</div>
+                        <div className="review-creators">{review?.User?.firstName}</div>
+                        <div className="review-contents">{review?.review}</div>
                     </div>
                 ))}
             {/* </div> */}
@@ -52,7 +52,7 @@ const Reviews = ({ reviews }) => {
             {/* <div className="add-review-div"> */}
             {sessionUser && sessionUser.id !== spot?.ownerId && (
                 <div className="add-review-button">
-                    <AddReviewFormModal />
+                    <AddReviewFormModal  sessionUser={sessionUser} />
                 </div>
             )}
             {/* </div> */}

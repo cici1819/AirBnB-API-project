@@ -182,11 +182,19 @@ router.get('/', async (req, res, next) => {
             attributes: [[Sequelize.fn('AVG', Sequelize.col('stars')), 'avgRating']]
         })
         spotsObj.avgRating = Number(parseFloat(avgRating[0].dataValues.avgRating).toFixed(2));
-        const previewImage = await SpotImage.findByPk(spots[i].id, {
-            where: { preview: true },
+        // const previewImage = await SpotImage.findByPk(spots[i].id, {
+        //     where: { preview: true },
+        //     attributes: ['url']
+        // })
+
+        const previewImage = await SpotImage.findAll({
+            where: {
+                preview: true,
+                spotId: spotsObj.id
+            },
             attributes: ['url']
         })
-        if (previewImage) spotsObj.previewImage = previewImage.url
+        if (previewImage) spotsObj.previewImage = previewImage[0].url
         if (!previewImage) spotsObj.previewImage = null
         result.push(spotsObj)
     }
@@ -213,11 +221,18 @@ router.get('/current', requireAuth, async (req, res, next) => {
             attributes: [[Sequelize.fn('AVG', Sequelize.col('stars')), 'avgRating']]
         })
         newObj.avgRating = Number(parseFloat(currAvgrating[0].dataValues.avgRating).toFixed(2));
-        const currImage = await SpotImage.findByPk(currSpots[i].id, {
-            where: { preview: true },
+        // const currImage = await SpotImage.findByPk(currSpots[i].id, {
+        //     where: { preview: true },
+        //     attributes: ['url']
+        // })
+        const currImage = await SpotImage.findAll({
+            where: {
+                preview: true,
+                spotId: newObj.id
+            },
             attributes: ['url']
         })
-        if (currImage) newObj.previewImage = currImage.url
+        if (currImage) newObj.previewImage = currImage[0].url
         if (!currImage) newObj.previewImage = null
         current.push(newObj)
     }
@@ -227,7 +242,7 @@ router.get('/current', requireAuth, async (req, res, next) => {
 })
 
 //get all spots detail by id
-router.get('/:spotId',  async (req, res, next) => {
+router.get('/:spotId', async (req, res, next) => {
     const spotDetail = await Spot.findByPk(req.params.spotId, {
         //eagerly loading
         include: [{
@@ -312,7 +327,7 @@ router.post('/', requireAuth, async (req, res, next) => {
                 "price": "Price per day is required"
             }]
         })
-    } 
+    }
 
     const newSpot = await Spot.create({
         //ower

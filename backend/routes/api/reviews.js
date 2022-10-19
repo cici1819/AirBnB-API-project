@@ -61,7 +61,7 @@ router.get('/current', requireAuth, async (req, res, next) => {
         where: {
             userId: req.user.id
         },
-        raw:true,nest:true,
+        raw: true, nest: true,
         include: [
             {
                 model: User,
@@ -78,20 +78,30 @@ router.get('/current', requireAuth, async (req, res, next) => {
             }]
     });
     for (let i = 0; i < reviews.length; i++) {
-       let review = reviews[i]
+        let review = reviews[i]
 
-        const previewImage = await SpotImage.findByPk(reviews[i].id, {
-            where: { spotId: review.spotId, preview: true },
+        // const previewImage = await SpotImage.findByPk(reviews[i].id, {
+        //     where: { spotId: review.spotId, preview: true },
+        //     attributes: ['url'],
+        //     raw: true
+        // })
+        // if (previewImage) {
+        //     review.Spot.previewImage = previewImage.url
+        // }
+
+        // if (!previewImage) {
+        //     review.Spot.previewImage = null
+        // }
+        const previewImage = await SpotImage.findAll({
+            where: {
+                preview: true,
+                spotId: review.spotId,
+
+            },
             attributes: ['url'],
             raw: true
         })
-        if (previewImage) {
-            review.Spot.previewImage = previewImage.url
-        }
-
-        if (!previewImage) {
-            review.Spot.previewImage = null
-        }
+        review.Spot.previewImage = previewImage[0] === null ? '' : previewImage[0].url
         newArr.push(review)
     }
 

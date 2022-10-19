@@ -35,7 +35,11 @@ const SingleSpot = () => {
     }, [dispatch, spotId, reviews])
 
     // console.log('single spot__________________', spot)
-    if (!Object.values(spot).length) {
+    // if (!Object.values(spot).length) {
+    //     //  console.log("Object_-------------")
+    //     return null;
+    // }
+    if (!spot.SpotImages) {
         //  console.log("Object_-------------")
         return null;
     }
@@ -70,14 +74,14 @@ const SingleSpot = () => {
                 <div className='spot-images'>
                     <div className='spot-imgs-prview'>
                         {/* {spot.SpotImages.map(img => ( */}
-                        <img src={spot.SpotImages[0]?.url} alt={spot.SpotImages.url} />
-                        {/* ))} */}
+                        <img src={spot?.SpotImages[0]?.url} alt={spot?.SpotImages[0]?.url} />
+
                     </div>
                     <div className='spot-imgs-small'>
-                        <img src={spot.SpotImages[1] ? spot.SpotImages[1].url : spot.SpotImages[0].url} alt={spot.SpotImages.url} className="samll-img1" />
-                        <img src={spot.SpotImages[2] ? spot.SpotImages[2].url : spot.SpotImages[0].url} alt={spot.SpotImages.url} className="small-img2" />
-                        <img src={spot.SpotImages[3] ? spot.SpotImages[3].url : spot.SpotImages[0].url} alt={spot.SpotImages.url} className="small-img3" />
-                        <img src={spot.SpotImages[4] ? spot.SpotImages[1].url : spot.SpotImages[0].url} alt={spot.SpotImages.url} className="small-img4" />
+                        <img src={spot.SpotImages[1] ? spot.SpotImages[1].url : spot.SpotImages[0]?.url} alt={spot.SpotImages[0]?.url} className="samll-img1" />
+                        <img src={spot.SpotImages[2] ? spot.SpotImages[2].url : spot.SpotImages[0]?.url} alt={spot.SpotImages[0]?.url} className="small-img2" />
+                        <img src={spot.SpotImages[3] ? spot.SpotImages[3].url : spot.SpotImages[0]?.url} alt={spot.SpotImages[0]?.url} className="small-img3" />
+                        <img src={spot.SpotImages[4] ? spot.SpotImages[4].url : spot.SpotImages[0]?.url} alt={spot.SpotImages[0]?.url} className="small-img4" />
 
                     </div>
                 </div>
@@ -97,7 +101,7 @@ const SingleSpot = () => {
                 </div>
 
                 <div className='spot-owner'>
-                    <h3>{name[0] + " " + name[1]} Hosted By {spot.Owner?.firstName} {spot.Owner?.lastName}</h3>
+                    <h3>{name[0] + " " } Hosted By {spot.Owner?.firstName} {spot.Owner?.lastName}</h3>
                     <img src={spot.SpotImages[0]?.url} alt={spot.SpotImages.url} className="small-preview" />
                 </div>
                 <div className='host-div1'>
@@ -148,7 +152,7 @@ const SingleSpot = () => {
                     <p className='spot-description1'>{spot.description}</p>
                 </div>
 
-                <div className='reviews-details'>
+                <div className='reviews'>
                     <Reviews reviews={reviews} />
                 </div>
             </div>

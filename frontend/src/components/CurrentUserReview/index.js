@@ -1,5 +1,6 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { NavLink } from 'react-router-dom'
 // import { useHistory } from "react-router-dom";
 import * as reviewsActions from "../../store/reviews";
 import "./CurrentUserReview.css"
@@ -34,29 +35,43 @@ const CurrentUserReviews = () => {
                 <div className="review-Lists">
                     {currReviewArr.map(review => (
 
-                        <div className="review-details" key={review.id}>
+                        <div className="review-detail" key={review.id}>
                             <div className="review-spot" >
 
-                                <img src={review.Spot?.previewImage} alt={review.Spot?.description}></img>
+                                <div className="r-img">
+
+                                    <img src={review.Spot?.previewImage} alt={review.Spot?.description}></img>
+                               
+                                    {/* <img src={review.Spot?.previewImage} alt={review.Spot?.description}></img> */}
+                                </div>
+
                             </div>
-                            <div className="review-spot-title">
-                                <span id='dots'> * </span>
-                                {review.Spot?.name === null ? "" : `Review for ${review.Spot?.name}`}
+                            <div className="user-review-warp">
+                                <div className="review-spot-title">
+                                    <span id='dots'> * </span>
+                                    {review.Spot?.name === null ? "" : `Review for ${review.Spot?.name}`}
+                                </div>
+                                <div className="u-review-d">
+                                    <div className='review-star'>
+                                        <i className="fa-sharp fa-solid fa-star"></i>
+                                        <span>{review.stars}</span>
+                                    </div>
+                                    <div className="review-contents-c">
+                                        {review.review}
+                                    </div>
+
+                                </div>
+
+
+                                <div className="deleteReview-div">
+                                    {(sessionUser && sessionUser.id === review.userId) && (
+                                        <button className="deleteReview-button" onClick={() => dispatch(reviewsActions.removeAReview(review.id))}>Delete Review</button>
+                                    )}
+                                </div>
                             </div>
-                            <div className="review-contents">
-                                {review.review}
-                            </div>
-                            <div className='review-star'>
-                                <i className="fa-sharp fa-solid fa-star"></i>
-                                <span>{review.stars}</span>
-                            </div>
-                            <div className="deleteReview-div">
-                                {(sessionUser && sessionUser.id === review.userId) && (
-                                    <button className="deleteReview-button" onClick={() => dispatch(reviewsActions.removeAReview(review.id))}>Delete Review</button>
-                                )}
-                            </div>
+
                         </div>
-                    ) )}
+                    ))}
                 </div>
             </div>
         </>

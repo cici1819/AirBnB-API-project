@@ -31,7 +31,7 @@ const validateSignup = [
 // Sign up
 router.post('/', validateSignup, async (req, res) => {
   const { email, username, password, firstName, lastName, } = req.body
-
+ console.log("sign-up!!!!!!!!!! username",username)
   if (!username || !email || !firstName || !lastName) {
     res.status(400)
     return res.json({

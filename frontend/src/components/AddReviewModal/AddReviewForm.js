@@ -2,13 +2,14 @@ import React, { useState, useEffect } from 'react'
 import { useHistory, useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from "react-redux";
 import * as reviewsActions from "../../store/reviews"
+import "./AddReviewForm.css"
 
-const AddReviewForm = ({ setShowModal }) => {
+const AddReviewForm = ({ setShowModal,sessionUser }) => {
     // const sessionUser = useSelector((state) => state.session.user);
     const dispatch = useDispatch();
     const history = useHistory();
     const { spotId } = useParams();
-    console.log("%%%%%%%%%%%%%%% SpotId",spotId)
+    console.log("%%%%%%%%%%%%%%% SpotId", spotId)
     //   const spot = useSelector(state => state.spots.spot)
     const [review, setReview] = useState('')
     const [stars, setStars] = useState('')
@@ -43,13 +44,13 @@ const AddReviewForm = ({ setShowModal }) => {
 
             async (res) => {
 
-                if (res.status === 403){
+                if (res.status === 403) {
                     setValidationErrors(["You have already added a review for this spot"])
                 }
-                if (res.status === 404){
+                if (res.status === 404) {
                     setValidationErrors(["Spot couldn't be found"]);
                 }
-                if (res.status === 400){
+                if (res.status === 400) {
                     setValidationErrors(["Validation Errors Cannot Submit"]);
                 }
             });
@@ -57,7 +58,8 @@ const AddReviewForm = ({ setShowModal }) => {
         if (addReview) {
             setValidationErrors([]);
             setShowModal(false);
-            history.push(`/spots/${spotId}`)
+            // history.push(`/spots/${spotId}`)
+            history.push('/reviews/current')
 
         }
     }
@@ -65,15 +67,27 @@ const AddReviewForm = ({ setShowModal }) => {
     return (
         <div className='review-form-div'>
             <form className='review-form' onSubmit={handleSubmit}>
-                <h2>Add a Review</h2>
+                <div className='review-form-title'>
+                    <h3>Add a Review</h3>
+                </div>
+
                 <div className='review-form-content'>
-                    <textarea
-                        className='review-text'
-                        placeholder="Review"
-                        value={review}
-                        onChange={e => setReview(e.target.value)}
-                        required
-                    />
+                    <div className='review-input'>
+                        <div className='input-m '>
+                            Review content
+                        </div>
+                        <input
+                            className='review-text'
+                            placeholder="1-500 characters"
+                            value={review}
+                            onChange={e => setReview(e.target.value)}
+                            required
+                        />
+                    </div>
+
+                    <div className='input-m '>
+                        Review stars
+                    </div>
                     <input
                         className='review-star'
                         type='number'
@@ -86,7 +100,7 @@ const AddReviewForm = ({ setShowModal }) => {
                 </div>
 
                 {hasSubmitted && validationErrors.length > 0 && (
-                    <div className='error-div'>
+                    <div className='r-errorlist-div'>
                         <ul className='error-list'>
                             {validationErrors.map((error) => <li id='errors' key={error}>{error}</li>)}
                         </ul>
@@ -94,7 +108,7 @@ const AddReviewForm = ({ setShowModal }) => {
                 )}
 
                 <div className='review-button-div'>
-                    <button id='review-button' type='submit'>Submit Review</button>
+                    <button id='review-button' type='submit'>Add Review</button>
                 </div>
             </form>
         </div>
