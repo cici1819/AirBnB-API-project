@@ -87,7 +87,7 @@ const AddSpotForm = ({ setShowModal }) => {
 
         if (!price) {
             errors.push("Price is required");
-        } else if (price < 0 || isNaN(price) || price === 0) {
+        } else if (price < 1 || isNaN(price) || price === 0) {
             errors.push("Price must be a number and greater than 0");
         }
         if (!url.includes('.com') && !url.includes('.jpg') && !url.includes(".png") && !url.includes(".jpeg")) {
