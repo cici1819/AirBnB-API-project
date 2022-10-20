@@ -3,7 +3,7 @@ import { csrfFetch } from './csrf';
 
 const SET_USER = 'session/setUser';
 const REMOVE_USER = 'session/removeUser';
-
+// const RESET_ACTION = 'session/resetStore';
 const setUser = (user) => {
     return {
         type: SET_USER,
@@ -15,8 +15,14 @@ const removeUser = () => {
     return {
         type: REMOVE_USER,
     };
-};
 
+};
+// const resetStore = () => {
+//     return {
+//         type: "RESET"
+//     }
+
+//   }
 
 export const login = (user) => async (dispatch) => {
     const { credential, password } = user;
@@ -78,7 +84,13 @@ const sessionReducer = (state = initialState, action) => {
         case REMOVE_USER:
             newState = Object.assign({}, state);
             newState.user = null;
+            // console.log("remove-user++++++++++++++++runing"+newState.user)
+            // newState.reviews= null;
+
+            // newState.spot = null;
             return newState;
+        // case RESET_ACTION:
+        //     return initialState;
         default:
             return state;
     }

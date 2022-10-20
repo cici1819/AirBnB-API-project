@@ -41,7 +41,7 @@ function ProfileButton({ user }) {
                         <i className="fa-solid fa-bars"></i>
                     </div>
                     <div className='s-user'>
-                        <i class="fa-solid fa-circle-user"></i>
+                        <i className="fa-solid fa-circle-user"></i>
                     </div>
                 </button>
             </div>
@@ -60,17 +60,17 @@ function ProfileButton({ user }) {
                     </div>
                     {/* <div className="user-spot-info"> */}
 
-                        <div className='user-spot-info'>
-                            <NavLink to={'/spots/current'}>My Spots</NavLink>
-                        </div>
+                    <div className='user-spot-info'>
+                        <NavLink to={'/spots/current'}>My Spots</NavLink>
+                    </div>
 
-                        <div className='user-spot-info'>
-                            <NavLink to={'/reviews/current'}>My Reviews</NavLink>
-                        </div>
+                    <div className='user-spot-info'>
+                        <NavLink to={'/reviews/current'}>My Reviews</NavLink>
+                    </div>
 
-                        <div onClick={logout} className="user-spot-info" id="log-out">Log Out</div>
+                    <div onClick={logout} className="user-spot-info" id="log-out">Log Out</div>
 
-                        {/* <li>
+                    {/* <li>
                                 <NavLink className='add-spot' to={'/spots'}>Become a Host</NavLink>
                             </li> */}
                     {/* </div> */}

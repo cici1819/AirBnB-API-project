@@ -207,6 +207,7 @@ const AddSpotForm = ({ setShowModal }) => {
                                         Description
                                     </div>
                                     <input
+                                        type="text"
                                         placeholder='1-500 characters'
                                         value={description}
                                         onChange={(e) => setDescription(e.target.value)}
@@ -224,6 +225,7 @@ const AddSpotForm = ({ setShowModal }) => {
                                     </div>
                                     <div className='price-input'>
                                         <input
+                                            type="text"
                                             placeholder='Must be a number'
                                             value={price}
                                             onChange={(e) => setPrice(e.target.value)}

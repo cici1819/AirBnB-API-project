@@ -4,12 +4,30 @@ import sessionReducer from './session';
 import spotsReducer from "./spots";
 import reviewsReducer from "./reviews";
 
+// const appReducer = combineReducers({
+//     // add reducer functions here
+//     session: sessionReducer,
+//     spots: spotsReducer,
+//     reviews: reviewsReducer
+// });
+
 const rootReducer = combineReducers({
     // add reducer functions here
     session: sessionReducer,
     spots: spotsReducer,
     reviews: reviewsReducer
 });
+// const rootReducer = (state, action) => {
+//     // add reducer functions here
+//     // session: sessionReducer,
+//     // spots: spotsReducer,
+//     // reviews: reviewsReducer
+//     // if (action.type === 'REMOVE_USER') {
+//     //     return appReducer(undefined, action)
+//     // }
+
+//     // return appReducer(state, action)
+// };
 
 let enhancer;
 
