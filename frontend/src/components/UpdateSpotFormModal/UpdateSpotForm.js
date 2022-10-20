@@ -88,7 +88,7 @@ const UpdateSpotForm = ({ spot, setShowModal }) => {
 
         if (!price) {
             errors.push("Price is required");
-        } else if (price <= 0 || isNaN(price)) {
+        } else if (price <= 0 || isNaN(price) || price === 0) {
             errors.push("Price must be a number and greater than 0");
         }
 
@@ -178,7 +178,7 @@ const UpdateSpotForm = ({ spot, setShowModal }) => {
                                         Description
                                     </div>
                                     <input
-                                      value={description}
+                                        value={description}
                                         onChange={(e) => setDescription(e.target.value)}
                                         required
                                     ></input>
@@ -240,7 +240,7 @@ const UpdateSpotForm = ({ spot, setShowModal }) => {
                                         State
                                     </div>
                                     <input
-                                      type="text"
+                                        type="text"
                                         value={state}
                                         onChange={(e) => setState(e.target.value)}
                                         required
@@ -253,7 +253,7 @@ const UpdateSpotForm = ({ spot, setShowModal }) => {
                                     <div className='input-m'>
                                         Country
                                     </div>
-                                   <input
+                                    <input
                                         type="text"
                                         value={country}
                                         onChange={(e) => setCountry(e.target.value)}
