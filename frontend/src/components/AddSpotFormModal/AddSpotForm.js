@@ -356,7 +356,7 @@ const AddSpotForm = ({ setShowModal }) => {
                         <button type="submit"
                             disabled={hasSubmitted && validationErrors.length > 0}
                             className="addSpot-button"
-                        >creat spot</button>
+                        >Creat Spot</button>
                     </div>
                 </form>
             </div>

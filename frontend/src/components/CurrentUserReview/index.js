@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { NavLink } from 'react-router-dom'
 // import { useHistory } from "react-router-dom";
@@ -8,13 +8,17 @@ import "./CurrentUserReview.css"
 const CurrentUserReviews = () => {
     const sessionUser = useSelector(state => state.session.user);
     const dispatch = useDispatch();
+    // const history = useHistory();
     const currReviews = useSelector(state => state.reviews.user);
     const currReviewArr = Object.values(currReviews)
-    // const spot = currReviews.Spot
-    // console.log("review+++++++++++++++++" + spot)
+    
+
     useEffect(() => {
         dispatch(reviewsActions.getUserReviews())
+
     }, [dispatch])
+
+
 
 
     if (!currReviewArr.length) return (<div className="user-none-reviews">
@@ -38,10 +42,10 @@ const CurrentUserReviews = () => {
                             <div className="review-spot" >
 
                                 <div className="r-img">
-{/*
+                                    {/*
                                     <img src={review.Spot?.previewImage} alt={review.Spot?.description}></img> */}
-                                    <NavLink to = {`/spots/${review.Spot?.id}`} className="r-img">
-                                    <img src={review.Spot?.previewImage} alt={review.Spot?.description}></img>
+                                    <NavLink to={`/spots/${review.Spot?.id}`} className="r-img">
+                                        <img src={review.Spot?.previewImage} alt={review.Spot?.description}></img>
 
                                     </NavLink>
 
@@ -68,7 +72,14 @@ const CurrentUserReviews = () => {
 
                                 <div className="deleteReview-div">
                                     {(sessionUser && sessionUser.id === review.userId) && (
-                                        <button className="deleteReview-button" onClick={() => dispatch(reviewsActions.removeAReview(review.id))}>Delete Review</button>
+                                        <button className="deleteReview-button" onClick={() => {
+                                            if (window.confirm('Do you want to delete?')) {
+                                             dispatch(reviewsActions.removeAReview(review.id));
+                                                // history.push('/reviews/current')
+                                            }
+
+                                        }
+                                        }>Delete Review</button>
                                     )}
                                 </div>
                             </div>

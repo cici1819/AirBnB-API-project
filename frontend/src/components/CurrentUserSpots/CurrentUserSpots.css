@@ -1,58 +1,85 @@
-.user-spots{
-    display:flex;
+.user-spots {
+    display: flex;
     flex-wrap: wrap;
     flex-direction: row;
-    gap :15px;
+    gap: 15px;
     justify-content: flex-start;
-     margin-left: 110px;
+    margin-left: 220px;
     /* margin-right: 15px; */
     font-size: 13px;
     font-weight: 600;
     /* font-family:  monospace; */
-    margin-top: -10px;
+    /* margin-top: -5px; */
+
+
 }
+
 .title-user {
-   position: relative;
+    position: relative;
     /* color: aqua; */
-   /* margin-left: 50px; */
+    /* margin-left: 50px; */
     font-size: 15px;
-   text-align: center;
-   /* color: rgb(255, 56, 92); */
-   font-weight: 500;
+    text-align: center;
+    /* color: rgb(255, 56, 92); */
+    font-weight: 500;
 }
-.spot-card {
-   margin-top: 40px;
-}
-.edit-div {
+
+.spot-card1 {
     margin-top: 10px;
+    /* background-color: aqua; */
+}
+
+.edit-div {
+    margin-top: 18px;
     display: flex;
     justify-content: flex-end;
+    margin-right: 5px;
 }
-.delete-button{
+
+.delete-button {
     margin-top: 20px;
     border: none;
     width: 30%;
     height: 35px;
-    background-color:rgb(255, 56, 92);
-    color:white;
+    background-color: rgb(255, 56, 92);
+    color: white;
     border-radius: 8px;
     font-weight: 600;
-    margin-right: 10px;
+    /* m argin-right: 0px; */
 }
-.updateSpot-button{
+
+.updateSpot-button {
     margin-top: 20px;
     border: none;
     width: 30%;
     height: 35px;
-    background-color:rgb(255, 56, 92);
-    color:white;
+    background-color: rgb(255, 56, 92);
+    color: white;
     border-radius: 8px;
     font-weight: 600;
     margin-right: 120px;
 }
+
 .user-none-spots {
-    display:flex;
+    display: flex;
     justify-content: center;
     font-size: 15px;
     color: darkgray;
+}
+
+.spot-card-b {
+    /* background-color: red; */
+    border: rgba(235, 233, 233, 0.5) solid 1px;
+    box-shadow: 0px 0px 10px rgb(148, 148, 148);
+    border-radius: 12px;
+    padding-left: 15px;
+    padding-right: 13px;
+    padding-top: 10px;
+    width: 315px;
+    height: 400px;
+
+}
+
+.spot-image :hover {
+    box-shadow: 0px 0px 5px rgba(148, 148, 148, 0.5);
 }

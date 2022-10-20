@@ -15,11 +15,14 @@ function DeleteSpot({spot}) {
 
   const handleDelete = async e => {
     e.preventDefault();
+    if (window.confirm('Do you want to delete?')) {
+      const deleteSpot = await dispatch(spotsActions.removeSpot(spot.id));
+      if(deleteSpot) {
+        history.push('/spots/current');
+      }
 
-    const deleteSpot = await dispatch(spotsActions.removeSpot(spot.id));
-    if(deleteSpot) {
-      history.push('/spots/current');
     }
+
   }
 
   return (

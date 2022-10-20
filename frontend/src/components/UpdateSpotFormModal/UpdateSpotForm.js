@@ -146,7 +146,7 @@ const UpdateSpotForm = ({ spot, setShowModal }) => {
                 <form onSubmit={handleSubmit} className="update-spot-form">
                     <div className='add-spot-input'>
                         <div className='add-spot-title'>
-                            <h3>update your spot</h3>
+                            <h3>Update Your Spot</h3>
                         </div>
                         <div className='errorslist-div'>
                             {hasSubmitted && validationErrors.length > 0 && (

@@ -23,7 +23,7 @@ function LoginForm({ setShowLoginModal }) {
             .then(() => {
                 // console.log("data...." + data.statusCode);
                 if (!isError) {
-                //    console.log("setShowLoginModal false$$$$$$$$$$$$$")
+                    //    console.log("setShowLoginModal false$$$$$$$$$$$$$")
                     setShowLoginModal(false)
                 }
                 ;
@@ -32,7 +32,7 @@ function LoginForm({ setShowLoginModal }) {
 
 
 
-         setErrors([]);
+        setErrors([]);
     }
 
 
@@ -46,7 +46,7 @@ function LoginForm({ setShowLoginModal }) {
 
                 <form onSubmit={handleSubmit} className="login-form">
                     <div className="login-header">
-                        <div className="log-in"> Log in</div>
+                        <div className="log-in"> Log In</div>
                         <div className="wel-title">Welcome to Aircnc</div>
                     </div>
                     <div className="errors-div">
@@ -89,7 +89,7 @@ function LoginForm({ setShowLoginModal }) {
 
                     </div>
                     <div className="login-button">
-                        <button type="submit" className="submit-button">Log in</button>
+                        <button type="submit" className="submit-button">Log In</button>
                     </div>
                     <div className="Demo-button">
                         <button type='submit'
@@ -97,7 +97,7 @@ function LoginForm({ setShowLoginModal }) {
                                 setCredential('Demo-lition')
                                 setPassword('password')
                                 //  setShowLoginModal(false)
-                            }}> Demo user</button>
+                            }}> Demo User</button>
                     </div>
                 </form>
             </div>

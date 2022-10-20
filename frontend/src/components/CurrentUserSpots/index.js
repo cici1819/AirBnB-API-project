@@ -41,11 +41,13 @@ const CurrentUserSpots = () => {
                 <div className='user-spots'>
 
                     {spotsArr.map(spot => (
-                        <div key={spot.id}>
+                        <div key={spot.id} className="spot-card-b">
 
-                            <div className='spot-card' onClick={() => goToSpot(spot.id)} >
-
+                            <div className='spot-card1' onClick={() => goToSpot(spot.id)} >
+                                <div className='spot-image'>
                                 <img className='spot-image' src={spot?.previewImage} alt={spot.description} />
+                                </div>
+
                                 <div className='location'>{`${spot.city}, ${spot.state}`}</div>
                                 <div className='price'>
                                     <span className='number'>{`$${spot.price}`}</span>
