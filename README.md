@@ -62,7 +62,7 @@ A logged in user is able to view all of their spots as well as update and delete
 ##### Edit a Spot
 User can edit their owen spots by clicking on the "Edit Spot" button in "My Spots"
 ![image](/png/edit-spot.png)
-##### elete a Spot
+##### Delete a Spot
 User can delete their owen spots by clicking on the "Delete Spot" button in "My Spots"
 ![image](/png/delete-spot.png)
 
