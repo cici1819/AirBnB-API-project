@@ -32,47 +32,48 @@ AirCnC is a website clone inspired by [AirBnB](https://www.airbnb.com/). It is a
 ### HomePage
 
 Users are able to view all spot information and click on a spot to see spot details.
-![image](../AirBnB-API-project/png/readme.1.png)
+![image](png/readme.1.png)
 
 ### Home Page drop-down menu:
 Users can log in and sign up
-![image](../AirBnB-API-project/png/drop-down-menu.png)
+![image](/png/drop-down-menu.png)
 
 ### Log In:
-![image](../AirBnB-API-project/png/login.png)
+![image](/png/login.png)
 
 ### Sign Up:
-![image](../AirBnB-API-project/png/sign-up.png)
+![image](/png/sign-up.png)
 
 ### Demo User:
-![image](../AirBnB-API-project/png/demo-user.png)
+![image](/png/demo-user.png)
 
 ### Spot Details Page:
-![image](../AirBnB-API-project/png/spot-detail1.png)
-![image](../AirBnB-API-project/png/spotdetail2.png)
+![image](/png/spot-detail1.png)
+![image](/png/spotdetail2.png)
 
 ### Create a Spot
 Registered user can create a new spot by clicking the "Become a Host"  on the navigation bar.
-![image](../AirBnB-API-project/png/create-spot.png)
+![image](/png/create-spot.png)
 
 ### Manage Your Spots
 
-A logged in user is able to view all of their spots as well as update and delete spots. Clicking the drop down menu, then clicking "My Spots" in the drop down menu.
-![image](../AirBnB-API-project/png/user-spot.png)
+A logged in user is able to view all of their spots as well as update and delete spots. Clicking the drop down menu, 
+then clicking "My Spots" in the drop down menu.
+![image](/png/user-spot.png)
 ##### Edit a Spot
 User can edit their owen spots by clicking on the "Edit Spot" button in "My Spots"
-![image](../AirBnB-API-project/png/edit-spot.png)
-##### elete a Spot
+![image](/png/edit-spot.png)
+##### Delete a Spot
 User can delete their owen spots by clicking on the "Delete Spot" button in "My Spots"
-![image](../AirBnB-API-project/png/delete-spot.png)
+![image](/png/delete-spot.png)
 
 ### Manage Your Reviews
 A logged in user is able to view all of their reviews as well as delete their reviews. Clicking the drop down menu, then clicking "My Reviews" in the drop down menu.
-![image](../AirBnB-API-project/png/user-reviews.png)
+![image](/png/user-reviews.png)
 ##### Delete a Review
-![image](../AirBnB-API-project/png/delete-review.png)
+![image](/png/delete-review.png)
 
 ### Add Review
 User can create a new review for the spot which are not belong to  themselves  or have already reviewed, by clicking  the "Add Review" button on the spot detail page.
-![image](../AirBnB-API-project/png/add%20review.png)
+![image](/png/add%20review.png)
 ## Contact Information
