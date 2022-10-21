@@ -93,10 +93,17 @@ input:focus::placeholder {
 
     }
 }
- /* @media screen and (min-width:1531px) {
-   .card{
-    width:1800px;
-     margin-left: 100px;
-     background-color: bisque;
+ @media screen and (min-width:1800px) {
+   .card {
+    max-width:100%;
+    /* height:auto; */
+     /* margin-left: 100px; */
+     /* background-color: bisque; */
 }
- } */
+.spot-images {
+    margin-left: 11%;
+    /* align-items: center; */
+
+}
+
+ }
