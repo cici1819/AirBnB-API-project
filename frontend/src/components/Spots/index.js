@@ -30,8 +30,10 @@ const Spots = () => {
                 <div key={spot.id}>
 
                     <div className='spot-card' onClick={() => goToSpot(spot.id)} >
-
+                        <div className='img-container'>
                         <img className='spot-image' src={spot?.previewImage} alt={spot.description} />
+                         </div>
+
                         <div className='location'>{`${spot.city}, ${spot.state}`}</div>
                         <div className='price'>
                             <span className='number'>{`$${spot.price}`}</span>
