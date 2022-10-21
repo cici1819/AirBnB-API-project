@@ -3,11 +3,10 @@ import { useDispatch, useSelector } from "react-redux"
 import { useParams } from "react-router-dom";
 import * as reviewsActions from "../../store/reviews";
 import AddReviewFormModal from "../AddReviewModal";
-// import { getAllReviews } from "../../store/reviews";
 import './Reviews.css'
 
 
-const Reviews = ({ reviews}) => {
+const Reviews = ({ reviews }) => {
     const spot = useSelector(state => {
         return state.spots.spot
     });
@@ -39,14 +38,16 @@ const Reviews = ({ reviews}) => {
                 </span>
             </div>
             <div className="review-wrap">
-            {/* <div className="review-Lists"> */}
+                {/* <div className="review-Lists"> */}
                 {reviews && reviewsArr.map(review => (
                     <div className="review-details" key={review.id}>
                         <div className="review-creators">{review?.User?.firstName}</div>
+                        <div className="review-date">{review?.createdAt.substring(0, 10)}</div>
                         <div className="review-contents">{review?.review}</div>
+
                     </div>
                 ))}
-            {/* </div> */}
+                {/* </div> */}
             </div>
 
             {/* <div className="add-review-div"> */}

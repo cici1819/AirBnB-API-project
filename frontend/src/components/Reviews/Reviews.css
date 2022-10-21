@@ -23,11 +23,18 @@
     font-weight: 600;
 }
 .review-contents{
-    font-size: 13px;
+    font-size: 14px;
     font-weight: 400;
     margin-bottom: 10px;
     font-style:italic;
     color: rgb(54, 54, 54)
+}
+.review-date{
+    font-size: 14px;
+    font-weight: 600;
+    margin-bottom: 5px;
+    /* font-style:italic; */
+    color:rgb(159, 165, 163)
 }
 .review-div1{
     border: none;
