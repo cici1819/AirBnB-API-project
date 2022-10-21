@@ -59,11 +59,13 @@ Registered user can create a new spot by clicking the "Become a Host"  on the na
 
 A logged in user is able to view all of their spots as well as update and delete spots. Clicking the drop down menu, then clicking "My Spots" in the drop down menu.
 ![image](/png/user-spot.png)
-##### Edit a Spot
+### Edit a Spot
 User can edit their owen spots by clicking on the "Edit Spot" button in "My Spots"
 ![image](/png/edit-spot.png)
-##### Delete a Spot
+
+### Delete a Spot
 User can delete their owen spots by clicking on the "Delete Spot" button in "My Spots"
+
 ![image](/png/delete-spot.png)
 
 ### Manage Your Reviews
