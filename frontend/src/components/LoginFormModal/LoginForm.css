@@ -120,3 +120,9 @@
     border-radius: 8px;
     font-weight: 600;
 }
+.submit-button:hover{
+    filter: brightness(95%)
+}
+.Demo-button:hover{
+    filter: brightness(95%)
+}

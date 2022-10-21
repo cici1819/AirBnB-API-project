@@ -83,3 +83,6 @@
     font-weight: 600;
     margin-top: 12px;
 }
+#review-button:hover {
+   filter: brightness(95%)
+}

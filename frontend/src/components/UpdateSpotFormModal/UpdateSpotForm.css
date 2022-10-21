@@ -95,3 +95,6 @@
 /* .addSpot2-div {
     margin-bottom: 50px;
 } */
+.updateSpot1-button:hover{
+    filter: brightness(95%);
+}

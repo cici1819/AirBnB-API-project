@@ -90,3 +90,6 @@
     font-weight: 600;
     margin-bottom: 5px;
 }
+.addSpot-button:hover{
+    filter: brightness(95%);
+}

@@ -2,58 +2,101 @@
 
 
 a {
-    color:black;
+    color: black;
     text-decoration: none;
 }
 
-html,body {
+html,
+body {
 
     box-sizing: border-box;
     font-family: Montserrat;
 }
 
-ul,li {
-    list-style-type:none;
+ul,
+li {
+    list-style-type: none;
 }
-button,input:hover{
+
+button,
+input:hover {
     cursor: pointer;
 }
-button,input:focus{
-    outline:none;
+
+button,
+input:focus {
+    outline: none;
 
 }
+
 /* button :hover{
     box-shadow: 0px,0px,10px rgba(255, 56, 92,0.5);
 } */
-input:focus::placeholder{
+input:focus::placeholder {
     opacity: 0;
 }
+
 .input-m {
     text-align: left;
     font-size: 10px;
     margin-top: 5px;
     margin-left: 5px;
-    color:rgb(255, 56, 92);
+    color: rgb(255, 56, 92);
     font-weight: 500;
 
 }
 
-@media screen and (min-width:1700px) {
-    body{
-      margin: 0,auto;
-      /* background-color: aqua; */
+@media screen and (min-width:1601px) and (max-width:1650px) {
+    body {
+        margin: 0, auto;
+        /* background-color: aqua; */
 
     }
+
     /* .singlespot-details{
          /* display: flex;
          align-items: center;
          background-color: antiquewhite; */
     /* } */
     /* .spot-img-prview{
-        background-color:red;
+       width: 600px;
     } */
     .spot-images {
-    margin-left: 260px;
+        margin-left: 20px;
 
     }
-  }
+
+    .price-review-side-div {
+        margin-right: 3%;
+
+    }
+}
+
+
+@media screen and (min-width:1550px) and (max-width:1600px) {
+    /* .price-review-side-div {
+        margin-right:100px;
+        background-color: rgb(95, 58, 12);
+
+    } */
+ .spot-images {
+    margin-left: 35px;
+
+}
+
+
+}
+@media screen and (min-width:1650px) {
+    .spot-images {
+        margin-left: 75px;
+        /* align-items: center; */
+
+    }
+}
+ /* @media screen and (min-width:1531px) {
+   .card{
+    width:1800px;
+     margin-left: 100px;
+     background-color: bisque;
+}
+ } */

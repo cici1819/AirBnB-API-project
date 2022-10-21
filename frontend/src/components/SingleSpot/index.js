@@ -72,9 +72,9 @@ const SingleSpot = () => {
                     </div>
                 </div>
                 <div className='spot-images'>
-                    <div className='spot-imgs-prview'>
+                    <div className='spot-imgs-prview-div'>
                         {/* {spot.SpotImages.map(img => ( */}
-                        <img src={spot?.SpotImages[0]?.url} alt={spot?.SpotImages[0]?.url} />
+                        <img src={spot?.SpotImages[0]?.url} alt={spot?.SpotImages[0]?.url} className="spot-imgs-prview" />
 
                     </div>
                     <div className='spot-imgs-small'>

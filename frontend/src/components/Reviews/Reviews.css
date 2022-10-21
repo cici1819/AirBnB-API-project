@@ -46,3 +46,6 @@
    font-size: 15px;
    color: darkgray;
 }
+.review-div1:hover{
+    filter: brightness(95%)
+}

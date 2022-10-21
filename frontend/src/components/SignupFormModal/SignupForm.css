@@ -93,3 +93,6 @@
     color:rgb(255, 56, 92) ;
     font-weight: 600;
 }
+.sign-up:hover{
+    filter: brightness(95%);
+}

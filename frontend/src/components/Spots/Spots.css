@@ -14,12 +14,15 @@
      flex-direction: row;
      gap :15px;
      justify-content: flex-start;
-      margin-left: 120px;
+      margin-left: 8%;
      /* margin-right: 15px; */
+     margin-right: 4%;
      font-size: 13px;
      font-weight: 600;
      /* font-family:  monospace; */
      margin-top: -20px;
+     width: fit-content;
+     /* background-color: aqua; */
 }
 .location{
      margin-top: 5px;
