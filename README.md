@@ -74,5 +74,5 @@ A logged in user is able to view all of their reviews as well as delete their re
 
 ### Add Review
 User can create a new review for the spot which are not belong to  themselves  or have already reviewed, by clicking  the "Add Review" button on the spot detail page.
-![image](/png/add%20review.png)
+![image](/png/add-review.png)
 ## Contact Information
