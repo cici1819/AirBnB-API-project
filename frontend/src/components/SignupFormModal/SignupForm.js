@@ -41,7 +41,7 @@ function SignupForm({ setShowSignupModal }) {
 
         }
 
-        // return setErrors(['Confirm Password field must be the same as the Password field']);
+         return setErrors(['Confirm Password field must be the same as the Password field']);
     };
     // if (sessionUser) return <Redirect to="/" />;
     return (

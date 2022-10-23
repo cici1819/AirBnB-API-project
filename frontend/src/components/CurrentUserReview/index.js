@@ -11,7 +11,7 @@ const CurrentUserReviews = () => {
     // const history = useHistory();
     const currReviews = useSelector(state => state.reviews.user);
     const currReviewArr = Object.values(currReviews)
-    
+
 
     useEffect(() => {
         dispatch(reviewsActions.getUserReviews())
@@ -32,7 +32,7 @@ const CurrentUserReviews = () => {
             <div className="user-review-div">
                 <div className='user-review-title'>
                     <h2 className="review-title">
-                        {sessionUser.firstName}'s reviews
+                        {sessionUser?.firstName}'s reviews
                     </h2>
                 </div>
                 <div className="review-Lists">
