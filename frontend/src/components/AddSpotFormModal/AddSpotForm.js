@@ -91,7 +91,7 @@ const AddSpotForm = ({ setShowModal }) => {
             errors.push("Price must be a number and greater than 0");
         }
         if (!url.includes('.com') && !url.includes('.jpg') && !url.includes(".png") && !url.includes(".jpeg")) {
-            errors.push("Please provide  a vaild url")
+            errors.push("Please provide a vaild url")
         }
         setValidationErrors(errors);
         // }

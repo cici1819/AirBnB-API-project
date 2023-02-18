@@ -258,19 +258,6 @@ router.get('/:spotId', async (req, res, next) => {
     );
 
     if (spotDetail) {
-        //     const ower = await User.findByPk({
-        //         where: {
-        //             id: spotResult.ownerId
-        //         },
-        //         attributes: ['id', 'firstName', 'lastName']
-        //     });
-
-        //     console.log(ower,"*********************************")
-
-        //     console.log(spotDetail,"+++++++++++++++++++++")
-        //     ower.id = spotResult.Owner.id;
-        //     ower.firstName = spotResult.Owner.firstName;
-        //     ower.lastName = spotResult.Owner.lastName;
 
         const totalRev = await Review.count({
             where: {
@@ -472,12 +459,6 @@ router.post('/:spotId/reviews', requireAuth, async (req, res, next) => {
     const { review, stars } = req.body;
     if (updateSpot) {
         const spotObj = updateSpot.toJSON();
-        // if (spotObj.ownerId === req.user.id) {
-        //     return res.status(403).json({
-        //         "message": "Forbidden.Sorry,you are the owner",
-        //         "statusCode": 403
-        //     })
-        // }
         const spotReview = await Review.findOne({
             where: {
                 userId: req.user.id,
@@ -651,7 +632,68 @@ router.post('/:spotId/bookings', requireAuth, async (req, res, next) => {
 })
 
 
+//Get all spots by search term
+router.get('/search/:keyword', async (req, res) => {
+    const keyword = req.params.keyword.toLowerCase();
+    console.log("backend  @@@@@@@@@@@@@@", keyword)
 
+    const Spots = await Spot.findAll({
+        where: {
+            [Op.or]: [
+                {
+                    name: Sequelize.where(
+                        Sequelize.fn("LOWER", Sequelize.col("name")),
+                        { [Op.like]: `%${keyword}%` }
+                    )
+                },
+                {
+                    city: Sequelize.where(
+                        Sequelize.fn("LOWER", Sequelize.col("city")),
+                        { [Op.like]: `%${keyword}%` }
+                    )
+                },
+                {
+                    state: Sequelize.where(
+                        Sequelize.fn("LOWER", Sequelize.col("state")),
+                        { [Op.like]: `%${keyword}%` }
+                    )
+                }
+            ]
+        },
+        raw: true,
+        nest: true,
+    });
+
+    for (let i = 0; i < Spots.length; i++) {
+        //add average rating to spot
+        const avgR = await avgRate(Spots[i].id);
+        const avgRvalue = avgR[0].avgRating === null ? 0 : avgR[0].avgRating;
+        const avgRvalFixed = Number(avgRvalue).toFixed(1);
+
+        Spots[i].avgRating = parseFloat(avgRvalFixed);
+
+        //add image preview to spot
+        const prevImgUrl = await SpotImage.findOne({
+            raw: true,
+            nest: true,
+            where: {
+                spotId: Spots[i].id,
+                preview: true,
+            },
+        })
+
+        if (prevImgUrl) {
+            Spots[i].previewImage = prevImgUrl.url
+        } else {
+            Spots[i].previewImage = null
+        }
+    }
+
+    return res.json({
+        Spots
+    })
+
+})
 
 
 

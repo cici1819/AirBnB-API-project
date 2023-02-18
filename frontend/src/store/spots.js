@@ -8,7 +8,7 @@ const ADD_SPOT = "spots/ADD_SPOT";
 const ADD_IMG = "spots/ADD_IMG";
 const UPDATE_SPOT = "spots/UPDATE_SPOT";
 const DELETE_SPOT = "spots/DELETE_SPOT";
-
+const SEARCH_SPOTS = 'spots/searchSpots';
 
 //action creators
 const loadAllSpots = (spots) => ({
@@ -44,6 +44,13 @@ const deleteSpot = (spotId) => ({
     type: DELETE_SPOT,
     spotId
 })
+
+const searchSpotsAction = (spots) => {
+    return {
+        type: SEARCH_SPOTS,
+        spots
+    }
+}
 
 //Thunk action get all spots
 export const getAllSpots = () => async dispatch => {
@@ -81,22 +88,7 @@ export const getUserSpots = () => async dispatch => {
     }
 }
 
-// Thunk action add img to a spot by id
 
-// export const addSpotImg = (spotId, img) => async dispatch => {
-//     img = { url, preview }
-//     const response = await csrfFetch(`/api/spots/${spotId}/images`, {
-//         method: 'POST',
-//         headers: { 'Content-Type': 'application/json' },
-//         body: JSON.stringify({ img }),
-//     })
-//     if (response.ok) {
-//         const image = await response.json();
-//         dispatch(addImg(img.url, spotId))
-//         return image
-//     }
-
-// }
 
 // Thunk action add a spot
 export const addSpot = (spot) => async dispatch => {
@@ -158,6 +150,16 @@ export const removeSpot = (spotId) => async dispatch => {
     }
 }
 
+export const searchSpotsThunk = (keyword) => async (dispatch) => {
+    const response = await fetch(`/api/spots/search/${keyword}`);
+    if (response.ok) {
+        const data = await response.json();
+        // console.log("store spots thunk spots data: ", data)
+        dispatch(searchSpotsAction(data.Spots));
+        return data;
+    }
+};
+
 // spots reducer
 
 const initialState = {
@@ -170,7 +172,7 @@ const spotsReducer = (state = initialState, action) => {
     let allSpots = {};
     switch (action.type) {
         case LOAD_SPOTS:
-        // case USER_SPOTS:
+            // case USER_SPOTS:
             newState = { ...state };
             // let allSpots = {};
             action.spots.Spots.forEach(spot => {
