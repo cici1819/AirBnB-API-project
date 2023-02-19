@@ -1,35 +1,51 @@
 .header {
+    position: fixed;
+    top: 0;
     display: flex;
+    flex-direction: row;
     align-items: center;
     justify-content: space-between;
     border-bottom: 1px solid rgb(224, 221, 221);
     /* background-color: aqua; */
-    margin-bottom: 50px;
-    padding: 10px;
     height: 50px;
+    background-color: white;
+    width: 100vw;
+    padding: 10px;
     /* background-color: white;
    position: fixed;
    top:0;
    width: 100%;
    /* box-sizing: border-box; */
     /* z-index:1; */
+    z-index: 10;
 
+}
 
+.nav-bar-middle {
+    margin-left: 18.5vw;
 }
 
 .link-home {
 
     display: flex;
+    flex-direction: row;
     align-items: center;
+    gap:5px;
+    margin-left: 3vw;
+
 }
 
 .creat-spot {
-    position: relative;
-    margin-left: 60%;
+    /* margin-right: -10vw; */
+
+    text-align: center;
+    line-height:25px;
     font-family: Montserrat;
     font-size: 15px;
     font-weight: 600;
-    height: 30px;
+    height: 25px;
+    width:120px;
+    margin-left: 3vw;
 
 }
 
@@ -37,7 +53,8 @@
 .pofile-button {
     display: flex;
     position: relative;
-    margin-right: 100px;
+    margin-right: 6vw;
+    /* margin-right: 100px; */
     font-size: 15px;
     color: rgb(170, 164, 164);
     padding: 2px;
@@ -78,38 +95,21 @@
 
 .logo {
     position: relative;
-    margin-left: 100px;
-    margin-right: 3px;
+    /* margin-left: 100px; */
+    /* margin-right: 3px; */
     height: 33px;
     width: 36px;
 
 }
 
- .title {
+.title {
     font-family: Montserrat;
     color: rgb(255, 56, 92);
     font-size: 20px;
     font-weight: 600;
 
-
-    /* -webkit-background-clip: text;
-
-    -webkit-text-fill-color: transparent; */
-    /* text-shadow: 1px 1px 0  #fa4343e2, -1px -1px 0 rgba(221, 4, 4, 0.3) */
-
 }
 
-/* .home-page-button {
-    display: inline-block;
-    background-color:black;
-    position: relative;
-    margin-left :80%;
-    margin-top: 20%;
-
-} */
-/* .menu-div {
-    /* background-color: blue; */
-/* } */
 
 .creat-spot:hover {
     cursor: pointer;

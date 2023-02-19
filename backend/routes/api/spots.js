@@ -7,7 +7,19 @@ const { compare } = require('bcryptjs');
 const { Op } = require("sequelize");
 const router = express.Router();
 
-
+const avgRate = async (spotId) => {
+    const avgR = await Review.findAll({
+        where: {
+            spotId
+        },
+        raw: true,
+        next: true,
+        attributes: [[Sequelize.fn('AVG', Sequelize.col('stars')),
+            'avgRating'
+        ]]
+    })
+    return avgR;
+}
 //get all spots
 router.get('/', async (req, res, next) => {
     //query parameters

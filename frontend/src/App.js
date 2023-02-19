@@ -10,6 +10,7 @@ import Spots from "./components/Spots";
 import SingleSpot from "./components/SingleSpot";
 // import AddSpotForm from "./components/AddSpotFormModal";
 // import UpdateSpotForm from "./components/UpdateSpotFormModal";
+import SearchSpots from "./components/Search/SearchSpots";
 import CurrentUserSpots from "./components/CurrentUserSpots";
 import Reviews from "./components/Reviews"
 import CurrentUserReviews from "./components/CurrentUserReview";
@@ -48,7 +49,9 @@ function App() {
           <Route exact path={"/spots/current"}>
             <CurrentUserSpots />
           </Route>
-
+          <Route exact path="/spots/search/:keyword">
+            <SearchSpots />
+          </Route>
           <Route exact path={"/spots/:spotId"}>
             <SingleSpot />
           </Route>

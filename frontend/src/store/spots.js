@@ -150,7 +150,7 @@ export const removeSpot = (spotId) => async dispatch => {
     }
 }
 
-export const searchSpotsThunk = (keyword) => async (dispatch) => {
+export const thunkSearchSpots = (keyword) => async (dispatch) => {
     const response = await fetch(`/api/spots/search/${keyword}`);
     if (response.ok) {
         const data = await response.json();
@@ -164,7 +164,8 @@ export const searchSpotsThunk = (keyword) => async (dispatch) => {
 
 const initialState = {
     allSpots: {},
-    spot: {}
+    spot: {},
+    searchSpots: {} 
 };
 
 const spotsReducer = (state = initialState, action) => {
@@ -232,7 +233,13 @@ const spotsReducer = (state = initialState, action) => {
             // console.log("delete***************,action", action)
             newState.spot = {};
             return newState;
-
+        case SEARCH_SPOTS:
+            let searchSpots = {}
+            action.spots.forEach(spot => { searchSpots[spot.id] = spot });
+            newState = { ...state };
+            newState.searchSpots = searchSpots;
+            // console.log("newState", newState)
+            return newState;
 
         default:
             return state;

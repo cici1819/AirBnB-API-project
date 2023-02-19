@@ -20,12 +20,6 @@ router.get('/current', requireAuth, async (req, res, next) => {
             },
         },
     })
-    // if (!curBookings) {
-    //     return res.status(404).res.json({
-    //         "message": "Booking couldn't be found",
-    //         "statusCode": 404
-    //     })
-    // } else {
 
     for (let i = 0; i < curBookings.length; i++) {
         newObj = curBookings[i].toJSON();

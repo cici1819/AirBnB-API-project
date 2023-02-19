@@ -6,6 +6,7 @@ import ProfileButton from './ProfileButton';
 import LoginFormModal from '../LoginFormModal/index';
 import SignupFormModal from '../SignupFormModal/index';
 import AddSpotFormModal from '../AddSpotFormModal';
+import SearchBar from '../Search/SearchBar';
 // import LoginForm from '../LoginFormModal/LoginForm';
 // import SignupForm from '../SignupFormModal/SignupForm';
 // import { Modal } from '../../context/Modal';
@@ -65,29 +66,31 @@ function Navigation({ isLoaded }) {
           <img src={logo} className="logo" alt="Aircnc-logo" />
           <h1 className='title'>Aircnc</h1>
         </NavLink>
+        <div className='nav-bar-middle'>
+          <SearchBar />
+        </div>
+        <nav className='creat-spot'>
+          <AddSpotFormModal />
+        </nav>
 
-      <nav className='creat-spot'>
-        <AddSpotFormModal />
-      </nav>
+        <div className='open-login-menu'>
+          <LoginFormModal
 
-      <div className='open-login-menu'>
-        <LoginFormModal
+            showLoginModal={showLoginModal}
+            setShowLoginModal={setShowLoginModal}
 
-          showLoginModal={showLoginModal}
-          setShowLoginModal={setShowLoginModal}
+          />
+          <SignupFormModal
 
-        />
-        <SignupFormModal
+            showSignupModal={showSignupModal}
+            setShowSignupModal={setShowSignupModal}
 
-          showSignupModal={showSignupModal}
-          setShowSignupModal={setShowSignupModal}
+          />
 
-        />
-
-      </div>
-      <nav className='user-auth'>
-        {isLoaded && sessionLinks}
-      </nav>
+        </div>
+        <nav className='user-auth'>
+          {isLoaded && sessionLinks}
+        </nav>
       </div>
     </>
 
