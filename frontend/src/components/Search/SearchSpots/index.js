@@ -2,14 +2,14 @@ import { NavLink, useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux'
 import React, { useEffect, useState } from 'react';
 import { thunkSearchSpots } from '../../../store/spots';
-// import { getKey } from '../../../store/maps';
-// import SearchPageMap from '../../Maps/SearchPageMap/SearchPageMap';
+import { getKey } from '../../../store/maps';
+import SearchPageMap from '../../Maps/SearchSpotsMap';
 // import '../../AllSpotsList/AllSpotsList.css';
 import './SearchSpots.css'
 
 
 function SearchSpots() {
-    // const key = useSelector((state) => state.maps.key);
+     const key = useSelector((state) => state.maps.key);
     const dispatch = useDispatch();
     const { keyword } = useParams();
     let markers = [];
@@ -18,25 +18,25 @@ function SearchSpots() {
     console.log("spots",spots)
     const [isLoaded, setIsLoaded] = useState(false);
 
-    // useEffect(() => {
-    //     if (!key) {
-    //         dispatch(getKey());
-    //     }
-    // }, [dispatch, key]);
+    useEffect(() => {
+        if (!key) {
+            dispatch(getKey());
+        }
+    }, [dispatch, key]);
 
     useEffect(() => {
         dispatch(thunkSearchSpots(keyword))
             .then(() => setIsLoaded(true));
     }, [dispatch, keyword]);
 
-    // if (!key) {
-    //     return null;
-    // }
+    if (!key) {
+        return null;
+    }
 
-    // if no spots, checkout other places
+
     if (!spots || !spotsArr.length) return null;
-    // spots.forEach(spot => markers.push({ id: spot.id, price: ('$ ' + spot.price).toString(), position: { lat: parseFloat(spot.lat), lng: parseFloat(spot.lng) } }))
-    // console.log('SearchPageMap container markers-------------', markers)
+    spots.forEach(spot => markers.push({ id: spot.id, price: ('$ ' + spot.price).toString(), position: { lat: parseFloat(spot.lat), lng: parseFloat(spot.lng) } }))
+
 
 
     return (
@@ -47,12 +47,11 @@ function SearchSpots() {
                         spotsArr.map(spot => (
                             <div className='search-spot-card'>
                                 <NavLink key={spot.id} to={`/spots/${spot.id}`}>
-                                    {/* <div className='search-spot-card'> */}
-                                    <div className='spot-image'>
-                                        <img className='search-spot-image-size' src={spot.previewImage} alt='Spot preview image' />
+                                    <div className='spot-img'>
+                                        <img  src={spot.previewImage} alt='image' />
                                     </div>
-                                    <div className='spot-info'>
-                                        <div className='spot-info-1'>
+                                    <div className='spot-details'>
+                                        <div className='spot-info'>
                                             <div className='spot-info-city'>
                                                 {`${spot.city}, ${spot.state}`}
                                             </div>
@@ -64,7 +63,7 @@ function SearchSpots() {
                                             </div>
                                         </div>
 
-                                        <div className='spot-info-2'>
+                                        <div className='spot-info-price'>
                                             <span>${spot.price} </span>night
                                         </div>
 
@@ -76,9 +75,9 @@ function SearchSpots() {
 
                 </div>
             </div>
-            {/* <div className='search-spots-container-right'>
+            <div className='search-spots-container-right'>
                 <SearchPageMap apiKey={key} markers={markers} spots={spots} />
-            </div> */}
+            </div>
         </div>
 
     )

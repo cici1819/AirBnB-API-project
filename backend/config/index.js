@@ -6,7 +6,6 @@ module.exports = {
     jwtConfig: {
         secret: process.env.JWT_SECRET,
         expiresIn: process.env.JWT_EXPIRES_IN
-    }
-
+    },
+    googleMapsApiKey: process.env.MAPS_API_KEY,
 };
-

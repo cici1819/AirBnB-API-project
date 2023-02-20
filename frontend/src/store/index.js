@@ -5,6 +5,7 @@ import spotsReducer from "./spots";
 import reviewsReducer from "./reviews";
 import bookingsReducer from "./bookings";
 import spotImgsReducer from "./spotImages";
+import mapsReducer from "./maps";
 
 
 const rootReducer = combineReducers({
@@ -14,6 +15,7 @@ const rootReducer = combineReducers({
     reviews: reviewsReducer,
     bookings: bookingsReducer,
     spotImgs: spotImgsReducer,
+    maps:mapsReducer
 
 });
 // const rootReducer = (state, action) => {

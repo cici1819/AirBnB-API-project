@@ -6,6 +6,7 @@ import checkIn from "../../images/check-in.png"
 import holder from "../../images/super-holder.png"
 import cancel from "../../images/cancel.png"
 import cover from "../../images/aircover.png"
+import SingleSpotMapContainer from '../Maps/SingleSpotMap';
 
 
 
@@ -101,7 +102,7 @@ const SingleSpot = () => {
                 </div>
 
                 <div className='spot-owner'>
-                    <h3>{name[0] + " " } Hosted By {spot.Owner?.firstName} {spot.Owner?.lastName}</h3>
+                    <h3>{name[0] + " "} Hosted By {spot.Owner?.firstName} {spot.Owner?.lastName}</h3>
                     <img src={spot.SpotImages[0]?.url} alt={spot.SpotImages.url} className="small-preview" />
                 </div>
                 <div className='host-div1'>
@@ -154,6 +155,9 @@ const SingleSpot = () => {
 
                 <div className='reviews'>
                     <Reviews reviews={reviews} />
+                </div>
+                <div className='spot-one-map'>
+                    <SingleSpotMapContainer spot={spot} />
                 </div>
             </div>
         </>

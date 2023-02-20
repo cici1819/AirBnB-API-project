@@ -11,6 +11,7 @@ body {
 
     box-sizing: border-box;
     font-family: Montserrat;
+    overflow-x: hidden;
 }
 
 ul,
@@ -46,21 +47,13 @@ input:focus::placeholder {
 
 }
 
-@media screen and (min-width:1601px) and (max-width:1650px) {
+/* @media screen and (min-width:1601px) and (max-width:1650px) {
     body {
         margin: 0, auto;
-        /* background-color: aqua; */
+
 
     }
 
-    /* .singlespot-details{
-         /* display: flex;
-         align-items: center;
-         background-color: antiquewhite; */
-    /* } */
-    /* .spot-img-prview{
-       width: 600px;
-    } */
     .spot-images {
         margin-left: 20px;
 
@@ -70,40 +63,36 @@ input:focus::placeholder {
         margin-right: 3%;
 
     }
-}
+} */
 
-
+/*
 @media screen and (min-width:1550px) and (max-width:1600px) {
-    /* .price-review-side-div {
-        margin-right:100px;
-        background-color: rgb(95, 58, 12);
+    .spot-images {
+        margin-left: 35px;
 
-    } */
- .spot-images {
-    margin-left: 35px;
+    }
 
-}
+    }
 
 
-}
+
+
 @media screen and (min-width:1650px) {
     .spot-images {
         margin-left: 75px;
-        /* align-items: center; */
+
 
     }
 }
  @media screen and (min-width:1800px) {
    .card {
     max-width:100%;
-    /* height:auto; */
-     /* margin-left: 100px; */
-     /* background-color: bisque; */
+
 }
 .spot-images {
     margin-left: 11%;
-    /* align-items: center; */
+
 
 }
 
- }
+ } */

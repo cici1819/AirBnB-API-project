@@ -8,6 +8,7 @@ import * as sessionActions from "./store/session";
 import Navigation from "./components/Navigation";
 import Spots from "./components/Spots";
 import SingleSpot from "./components/SingleSpot";
+import MainPageMap from "./components/Maps/MainPageMap";
 // import AddSpotForm from "./components/AddSpotFormModal";
 // import UpdateSpotForm from "./components/UpdateSpotFormModal";
 import SearchSpots from "./components/Search/SearchSpots";
@@ -55,7 +56,9 @@ function App() {
           <Route exact path={"/spots/:spotId"}>
             <SingleSpot />
           </Route>
-
+          <Route exact path="/spotsmap">
+            <MainPageMap />
+          </Route>
           <Route path={"/spots"}>
             <Spots />
           </Route>
