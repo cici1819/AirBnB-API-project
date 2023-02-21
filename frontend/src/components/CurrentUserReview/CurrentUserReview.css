@@ -2,21 +2,25 @@
     position: relative;
     /* color: aqua; */
     /* margin-left: 50px; */
-    font-size: 15px;
-    text-align: center;
+    font-size: 18px;
+    padding-left: 10vw;
+    /* text-align: center; */
     /* color: rgb(255, 56, 92); */
     font-weight: 500;
-    margin-top: -20px;
+    /* margin-top: -20px; */
     /* margin-bottom: 20px; */
     height: 20px;
 
 }
 
 .review-Lists {
-    position: relative;
+    margin-top: 30px;
+    padding-left: 10vw;
+    padding-right: 10vw;
     display: flex;
-    align-items: center;
-    flex-direction: column;
+    align-items: flex-start;
+    flex-direction: column-reverse;
+
     /* margin-left: 500px; */
     /* border: 1px solid rgb(224, 221, 221); */
     /* background-color: aqua; */
@@ -26,35 +30,40 @@
 .deleteReview-button {
     position: relative;
     border: none;
-    width: 70%;
+    width: 160%;
     height: 35px;
     background-color: rgb(255, 56, 92);
     color: white;
     border-radius: 8px;
     font-weight: 600;
-    margin-left: 40px;
+    /* margin-left: 40px; */
+    /* margin-top:-1000px ; */
+    margin-left: -65%;
     margin-top: 20px;
-    /* margin-left:25%; */
-
     /* margin-left: 300px; */
 }
-.deleteReview-button:hover{
+
+.deleteReview-button:hover {
     filter: brightness(95%)
 }
+
 .deleteReview-div {
     /* margin-top: -35px; */
     height: 50px;
 }
 
 .r-img>img {
-    width: 300px;
-    height: 215px;
-  /* border-bottom-left-radius: 10px;
+    min-width: 300px;
+    min-height: 215px;
+    width: 40vw;
+    height: 38vh;
+    /* border-bottom-left-radius: 10px;
   border-top-left-radius: 10px; */
-  border-radius: 10px;
+    border-radius: 10px;
 
 }
-.r-img{
+
+.r-img {
     margin-top: 2px;
     margin-left: 2px;
 }
@@ -74,7 +83,9 @@
 
     display: flex;
     flex-direction: row;
-    gap:10px;
+    gap: 10px;
+    align-items: center;
+    overflow: auto;
 
     /* grid-gap: 10px; */
     border: rgba(235, 233, 233, 0.5) solid 1px;
@@ -82,26 +93,32 @@
     border-radius: 12px;
     padding: 5px;
     margin-top: 20px;
-    width: 550px;
-    height: 220px;
-    /* background-color: cyan; */
-
+    margin-bottom: 10px;
+    min-width: 500px;
+    width: 80vw;
+    min-height: 220px;
+    height: 40vh;
 }
 
 
 .user-review-warp {
-    width: 250px;
+    word-wrap: break-word;
+
+    min-width: 250px;
+    width: 40vw;
     /* background-color: blue; */
     /* display: grid;
     grid-template-row: 80% 20%; */
     /* width: ; */
-    height: 100%;
+    height: 38vh;
 
 }
 
 .review-contents-c {
-    font-size: 13px;
+    word-wrap: break-word;
+    font-size: 15px;
     font-weight: 400;
+    margin-top: 10px;
     margin-bottom: 10px;
     font-style: italic;
     color: rgb(54, 54, 54);
@@ -115,15 +132,45 @@
     height: 120px;
     /* border-bottom-right-radius: 10px;
     border-top-right-radius: 10px; */
-  }
+}
 
 
 .review-spot-title {
     /* background-color: antiquewhite; */
-    margin-bottom: 5px;
+    margin-bottom: 15px;
     /* border-bottom-right-radius: 10px;
     border-top-right-radius: 10px; */
-    font-size: 13px;
+    font-size: 20px;
     font-weight: 600;
+
+}
+
+.user-review-div {
+    /* overflow-y: hidden; */
+    margin-top: 80px;
+    margin-bottom: 70px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+
+
+}
+
+.CurrentUser-editReview .review-div1 {
+    width: 180%;
+    height: 35px;
+    margin-right: 0px;
+
+}
+
+.setting-review-div {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding-right: 20px;
+    margin-top: 9%;
+    /* margin-left: -20px; */
+    justify-content: space-between;
+    /* gap: 10px; */
 
 }

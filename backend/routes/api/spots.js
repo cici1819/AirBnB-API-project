@@ -363,6 +363,7 @@ router.post('/:spotId/images', requireAuth, async (req, res, next) => {
 
             spotImageObj.spotId = spotImage.spotId
             spotImageObj.url = spotImage.url
+            spotImageObj.preview = spotImage.preview
 
             delete spotImageObj.updatedAt;
             delete spotImageObj.createdAt;
@@ -647,7 +648,7 @@ router.post('/:spotId/bookings', requireAuth, async (req, res, next) => {
 //Get all spots by search term
 router.get('/search/:keyword', async (req, res) => {
     const keyword = req.params.keyword.toLowerCase();
-    console.log("backend  @@@@@@@@@@@@@@", keyword)
+    // console.log("backend  @@@@@@@@@@@@@@", keyword)
 
     const Spots = await Spot.findAll({
         where: {

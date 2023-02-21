@@ -2,24 +2,16 @@ import React, { useState, useEffect } from 'react'
 import { useHistory, useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from "react-redux";
 import * as reviewsActions from "../../store/reviews"
-import "./AddReviewForm.css"
+import "./EditReviewForm.css"
 
-const AddReviewForm = ({ setShowModal,spot}) => {
-    const sessionUser = useSelector((state) => state.session.user);
+const EditReviewForm = ({ setShowModal,editReview}) => {
     const dispatch = useDispatch();
-    const history = useHistory();
-    const { spotId } = useParams();
-    // console.log("%%%%%%%%%%%%%%% SpotId", spotId)
-    //   const spot = useSelector(state => state.spots.spot)
-    const [review, setReview] = useState('')
-    const [stars, setStars] = useState('')
+    const reviewId = editReview.id
+    const [review, setReview] = useState(editReview ? editReview.review : '')
+    const [stars, setStars] = useState(editReview ? editReview.stars : 5)
     const [validationErrors, setValidationErrors] = useState([]);
     const [hasSubmitted, setHasSubmitted] = useState(false);
 
-    // if (!sessionUser) {
-    //     alert("Please log in or Sign Up");
-    //     history.push("/");
-    // }
     useEffect(() => {
         const errors = [];
         if (!review.length) {
@@ -35,31 +27,29 @@ const AddReviewForm = ({ setShowModal,spot}) => {
     const handleSubmit = async (e) => {
         e.preventDefault();
         setHasSubmitted(true);
-        // if (validationErrors.length) return alert(`Validation Erroes Cannot Submit`);
-        const newReview = {
+        const data = {
             review,
-            stars
+            stars,
+
         };
-        const addReview = await dispatch(reviewsActions.createAReview(newReview, spotId)).catch(
+        const editedReview = await dispatch(reviewsActions.editReviewThunk(data,reviewId)).catch(
 
             async (res) => {
 
-                if (res.status === 403) {
-                    setValidationErrors(["You have already added a review for this spot"])
-                }
+
                 if (res.status === 404) {
-                    setValidationErrors(["Spot couldn't be found"]);
+                    setValidationErrors(["Review couldn't be found"]);
                 }
                 if (res.status === 400) {
                     setValidationErrors(["Validation Errors Cannot Submit"]);
                 }
             });
         // console.log("addAReview in add review^^^^^^^^^^^", addReview)
-        if (addReview) {
+        if (editedReview) {
             setValidationErrors([]);
             setShowModal(false);
             // history.push(`/spots/${spotId}`)
-            history.push('/reviews/current')
+            await dispatch(reviewsActions.getUserReviews())
 
         }
     }
@@ -68,7 +58,7 @@ const AddReviewForm = ({ setShowModal,spot}) => {
         <div className='review-form-div'>
             <form className='review-form' onSubmit={handleSubmit}>
                 <div className='review-form-title'>
-                    <h3>Add a Review</h3>
+                    <h3>Edit a Review</h3>
                 </div>
 
                 <div className='review-form-content'>
@@ -108,7 +98,7 @@ const AddReviewForm = ({ setShowModal,spot}) => {
                 )}
 
                 <div className='review-button-div'>
-                    <button id='review-button' type='submit'>Add Review</button>
+                    <button id='review-button' type='submit'>Edit Review</button>
                 </div>
             </form>
         </div>
@@ -124,5 +114,4 @@ const AddReviewForm = ({ setShowModal,spot}) => {
 
 
 
-
-export default AddReviewForm
+export default EditReviewForm

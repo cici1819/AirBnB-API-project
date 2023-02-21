@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import { Modal } from '../../context/Modal';
 import { useSelector } from 'react-redux';
-import AddReviewForm from './AddReviewForm';
+import EditReviewForm from './EditReviewForm';
 
-function AddReviewFormModal({spot}) {
+function EditReviewFormModal({editReview}) {
     const [showModal, setShowModal] = useState(false);
     const sessionUser = useSelector((state) => state.session.user);
     if (!sessionUser) {
@@ -12,12 +12,12 @@ function AddReviewFormModal({spot}) {
 
     return (
         <>
-            <div className='add-review'>
+            <div className='edit-review'>
 
-                <button className='review-div1' onClick={() => setShowModal(true)}>Add Review</button>
+                <button className='review-div1' onClick={() => setShowModal(true)}>Edit Review</button>
                 {showModal && (
                     <Modal onClose={() => setShowModal(false)}>
-                        <AddReviewForm setShowModal={setShowModal} spot={spot} />
+                        <EditReviewForm setShowModal={setShowModal} editReview={editReview} />
                     </Modal>
                 )}
             </div>
@@ -25,5 +25,4 @@ function AddReviewFormModal({spot}) {
     );
 }
 
-
-export default AddReviewFormModal;
+export default EditReviewFormModal;

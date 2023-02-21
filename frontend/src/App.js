@@ -15,6 +15,7 @@ import SearchSpots from "./components/Search/SearchSpots";
 import CurrentUserSpots from "./components/CurrentUserSpots";
 import Reviews from "./components/Reviews"
 import CurrentUserReviews from "./components/CurrentUserReview";
+import CurrentUserBookings from "./components/Booking/CurrentUserBooking";
 
 function App() {
   const dispatch = useDispatch();
@@ -46,7 +47,9 @@ function App() {
           <Route path={"/reviews/current"}>
             <CurrentUserReviews />
           </Route>
-
+          <Route exact path="/bookings/current">
+            <CurrentUserBookings/>
+          </Route>
           <Route exact path={"/spots/current"}>
             <CurrentUserSpots />
           </Route>

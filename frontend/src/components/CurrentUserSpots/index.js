@@ -34,7 +34,8 @@ const CurrentUserSpots = () => {
         </div>)
     else {
         return (
-            <>
+            <div className="user-spots-page">
+
                 <div className="title-user">
                     <h2> {sessionUser?.firstName}'s Spots</h2>
                 </div>
@@ -44,7 +45,7 @@ const CurrentUserSpots = () => {
                         <div key={spot.id} className="spot-card-b">
 
                             <div className='spot-card1' onClick={() => goToSpot(spot.id)} >
-                                <div className='spot-image'>
+                                <div className='spot-image-div'>
                                 <img className='spot-image' src={spot?.previewImage} alt={spot.description} />
                                 </div>
 
@@ -73,7 +74,7 @@ const CurrentUserSpots = () => {
                     ))}
 
                 </div>
-            </>
+            </div>
         )
 
     }

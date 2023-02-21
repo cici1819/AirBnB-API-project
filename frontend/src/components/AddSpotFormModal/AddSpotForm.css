@@ -3,81 +3,85 @@
     flex-direction: column;
     text-align: center;
     font-family: Montserrat;
-    width: 600px;
-    height: 735px;
-     outline: none;
+    /* border-radius: 8px; */
+    outline: none;
     overflow: hidden;
-    background-color:rgb(76,76,76);
+    background-color: rgb(76, 76, 76);
 
 }
-.become-host{
-    /* background-color: aqua; */
-   
 
+.add-spot-form {
+    margin-top: 70px;
+    width: 600px;
+    height: 680px;
+    padding-top: 10px;
+    background-color: white;
+    border-radius: 8px;
 }
-.add-spot-form{
 
-    padding-top:10px;
-    background-color:white;
-    width: 100%;
-    height: 100%;
-   border-radius: 8px;
-}
-.add-spot-title{
-    border-bottom:1px solid rgb(224, 221, 221) ;
+.add-spot-title {
+    border-bottom: 1px solid rgb(224, 221, 221);
     font-size: 15px;
     padding-bottom: 20px;
-    padding-top: 10px;
+    /* padding-top: 10px; */
+
     font-weight: 600;
-    margin-top: -15px;
-    height: 30px;
+    height: 10px;
+    line-height: 10px;
+    text-align: center;
 }
-.errorslist-div{
+
+.errorslist-div {
     /* background-color: aqua; */
     display: flex;
     flex-direction: column;
     align-items: center;
     height: 60px;
     width: 95%;
-    font-size:10px;
-    color:rgb(255, 56, 92) ;
+    font-size: 10px;
+    color: rgb(255, 56, 92);
     font-weight: 600;
 
 }
-.add-spot-form input{
-    border:none;
+
+.add-spot-form input {
+    border: none;
     width: 98%;
     outline: none;
     /* width: 100%; */
-    height: 33px;
+    height: 30px;
     opacity: 30%;
 
 }
-.add-spot-form input:focus{
+
+.add-spot-form input:focus {
     opacity: 100%;
 }
-.spot-input-info{
+
+.spot-input-info {
     margin-top: 5px;
     display: flex;
     flex-direction: column;
     justify-content: center;
-    border:1px solid rgb(224, 221, 221);
-     border-radius:8px;
-     margin-left: 15px;
-     /* margin-right: -10px; */
-     margin-bottom: 20px;
-     width: 95%;
-     height: 80%;
-     /* background-color: bisque; */
+    border: 1px solid rgb(224, 221, 221);
+    border-radius: 8px;
+    margin-left: 15px;
+    /* margin-right: -10px; */
+    margin-bottom: 20px;
+    width: 95%;
+    height: 80%;
+    /* background-color: bisque; */
 }
 
-.price{
+.price {
     width: 100%;
 }
 
 
 .spot-i {
-    border-bottom:1px solid rgb(224, 221, 221)
+    margin-top: -5px;
+    height: 52px;
+    border-bottom: 1px solid rgb(224, 221, 221)
 }
 
 .addSpot-button {
@@ -85,12 +89,14 @@
     border: none;
     width: 95%;
     height: 35px;
-    background-color:rgb(255, 56, 92);
-    color:white;
+    background-color: rgb(255, 56, 92);
+    color: white;
     border-radius: 8px;
     font-weight: 600;
     margin-bottom: 5px;
+    margin-top: 5px;
 }
-.addSpot-button:hover{
+
+.addSpot-button:hover {
     filter: brightness(95%);
 }

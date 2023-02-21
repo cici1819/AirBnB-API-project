@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { NavLink } from 'react-router-dom'
 // import { useHistory } from "react-router-dom";
 import * as reviewsActions from "../../store/reviews";
+import EditReviewFormModal from "../EditREviewModal/index";
 import "./CurrentUserReview.css"
 
 const CurrentUserReviews = () => {
@@ -69,19 +70,28 @@ const CurrentUserReviews = () => {
 
                                 </div>
 
+                                {(sessionUser && sessionUser.id === review.userId) && (
+                                    <div className="setting-review-div">
+                                        <div className="CurrentUser-editReview">
+                                            <EditReviewFormModal editReview={review} />
+                                        </div>
 
-                                <div className="deleteReview-div">
-                                    {(sessionUser && sessionUser.id === review.userId) && (
-                                        <button className="deleteReview-button" onClick={() => {
-                                            if (window.confirm('Do you want to delete?')) {
-                                             dispatch(reviewsActions.removeAReview(review.id));
-                                                // history.push('/reviews/current')
+                                        <div className="deleteReview-div">
+
+                                            <button className="deleteReview-button" onClick={() => {
+                                                if (window.confirm('Do you want to delete?')) {
+                                                    dispatch(reviewsActions.removeAReview(review.id));
+                                                    // history.push('/reviews/current')
+                                                }
+
                                             }
+                                            }>Delete Review</button>
 
-                                        }
-                                        }>Delete Review</button>
-                                    )}
-                                </div>
+                                        </div>
+                                    </div>
+
+                                )}
+
                             </div>
 
                         </div>

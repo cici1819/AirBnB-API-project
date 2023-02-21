@@ -8,32 +8,71 @@ const router = express.Router();
 
 //get all of th current Useer's Bookings
 
-router.get('/current', requireAuth, async (req, res, next) => {
-    let newObj;
-    const current = []
-    const curBookings = await Booking.findAll({
-        where: { userId: req.user.id },
-        include: {
-            model: Spot,
-            attributes: {
-                exclude: ['createdAt', 'updatedAt', 'description']
-            },
-        },
-    })
+// router.get('/current', requireAuth, async (req, res, next) => {
+    // let newObj;
+    // const current = []
+    // const curBookings = await Booking.findAll({
+    //     where: { userId: req.user.id },
+    //     include: {
+    //         model: Spot,
+    //         attributes: {
+    //             exclude: ['createdAt', 'updatedAt', 'description']
+    //         },
+    //     }
 
-    for (let i = 0; i < curBookings.length; i++) {
-        newObj = curBookings[i].toJSON();
-        const currImage = await SpotImage.findByPk(curBookings[i].spotId, {
-            where: { preview: true },
-            attributes: ['url']
-        })
-        if (currImage) newObj.Spot.previewImage = currImage.url
-        if (!currImage) newObj.Spot.previewImage = null
-        current.push(newObj)
-    }
-    return res.json({ Bookings: current })
+    // })
+
+    // for (let i = 0; i < curBookings.length; i++) {
+    //     const prevImgUrl = await SpotImage.findOne({
+    //         raw: true,
+    //         nest: true,
+    //         where: {
+    //             spotId: curBookings[i].spotId,
+    //             preview: true,
+    //         },
+    //     })
+
+    //     if (prevImgUrl) {
+    //         curBookings[i].Spot.previewImage = prevImgUrl.url
+    //     } else {
+    //         curBookings[i].Spot.previewImage = null
+    //     }
     // }
-});
+
+    // return res.json({
+    //     Bookings:current
+    // })
+    // }
+    router.get('/current', requireAuth, async (req, res, next) => {
+        const userBookings = await Booking.findAll({
+            where: {
+                userId: req.user.id
+            },
+            raw: true
+        });
+
+        for (let i = 0; i < userBookings.length; i++) {
+            const booking = userBookings[i];
+            const spot = await Spot.findOne({
+                where: { id: booking.spotId },
+                attributes: {
+                    exclude: ['description', 'createdAt', 'updatedAt']
+                },
+                raw: true
+            });
+
+            const spotPreviews = await SpotImage.findAll({ where: { spotId: spot.id }, raw: true });
+            spotPreviews.forEach(image => {
+                if (image.preview === true || image.preview === 1) spot.previewImage = image.url;
+            });
+            if (!spot.previewImage) spot.previewImage = null;
+
+            booking.Spot = spot;
+        }
+
+        res.json({ Bookings: userBookings });
+    });
+// });
 
 
 

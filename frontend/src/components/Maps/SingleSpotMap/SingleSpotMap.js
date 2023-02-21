@@ -7,11 +7,11 @@ import { GoogleMap, useJsApiLoader, Marker } from '@react-google-maps/api';
 import './SingleSpotMap.css';
 
 const containerStyle = {
-    width: '1120px',
+    width: '1170px',
     height: '480px',
-};
 
 
+}
 
 const SingleSpotMap = ({ apiKey, spot }) => {
 

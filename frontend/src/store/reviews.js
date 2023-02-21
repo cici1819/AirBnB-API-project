@@ -6,6 +6,7 @@ const ALL_REVIEWS = "reviews/ALL_REVIEWS";
 const USER_REVIEWS = "reviews/USER_REVIEWS";
 const CREATE_REVIEW = "reviews/CREATE_REVIEW";
 const DELETE_REVIEW = "reviews/DELETE_REVIEW";
+const EDIT_REVIEW = 'reviews/EDIT_REVIEW';
 
 // action creators
 
@@ -21,7 +22,7 @@ const loadUserReviews = (reviews) => ({
     reviews
 })
 
-const addAReview = (review,spotId) => ({
+const addAReview = (review, spotId) => ({
     type: CREATE_REVIEW,
     review,
     spotId
@@ -33,6 +34,12 @@ const deleteAReview = (reviewId) => ({
 
 })
 
+const editReview = (review) => {
+    return {
+        type: EDIT_REVIEW,
+        review
+    }
+}
 
 // Thunk action get all reviews by spotId
 
@@ -92,6 +99,25 @@ export const removeAReview = (reviewId) => async dispatch => {
     }
 }
 
+
+export const editReviewThunk = (review, reviewId) => async dispatch => {
+    try {
+        const response = await csrfFetch(`/api/reviews/${reviewId}`, {
+            method: 'PUT',
+            headers: { 'Content-Type': "application/json" },
+            body: JSON.stringify(review)
+        })
+        if (response.ok) {
+            const data = await response.json();
+            dispatch(editReview(data));
+            return data
+        }
+    } catch (err) {
+        console.log(err);
+        throw err;
+    }
+}
+
 // reviews Reducer
 
 const initialState = {
@@ -103,8 +129,6 @@ const reviewsReducer = (state = initialState, action) => {
     // console.log("running###################")
     let newState;
     let spot = {};
-    // let userData = {}
-    // let spotData = {}
     switch (action.type) {
         case ALL_REVIEWS:
 
@@ -116,31 +140,26 @@ const reviewsReducer = (state = initialState, action) => {
             return newState
 
         case USER_REVIEWS:
-            newState = { spot: {}, user: {}};
-                action.reviews.Reviews.forEach(review => {
-                    newState.user[review.id] = review
-                    newState.spot[review.id] = review.Spot
+            newState = { spot: {}, user: {} };
+            action.reviews.Reviews.forEach(review => {
+                newState.user[review.id] = review
+                newState.spot[review.id] = review.Spot
 
-                });
-                newState.spot = {}
-                return newState;
-            // newState = {...state};
-            // // console.log("#####################user-review",action)
-            // action.reviews.Reviews.forEach(review => {
-            //     newState[review.id] = review
-            //     //         // newState.spot[review.id] = review.Spot
-            // });
-            // console.log("")
-
-            // return newState;
+            });
+            newState.spot = {}
+            return newState;
 
         case CREATE_REVIEW:
-            newState = {spot: {...state.spot}, user: {...state.user}}
+            newState = { spot: { ...state.spot }, user: { ...state.user } }
             newState.spot[action.review.id] = action.review
             return newState
 
-
-
+        case EDIT_REVIEW:
+            newState = { ...state, spot: { ...state.spot }, user: { ...state.user } };
+            const editReview = { ...action.review };
+            newState.spot[action.review.id] = editReview;
+            newState.user[action.review.id] = editReview;
+            return newState;
 
         case DELETE_REVIEW:
             newState = { spot: { ...state.spot }, user: { ...state.user } }

@@ -10,11 +10,13 @@ import SingleSpotMapContainer from '../Maps/SingleSpotMap';
 
 
 
+
 // import UpdateSpotForm from "../UpdateSpotFormModal/UpdateSpotForm"
 import Reviews from '../Reviews';
 // import * as reviewsActions from "../../store/reviews"
 
 import './SingleSpot.css'
+import CreateBooking from '../Booking/CreateBooking';
 
 const SingleSpot = () => {
     const dispatch = useDispatch();
@@ -86,7 +88,7 @@ const SingleSpot = () => {
 
                     </div>
                 </div>
-                <div className='price-review-side-div'>
+                {/* <div className='price-review-side-div'>
                     <div className="price-side-div">
                         <span className='s-number'>{`$${spot.price}`}</span>
                         <span className='s-night'> night</span>
@@ -99,6 +101,9 @@ const SingleSpot = () => {
                         <span className='numReviews'>{spot.numReviews} reviews
                         </span>
                     </div>
+                </div> */}
+                <div className='create-booking-div'>
+                    <CreateBooking spot={spot} />
                 </div>
 
                 <div className='spot-owner'>

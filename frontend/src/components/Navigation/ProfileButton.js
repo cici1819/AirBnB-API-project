@@ -67,7 +67,11 @@ function ProfileButton({ user }) {
                     <div className='user-spot-info'>
                         <NavLink to={'/reviews/current'}>My Reviews</NavLink>
                     </div>
-
+                    <div className="user-spot-info">
+                        <NavLink to={'/bookings/current'}>
+                           My Trips
+                        </NavLink>
+                    </div>
                     <div onClick={logout} className="user-spot-info" id="log-out">Log Out</div>
 
                     {/* <li>

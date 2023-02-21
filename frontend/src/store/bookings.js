@@ -62,7 +62,7 @@ export const loadUserAllBookingsThunk = () => async (dispatch) => {
     if (response.ok) {
         const data = await response.json();
         // console.log('thunk bookings--------------', data)
-        dispatch(loadUserAllBookingsAction(data.Bookings));
+        dispatch(loadUserAllBookingsAction(data));
         return data;
     }
 };
@@ -109,7 +109,7 @@ export const editUserBookingThunk = (booking, bookingId) => async dispatch => {
 }
 
 // thunk: delete booking
-export const deleteOneBookingThunk = (bookingId) => async dispatch => {
+export const deleteBookingThunk = (bookingId) => async dispatch => {
     try {
         const response = await csrfFetch(`/api/bookings/${bookingId}`, {
             method: 'DELETE',
@@ -133,14 +133,14 @@ const bookingsReducer = (state = initialState, action) => {
     switch (action.type) {
         case LOAD_SPOT_ALL_BOOKINGS:
             let allBookings = {};
-            action.bookings.forEach(booking => { allBookings[booking.id] = booking });
+            action.bookings.Bookings.forEach(booking => { allBookings[booking.id] = booking });
             newState = { ...state };
             newState.allBookings = allBookings;
             return newState;
 
         case LOAD_USER_ALL_BOOKINGS:
             let userBookings = {};
-            action.bookings.forEach(booking => { userBookings[booking.id] = booking });
+            action.bookings.Bookings.forEach(booking => { userBookings[booking.id] = booking });
             newState = { ...state };
             newState.userBookings = userBookings;
             return newState;
@@ -150,6 +150,7 @@ const bookingsReducer = (state = initialState, action) => {
             const newBooking = { ...action.booking };
             newState.allBookings[action.booking.id] = newBooking;
             newState.singleBooking = newBooking;
+            newState.userBookings[action.booking.id] = newBooking;
             return newState;
 
         case EDIT_USER_BOOKING:

@@ -91,7 +91,7 @@
      transform: scale(1);
      transition: transform 0.2s;
      position: fixed;
-     bottom: 3vh;
+     bottom: 2.5vh;
  }
 
  .allSpots-map:hover {
