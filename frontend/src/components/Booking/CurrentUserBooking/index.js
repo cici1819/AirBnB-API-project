@@ -74,7 +74,7 @@ function CurrentUserBookings() {
 
                                     )}
 
-                                    {new Date() > new Date(booking.endDate) && (
+                                    {new Date() >= new Date(booking.endDate) && (
                                         <div className='user-bookings-review'>
                                             <AddReviewFormModal spot={booking.Spot} />
                                         </div>

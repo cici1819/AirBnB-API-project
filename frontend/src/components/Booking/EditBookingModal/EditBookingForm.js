@@ -43,7 +43,23 @@ function EditBookingForm({ booking, spot, setShowModal }) {
 
     }, [startDate, endDate]);
 
+    const handelStartDateChange = async (e) => {
+        const  selectedDate= e.target.value;
 
+        setStartDate(selectedDate)
+
+
+    }
+
+    const handelEndDateChange = async (e) => {
+        const selectedDate = e.target.value;
+
+        // const utcDate = new Date(Date.UTC(selectedDate.getFullYear(), selectedDate.getMonth(), selectedDate.getDate()));
+
+        setEndDate(selectedDate)
+
+
+    }
     const handleSubmit = async (e) => {
         e.preventDefault();
 
@@ -54,6 +70,7 @@ function EditBookingForm({ booking, spot, setShowModal }) {
             startDate,
             endDate
         }
+        console.log("$$$$$$$$$$$$$$$$$$$$$$$$$$ handleSubmit",updatedBookingData)
         try {
             const updatedBooking = await dispatch(bookingsActions.editUserBookingThunk(updatedBookingData, bookingId));
             if (updatedBooking) {
@@ -122,7 +139,7 @@ function EditBookingForm({ booking, spot, setShowModal }) {
                                 <input
                                     type="date"
                                     value={startDate}
-                                    onChange={(e) => setStartDate(e.target.value)}
+                                    onChange={handelStartDateChange}
                                     required
                                     min={`${new Date().toLocaleDateString('en-ca')}`}
                                     max={`${new Date().getFullYear() + 2}-12-31`}
@@ -135,7 +152,7 @@ function EditBookingForm({ booking, spot, setShowModal }) {
                                 <input
                                     type="date"
                                     value={endDate}
-                                    onChange={(e) => setEndDate(e.target.value)}
+                                    onChange={handelEndDateChange}
                                     required
                                     min={`${new Date(new Date(startDate).getTime() + (1000 * 3600 * 48)).toLocaleDateString('en-ca')}`}
                                     max={`${new Date().getFullYear() + 2}-12-31`}

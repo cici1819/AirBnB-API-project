@@ -91,13 +91,14 @@ export const createSpotBookingThunk = (data) => async (dispatch) => {
 
 // thunk: edit booking
 export const editUserBookingThunk = (booking, bookingId) => async dispatch => {
+    console.log("thunk++++++++++++++,booking" ,booking)
     try {
         const response = await csrfFetch(`/api/bookings/${bookingId}`, {
             method: 'PUT',
             headers: { 'Content-Type': "application/json" },
             body: JSON.stringify(booking)
         })
-
+         console.log("********************* editBookingResponse",response)
         if (response.ok) {
             const data = await response.json();
             dispatch(editUserBookingAction(data));
