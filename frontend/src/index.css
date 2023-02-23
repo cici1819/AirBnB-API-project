@@ -11,7 +11,8 @@ body {
 
     box-sizing: border-box;
     font-family: Montserrat;
-    overflow-x: hidden;
+    /* overflow-x: hidden; */
+    word-wrap: break-word;
 }
 
 ul,

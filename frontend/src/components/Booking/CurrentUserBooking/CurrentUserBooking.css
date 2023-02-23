@@ -1,11 +1,25 @@
-.user-bookings-info-location {
-    font-size: 22px;
-    font-weight: bold;
-    padding-top: 10px;
+.user-booking-info-location {
+    font-size: 20px;
+    font-weight: 600;
+
+
     /* padding-bottom: 10px; */
 }
 
-
+.booking-spots-name{
+    font-size: 16px;
+    font-weight: 600;
+}
+.booking-spot-time{
+    color: rgb(255, 56, 92);
+    font-style: italic;
+    font-weight: 600;
+}
+.total-info-booking{
+    font-size: 18px;
+    font-weight: 400;
+    font-family: Montserrat;
+}
 .user-bookings-delete-button {
     display: flex;
     flex-direction: row;
@@ -16,15 +30,16 @@
 .user-bookings-delete-button button {
     border: 0px solid rgb(0, 0, 0);
     height: 36px;
-    width: 200px;
+    width: 12vw;
     border-radius: 8px;
-    font-size: 15px;
+    font-size: 0.9em;
     font-weight: bold;
     color: white;
     background-color: rgb(255, 56, 92);
     cursor: pointer;
-    margin-top: 10px;
-    margin-bottom: 20px;
+    margin-top:33vh;
+    margin-left: -50vw;
+
 }
 
 .none-booking-title{
@@ -35,15 +50,73 @@
     color: darkgray;
 }
 
-.user-listing-page{
-    display: flex;
-    flex-direction: column-reverse;
+
+.user-booking-page{
     margin-top: 80px;
-    align-items: flex-start;
-
-
+    margin-bottom: 70px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
 
 }
-.user-booking-page{
-    
+
+.user-booking-lists{
+    margin-top: 30px;
+    padding-left: 10vw;
+    padding-right: 10vw;
+    display: flex;
+    align-items: flex-start;
+    flex-direction: column-reverse;
+}
+.user-booking-page-title{
+    padding-left: 10vw;
+}
+.user-booking-detail{
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+    align-items: center;
+    overflow-y: auto;
+    overflow-x: hidden;
+
+    /* grid-gap: 10px; */
+    border: rgba(235, 233, 233, 0.5) solid 1px;
+    box-shadow: 0px 0px 5px rgb(148, 148, 148);
+    border-radius: 12px;
+    padding: 10px;
+    margin-top: 20px;
+    margin-bottom: 10px;
+    min-width: 500px;
+    width: 80vw;
+    min-height: 220px;
+    height: 40vh;
+}
+.spot-image-booking{
+
+    min-width: 300px;
+    min-height: 215px;
+    width: 40vw;
+    height: 38vh;
+    margin-left: 10px;
+    /* border-bottom-left-radius: 10px;
+  border-top-left-radius: 10px; */
+    border-radius: 10px;
+}
+.booking-spot{
+    display: flex;
+    flex-direction: row;
+    gap:10px;
+}
+.user-booking-spotInfo{
+    width: 30vw;
+    height: fit-content;
+    display: flex;
+    flex-direction: column;
+    gap:5px;
+    margin-left: 5vw;
+}
+.user-bookings-review .review-div1{
+    /* margin-left: 1vw; */
+    /* margin-left:50px; */
+    margin-left:-31.3vw ;
 }

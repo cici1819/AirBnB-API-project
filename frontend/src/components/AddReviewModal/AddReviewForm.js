@@ -8,7 +8,8 @@ const AddReviewForm = ({ setShowModal,spot}) => {
     const sessionUser = useSelector((state) => state.session.user);
     const dispatch = useDispatch();
     const history = useHistory();
-    const { spotId } = useParams();
+
+    let { spotId } = useParams();
     // console.log("%%%%%%%%%%%%%%% SpotId", spotId)
     //   const spot = useSelector(state => state.spots.spot)
     const [review, setReview] = useState('')
@@ -20,6 +21,7 @@ const AddReviewForm = ({ setShowModal,spot}) => {
     //     alert("Please log in or Sign Up");
     //     history.push("/");
     // }
+    spotId = spot.id
     useEffect(() => {
         const errors = [];
         if (!review.length) {
@@ -44,7 +46,7 @@ const AddReviewForm = ({ setShowModal,spot}) => {
 
             async (res) => {
 
-                if (res.status === 403) {
+                if (res.status === 403 ) {
                     setValidationErrors(["You have already added a review for this spot"])
                 }
                 if (res.status === 404) {

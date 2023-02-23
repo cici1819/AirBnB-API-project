@@ -1,6 +1,6 @@
 import React, { useEffect, useState, useRef } from 'react'
 import { useHistory } from 'react-router-dom';
-import { useDispatch,useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import * as bookingsActions from '../../../store/bookings';
 import './CreateBooking.css';
 
@@ -16,8 +16,9 @@ function CreateBooking({ spot }) {
     let calNights = parseInt((new Date(endDate).getTime() - new Date(startDate).getTime()) / (1000 * 3600 * 24))
     let cleanFee = 100;
     let serviceFee = 10;
+    let errors= []
     useEffect(() => {
-        const errors = [];
+
         const today = new Date(Date.now());
         const parsedStartDate = new Date(startDate + "T00:00:00");
         const parsedEndDate = new Date(endDate + "T00:00:00");
@@ -58,7 +59,6 @@ function CreateBooking({ spot }) {
 
         catch (res) {
             const data = await res.json();
-            const errors = [];
             if (data && data.message) {
                 errors.push(data.message);
             }
@@ -68,47 +68,32 @@ function CreateBooking({ spot }) {
 
 
     return (
-        <div className='spot-bookings'>
+
+        <div className='booking-div'>
+            <div className='booking-top'>
+                <div className="price-side-div">
+                    <span className='s-number'>{`$${spot.price}`}</span>
+                    <span className='s-night'> night</span>
+                </div>
+
+                <div className='review-side-div'>
+                    <i className="fa-sharp fa-solid fa-star"></i>
+                    <span> {!Number(spot.avgStarRating) ? "New" : Number(spot.avgStarRating).toFixed(1)}</span>
+                    <span className='dots'> • </span>
+                    <span className='numReviews'>{spot.numReviews} reviews
+                    </span>
+                </div>
+            </div>
             <form onSubmit={handleSubmit} className="booking-form">
                 {validationErrors.length > 0 && (
                     <ul className="errors-list">
                         {validationErrors.map((idx, error) => <li key={idx} >{error}</li>)}
                     </ul>
                 )}
-                <div className='price-review-side-div'>
-                    {/* <div className='booking-top-left'>
-                        <span className='booking-price'>${spot.price}</span>
-                        {" "}
-                        <span>night</span>
-                    </div>
-                    <div className='booking-top-right'>
-                        <span className='booking-stars'>
-                            <i className="fa-solid fa-star icon--star fa-xs" />
-                            {" "}
-                            {(spot.avgStarRating) ? Number(spot.avgStarRating).toFixed(1) : 'New'}
-                        </span>
-                        <span className='booking-dot'> · </span>
-                        <span className='booking-reviews'>{spot.numReviews} reviews</span>
 
-                    </div> */}
-
-                    <div className="price-side-div">
-                        <span className='s-number'>{`$${spot.price}`}</span>
-                        <span className='s-night'> night</span>
-                    </div>
-
-                    <div className='review-side-div'>
-                        <i className="fa-sharp fa-solid fa-star"></i>
-                        <span> {!Number(spot.avgStarRating) ? "New" : Number(spot.avgStarRating).toFixed(1)}</span>
-                        <span className='dots'> • </span>
-                        <span className='numReviews'>{spot.numReviews} reviews
-                        </span>
-                    </div>
-
-                </div>
-                <div id='check-in-out-container'>
-                    <div id='check-in-container'>
-                        <span id='check-in-text'>CHECK-IN</span>
+                <div className='check-in-out-container'>
+                    <div className='check-in-container'>
+                        <span className='check-in-text'>CHECK-IN</span>
                         <input
                             type="date"
                             value={startDate}
@@ -120,8 +105,8 @@ function CreateBooking({ spot }) {
                             id='check-in'
                         />
                     </div>
-                    <div id='check-out-container'>
-                        <span id='check-out-text'>CHECKOUT</span>
+                    <div className='check-out-container'>
+                        <span className='check-out-text'>CHECKOUT</span>
                         <input
                             type="date"
                             value={endDate}
@@ -136,35 +121,40 @@ function CreateBooking({ spot }) {
                 </div>
                 <button
                     type="submit"
-                    id='button--booking-submit'
+                    id='button-booking-submit'
                     className='submit-button'
                     disabled={validationErrors.length}
                 >
                     Reserve
                 </button>
             </form>
-            <div className="booking-form-nocharge-container">
-                <div className="booking-form-nocharge">
-                    You won't be charged yet
+            <div className='booking-buttom'>
+                <div className="booking-form-nocharge-container">
+                    <div className="booking-form-nocharge">
+                        You won't be charged yet
+                    </div>
+                </div>
+                <div className='booking-form-bttm-r1'>
+                    <div className='booking-form-bttm-left'>{`$${spot.price}`} x {calNights < 0 || isNaN(calNights) ? 0 : calNights} nights</div>
+                    <div className='booking-form-bttm-right'>{`$${spot.price * (calNights < 0 || isNaN(calNights) ? 0 : calNights)}`}</div>
+                </div>
+                <div className='booking-form-bttm-r1'>
+                    <div className='booking-form-bttm-left'>Cleaning fee</div>
+                    <div className='booking-form-bttm-right'>{`$${cleanFee}`} </div>
+                </div>
+                <div className='booking-form-bttm-r1'>
+                    <div className='booking-form-bttm-left'>Service fee</div>
+                    <div className='booking-form-bttm-right'>{`$${serviceFee * (calNights < 0 || isNaN(calNights) ? 0 : calNights)}`} </div>
+                </div>
+                <div className='booking-form-bttm-r4'>
+                    <div className='booking-form-bttm-left2'>Total before taxes</div>
+                    <div className='booking-form-bttm-right2'>{`$${spot.price * (calNights < 0 || isNaN(calNights) ? 0 : calNights) + serviceFee * (calNights < 0 || isNaN(calNights) ? 0 : calNights) + cleanFee}`} </div>
                 </div>
             </div>
-            <div className='booking-form-bttm-r1'>
-                <div className='booking-form-bttm-left'>{`$${spot.price}`} x {calNights < 0 || isNaN(calNights) ? 0 : calNights} nights</div>
-                <div className='booking-form-bttm-right'>{`$${spot.price * (calNights < 0 || isNaN(calNights) ? 0 : calNights)}`}</div>
-            </div>
-            <div className='booking-form-bttm-r1'>
-                <div className='booking-form-bttm-left'>Cleaning fee</div>
-                <div className='booking-form-bttm-right'>{`$${cleanFee}`} </div>
-            </div>
-            <div className='booking-form-bttm-r1'>
-                <div className='booking-form-bttm-left'>Service fee</div>
-                <div className='booking-form-bttm-right'>{`$${serviceFee * (calNights < 0 || isNaN(calNights) ? 0 : calNights)}`} </div>
-            </div>
-            <div className='booking-form-bttm-r4'>
-                <div className='booking-form-bttm-left2'>Total before taxes</div>
-                <div className='booking-form-bttm-right2'>{`$${spot.price * (calNights < 0 || isNaN(calNights) ? 0 : calNights) + serviceFee * (calNights < 0 || isNaN(calNights) ? 0 : calNights) + cleanFee}`} </div>
-            </div>
+
         </div>
+
+
     );
 }
 

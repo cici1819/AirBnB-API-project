@@ -41,16 +41,16 @@ function CurrentUserBookings() {
     return (
         <div className='user-booking-page'>
             {isloaded && (
-                <div className='user-listing-page-inner'>
+                <div className='user-booking-page-inner'>
 
-                    <h2 className='user-listing-page-title'>{currUser.firstName}'s  trips </h2>
-                    <div className='user-booking-listings'>
+                    <h2 className='user-booking-page-title'>{currUser.firstName}'s  trips </h2>
+                    <div className='user-booking-lists'>
                         {bookings.length > 0 && bookings?.map(booking => (
-                            <div key={booking.id} className='user-booking-list'>
+                            <div key={booking.id} className='user-booking-detail'>
                                 <div className='booking-spot'>
                                     <Link to={`/spots/${booking.spotId}`}>
                                         <div className='Booking-spot-image'>
-                                            <img className='spot-image-size' src={booking.Spot?.previewImage} alt='Spot preview image' />
+                                            <img className='spot-image-booking' src={booking.Spot?.previewImage} alt='Spot preview image' />
                                         </div>
                                     </Link>
                                     <div className='user-booking-spotInfo'>
@@ -69,7 +69,7 @@ function CurrentUserBookings() {
                                         <button onClick={(e) => handleDelete(booking.id)}> Cancel Reservation </button>
                                     )}
                                     {new Date() > new Date(booking.endDate) && (
-                                        <div className='user-bookings-delete-button'>
+                                        <div className='user-bookings-review'>
                                             <AddReviewFormModal spot={booking.Spot} />
                                         </div>
                                     )}

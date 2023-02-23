@@ -23,31 +23,32 @@
  }
 
  .spot-owner {
-     margin-top: 10px;
+     /* margin-top: 10px; */
      border-bottom: 1px solid rgb(224, 221, 221);
-     width: 60%;
+     width: 80%;
      display: flex;
      flex-direction: row;
      justify-content: space-between;
      padding-bottom: 10px;
-     margin-top: -80px;
+
+     /* margin-top: -80px; */
  }
 
  .singlespot-details {
-    position: absolute;
-    top:5vh;
-    left:9.5vw;
-    right: 8vw;
+     /* position: absolute; */
      display: flex;
      flex-direction: column;
+     align-items: flex-start;
+     justify-content: flex-start;
+     margin-left: 10vw;
+     padding-top: 10vh;
+     margin-right: 5vw;
+     gap: 55px;
 
-  
+     width: 85vw;
+     min-height: 100vh;
 
-     /* align-items: center; */
 
-     /* margin-left: 11%; */
-     /* margin-right: 115px; */
-     /* margin-right: 12%; */
  }
 
  .spot-info-single {
@@ -67,33 +68,10 @@
 
  }
 
- .singlespot-details {
+ /* .singlespot-details {
      margin-top: -45px;
- }
+ } */
 
- .price-review-side-div {
-     /* background-color: aquamarine; */
-     /* position: relative; */
-     /* margin-left: 50%; */
-     /* margin-top: 50px; */
-     /* width: 200px; */
-     grid-area: deets;
-     display: flex;
-     align-items: center;
-     /* align-self: center; */
-     gap: 10px;
-     border: rgba(235, 233, 233, 0.5) solid 1px;
-     box-shadow: 0px 0px 5px rgb(148, 148, 148);
-     /* width: 200px; */
-     height: 60px;
-     border-radius: 12px;
-     padding: 20px;
-     /* margin-left: auto; */
-     width: 300px;
-     margin-top: 20px;
-     margin-left: 71%;
-
- }
 
  .s-number {
      font-size: 20px;
@@ -109,29 +87,31 @@
  }
 
  .spot-imgs-small img {
-     width: 300px;
+     width: 290px;
      height: 225px
  }
 
  .spot-imgs-small {
-     position: relative;
+
      /* background-color: aqua; */
      display: grid;
      grid-template-columns: 1fr 1fr;
      grid-template-rows: 1fr 1fr;
      grid-gap: 10px;
      width: 610px;
-     margin-left: 565px;
+     /* margin-left: 565px; */
 
-     margin-top: -465px;
+     /* margin-top: -465px; */
  }
 
  .small-img2 {
      border-top-right-radius: 15px;
+     margin-left: -10px;
  }
 
  .small-img4 {
      border-bottom-right-radius: 15px;
+     margin-left: -10px;
  }
 
  .host-div {
@@ -149,7 +129,7 @@
 
  .host-title {
      font-weight: 600;
-     position: relative;
+
      margin-left: 40px;
      margin-top: -26px;
  }
@@ -160,9 +140,6 @@
      margin-top: -15px;
  }
 
- .aircover {
-     margin-top: 10px;
- }
 
  .host-info1 {
      color: rgb(159, 165, 163);
@@ -173,6 +150,7 @@
      margin-bottom: 5px;
      border-bottom: 1px solid rgb(224, 221, 221);
 
+     width: 49vw;
  }
 
  .host-div3>img {
@@ -201,7 +179,8 @@
      flex-direction: column;
      justify-content: flex-start;
      border-bottom: 1px solid rgb(224, 221, 221);
-     /* width: 60%; */
+     margin-top: 10px;
+     width: 49vw;
      margin-bottom: 15px;
  }
 
@@ -219,6 +198,8 @@
      align-items: center;
      border-bottom: 1px solid rgb(224, 221, 221);
      margin-bottom: 10px;
+     width: 49vw;
+     height: fit-content;
  }
 
  .spot-description1 {
@@ -258,6 +239,69 @@
      filter: brightness(90%);
      /* cursor: pointer; */
  }
-.spot-one-map{
-    margin-bottom: 20px;
+
+ .spot-one-map {
+     margin-bottom: 20px;
+ }
+
+ .single-spot-middle {
+     /* position: relative; */
+
+     margin-top: 40px;
+     display: flex;
+     flex-direction: row;
+     width: 100%;
+     min-height: 620px;
+     height: 100%;
+
+
+     /* height: fit-content; */
+
+
+     /* align-items: flex-start; */
+     /* justify-content: flex-start; */
+
+
+
+ }
+
+ .spot-middle-left {
+
+     width: 64%;
+     height: fit-content;
+
+     /* margin-top: 50vh; */
+ }
+
+ .reviews {
+
+     margin-top: 10px;
+ }
+.reviews .review-div1{
+    border: none;
+    width: 100px;
+    height: 35px;
+    background-color:rgb(255, 56, 92);
+    color:white;
+    border-radius: 8px;
+    font-weight: 600;
+
+    /* margin-left:15%; */
+    margin-top: 60px;
 }
+ .single-spot-top {
+     display: flex;
+     flex-direction: column;
+     width: 100%;
+     height: 500px;
+
+ }
+
+ .spot-images {
+     display: flex;
+     flex-direction: row;
+     justify-content: flex-start;
+     gap: 10px;
+
+
+ }

@@ -36,16 +36,11 @@
     /* font-style:italic; */
     color:rgb(159, 165, 163)
 }
-.review-div1{
-    border: none;
-    width: 50%;
-    height: 35px;
-    background-color:rgb(255, 56, 92);
-    color:white;
-    border-radius: 8px;
-    font-weight: 600;
-    margin-left:25%;
-    margin-top: 25px;
+.edit-review .review-div1{
+ 
+
+    /* margin-left:15%; */
+
 }
 .user-none-reviews {
     margin-top: 80px;
