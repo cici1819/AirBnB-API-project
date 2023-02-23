@@ -5,6 +5,7 @@ import { useHistory } from "react-router";
 import * as bookingsActions from '../../../store/bookings';
 import AddReviewFormModal from '../../AddReviewModal/index';
 import './CurrentUserBooking.css';
+import EditBookingFormModal from '../EditBookingModal';
 
 function CurrentUserBookings() {
     const dispatch = useDispatch();
@@ -66,8 +67,13 @@ function CurrentUserBookings() {
                                 </div>
                                 <div className='user-bookings-delete-button'>
                                     {new Date() < new Date(booking.startDate) && (
-                                        <button onClick={(e) => handleDelete(booking.id)}> Cancel Reservation </button>
+                                        <div className='booking-setting-div'>
+                                            <button onClick={(e) => handleDelete(booking.id)} className="b-delete"> Cancel Reservation </button>
+                                            <EditBookingFormModal booking={booking} spot={booking.Spot} />
+                                        </div>
+
                                     )}
+
                                     {new Date() > new Date(booking.endDate) && (
                                         <div className='user-bookings-review'>
                                             <AddReviewFormModal spot={booking.Spot} />

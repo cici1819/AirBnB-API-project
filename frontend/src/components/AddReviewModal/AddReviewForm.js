@@ -21,7 +21,10 @@ const AddReviewForm = ({ setShowModal,spot}) => {
     //     alert("Please log in or Sign Up");
     //     history.push("/");
     // }
-    spotId = spot.id
+    if (spotId === undefined) {
+        spotId = spot.id
+    }
+
     useEffect(() => {
         const errors = [];
         if (!review.length) {

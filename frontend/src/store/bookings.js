@@ -83,8 +83,9 @@ export const createSpotBookingThunk = (data) => async (dispatch) => {
             return booking;
         }
     } catch (err) {
-        // console.log('thunk err========================', err);
+        console.log('thunk err========================', err);
         throw err;
+
     }
 }
 

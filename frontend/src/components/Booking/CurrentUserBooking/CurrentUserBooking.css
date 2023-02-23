@@ -27,8 +27,8 @@
     justify-content: space-around;
 }
 
-.user-bookings-delete-button button {
-    border: 0px solid rgb(0, 0, 0);
+.b-delete {
+    border: none;
     height: 36px;
     width: 12vw;
     border-radius: 8px;
@@ -37,11 +37,31 @@
     color: white;
     background-color: rgb(255, 56, 92);
     cursor: pointer;
-    margin-top:33vh;
-    margin-left: -50vw;
+    margin-top:32.9vh;
+    margin-left: -22vh;
+
 
 }
+.booking-setting-div .booking-edit-button {
+    border: none;
+    height: 36px;
+    width: 12vw;
+    border-radius: 8px;
+    font-size: 0.9em;
+    font-weight: bold;
+    color: white;
+    background-color: rgb(255, 56, 92);
+    cursor: pointer;
+    margin-top: 33vh;
+    margin-left: -31vw;
+}
+.booking-setting-div{
+    display: flex;
+    flex-direction: row-reverse;
+    gap:30px;
+    justify-content: space-evenly;
 
+}
 .none-booking-title{
     margin-top: 80px;
     display:flex;
@@ -118,5 +138,15 @@
 .user-bookings-review .review-div1{
     /* margin-left: 1vw; */
     /* margin-left:50px; */
-    margin-left:-31.3vw ;
+    border: none;
+    height: 36px;
+    width: 12vw;
+    border-radius: 8px;
+    font-size: 0.9em;
+    font-weight: bold;
+    color: white;
+    background-color: rgb(255, 56, 92);
+    cursor: pointer;
+    margin-left:-32vw ;
+    margin-top: 33vh;
 }

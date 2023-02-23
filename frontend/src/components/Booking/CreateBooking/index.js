@@ -16,9 +16,8 @@ function CreateBooking({ spot }) {
     let calNights = parseInt((new Date(endDate).getTime() - new Date(startDate).getTime()) / (1000 * 3600 * 24))
     let cleanFee = 100;
     let serviceFee = 10;
-    let errors= []
     useEffect(() => {
-
+        let errors = []
         const today = new Date(Date.now());
         const parsedStartDate = new Date(startDate + "T00:00:00");
         const parsedEndDate = new Date(endDate + "T00:00:00");
@@ -59,11 +58,10 @@ function CreateBooking({ spot }) {
 
         catch (res) {
             const data = await res.json();
-            if (data && data.message) {
-                errors.push(data.message);
-            }
-            setValidationErrors(errors);
+            if (data && data.message) return setValidationErrors([data.message])
         }
+
+
     };
 
 
@@ -87,7 +85,9 @@ function CreateBooking({ spot }) {
             <form onSubmit={handleSubmit} className="booking-form">
                 {validationErrors.length > 0 && (
                     <ul className="errors-list">
-                        {validationErrors.map((idx, error) => <li key={idx} >{error}</li>)}
+
+                        <li>{validationErrors[0]}</li>
+
                     </ul>
                 )}
 

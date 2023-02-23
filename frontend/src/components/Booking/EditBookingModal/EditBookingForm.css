@@ -1,0 +1,57 @@
+.edit-booking-wrap{
+    display: flex;
+    flex-direction: column;
+    gap:10px;
+    width: 450px;
+    height: 535px;
+    padding: 24px;
+    background-color: white;
+    border-radius: 18px;
+
+    border: 1px solid rgb(221, 221, 221);
+    box-shadow: rgb(0 0 0 / 12%) 0px 6px 16px;
+    /* border-radius: 18px; */
+}
+.edit-booking-page{
+
+    font-family: Montserrat;
+    background-color: rgb(242, 243, 245);
+
+    outline: none;
+    overflow-y:auto;
+    overflow-x: hidden;
+    background-color: rgb(76, 76, 76);
+
+
+
+}
+.edit-booking-wrap .booking-top{
+    display: flex;
+    flex-direction: column;
+    gap:10px;
+}
+.edit-booking-title{
+    word-wrap: break-word;
+    font-size: 20px;
+    font-weight: 600;
+
+    margin-left: 130px;
+
+}
+.b-spot-name{
+
+    color: rgb(255, 56, 92);
+    font-style: italic;
+}
+.edit-booking-p-r{
+    margin-top: 10px;
+    margin-bottom: 10px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+.edit-booking-container #button-booking-submit{
+    margin-top: 20px;
+    width: 100%;
+    margin-bottom: 20px;
+}

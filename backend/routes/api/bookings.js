@@ -78,7 +78,7 @@ const router = express.Router();
 
 //edit a booking
 router.put('/:bookingId', requireAuth, async (req, res, next) => {
-    const { startDate, endDate } = req.body
+    const {startDate, endDate} = req.body
     const editBooking = await Booking.findByPk(req.params.bookingId);
 
     if (editBooking) {
