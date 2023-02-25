@@ -124,3 +124,7 @@
 .updateSpot-button:hover {
     filter: brightness(95%);
 }
+
+#user-spot-r {
+    margin-left: 260px;
+}

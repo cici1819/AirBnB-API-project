@@ -55,7 +55,7 @@ const CurrentUserSpots = () => {
                                     <span className='night'>night</span>
                                 </div>
                             </div>
-                            <div className='spot-avgRating-all-spots'>
+                            <div className='spot-avgRating-all-spots' id= "user-spot-r">
                                 <i className="fa-sharp fa-solid fa-star"></i>
                                 <span>{!Number(spot.avgRating) ? 'New' : Number(spot.avgRating).toFixed(1)}</span>
 
