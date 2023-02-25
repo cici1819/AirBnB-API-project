@@ -6,20 +6,23 @@
     /* padding-bottom: 10px; */
 }
 
-.booking-spots-name{
+.booking-spots-name {
     font-size: 16px;
     font-weight: 600;
 }
-.booking-spot-time{
+
+.booking-spot-time {
     color: rgb(255, 56, 92);
     font-style: italic;
     font-weight: 600;
 }
-.total-info-booking{
+
+.total-info-booking {
     font-size: 18px;
     font-weight: 400;
     font-family: Montserrat;
 }
+
 .user-bookings-delete-button {
     display: flex;
     flex-direction: row;
@@ -37,11 +40,12 @@
     color: white;
     background-color: rgb(255, 56, 92);
     cursor: pointer;
-    margin-top:32vh;
+    margin-top: 32vh;
     margin-left: -25vh;
 
 
 }
+
 .booking-setting-div .booking-edit-button {
     border: none;
     height: 36px;
@@ -53,25 +57,27 @@
     background-color: rgb(255, 56, 92);
     cursor: pointer;
     margin-top: 32vh;
-    margin-left: -31vw;
+    margin-left: -32vw;
 }
-.booking-setting-div{
+
+.booking-setting-div {
     display: flex;
     flex-direction: row-reverse;
-    gap:30px;
+    gap: 30px;
     justify-content: space-evenly;
 
 }
-.none-booking-title{
+
+.none-booking-title {
     margin-top: 80px;
-    display:flex;
+    display: flex;
     justify-content: center;
     font-size: 15px;
     color: darkgray;
 }
 
 
-.user-booking-page{
+.user-booking-page {
     margin-top: 80px;
     margin-bottom: 70px;
     display: flex;
@@ -80,7 +86,7 @@
 
 }
 
-.user-booking-lists{
+.user-booking-lists {
     margin-top: 30px;
     padding-left: 10vw;
     padding-right: 10vw;
@@ -88,10 +94,12 @@
     align-items: flex-start;
     flex-direction: column-reverse;
 }
-.user-booking-page-title{
+
+.user-booking-page-title {
     padding-left: 10vw;
 }
-.user-booking-detail{
+
+.user-booking-detail {
     display: flex;
     flex-direction: row;
     gap: 10px;
@@ -111,7 +119,8 @@
     min-height: 220px;
     height: 40vh;
 }
-.spot-image-booking{
+
+.spot-image-booking {
 
     min-width: 300px;
     min-height: 215px;
@@ -122,20 +131,23 @@
   border-top-left-radius: 10px; */
     border-radius: 10px;
 }
-.booking-spot{
+
+.booking-spot {
     display: flex;
     flex-direction: row;
-    gap:10px;
+    gap: 10px;
 }
-.user-booking-spotInfo{
+
+.user-booking-spotInfo {
     width: 30vw;
     height: fit-content;
     display: flex;
     flex-direction: column;
-    gap:5px;
+    gap: 5px;
     margin-left: 5vw;
 }
-.user-bookings-review .review-div1{
+
+.user-bookings-review .review-div1 {
     /* margin-left: 1vw; */
     /* margin-left:50px; */
     border: none;
@@ -147,6 +159,6 @@
     color: white;
     background-color: rgb(255, 56, 92);
     cursor: pointer;
-    margin-left:-32vw ;
+    margin-left: -32vw;
     margin-top: 33vh;
 }
