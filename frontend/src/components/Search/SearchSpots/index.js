@@ -48,7 +48,7 @@ function SearchSpots() {
                             <div className='search-spot-card'>
                                 <NavLink key={spot.id} to={`/spots/${spot.id}`}>
                                     <div className='spot-img'>
-                                        <img  src={spot.previewImage} alt='image' />
+                                        <img  src={spot.previewImage} alt='image' onError={e =>{e.currentTarget.src = "https://cici-aa.s3.us-west-1.amazonaws.com/error.jpg"}}/>
                                     </div>
                                     <div className='spot-details'>
                                         <div className='spot-info'>

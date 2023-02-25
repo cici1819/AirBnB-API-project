@@ -97,3 +97,6 @@ input:focus::placeholder {
 }
 
  } */
+img {
+    object-fit: cover;
+}

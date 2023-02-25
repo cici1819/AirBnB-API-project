@@ -11,11 +11,11 @@
 
 .update-spot-form {
     width: 600px;
-    height: 640px;
+    height: 620px;
     padding-top: 10px;
     background-color: white;
     border-radius: 8px;
-    margin-top: 70px;
+    margin-top: 50px;
 }
 
 .add-spot-title {
@@ -82,8 +82,8 @@
 }
 
 .updateSpot1-button {
-    /* margin-top: 5px; */
-    margin-top: 10px;
+    margin-top: 5px;
+
     border: none;
     width: 95%;
     height: 35px;

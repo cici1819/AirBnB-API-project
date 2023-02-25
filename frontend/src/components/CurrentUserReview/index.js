@@ -46,7 +46,7 @@ const CurrentUserReviews = () => {
                                     {/*
                                     <img src={review.Spot?.previewImage} alt={review.Spot?.description}></img> */}
                                     <NavLink to={`/spots/${review.Spot?.id}`} className="r-img">
-                                        <img src={review.Spot?.previewImage} alt={review.Spot?.description}></img>
+                                        <img src={review.Spot?.previewImage} alt={review.Spot?.description} onError={e =>{e.currentTarget.src = "https://cici-aa.s3.us-west-1.amazonaws.com/error.jpg"}}></img>
 
                                     </NavLink>
 

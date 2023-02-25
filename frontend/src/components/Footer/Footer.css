@@ -74,6 +74,7 @@
     height: 35px;
     margin-right: 5px;
     padding-top: 2px;
+    object-fit: contain;
     /* object-fit: cover; */
 }
 
@@ -81,6 +82,7 @@
     width: 30px;
     height: 30px;
     padding-right: 8px;
+
 }
 
 .footer-container-inner a {

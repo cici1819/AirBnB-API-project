@@ -70,7 +70,7 @@ function EditBookingForm({ booking, spot, setShowModal }) {
             startDate,
             endDate
         }
-        console.log("$$$$$$$$$$$$$$$$$$$$$$$$$$ handleSubmit",updatedBookingData)
+
         try {
             const updatedBooking = await dispatch(bookingsActions.editUserBookingThunk(updatedBookingData, bookingId));
             if (updatedBooking) {
@@ -138,6 +138,7 @@ function EditBookingForm({ booking, spot, setShowModal }) {
                                 <span className='check-in-text'>CHECK-IN</span>
                                 <input
                                     type="date"
+                                    defaultValue={startDate}
                                     value={startDate}
                                     onChange={handelStartDateChange}
                                     required

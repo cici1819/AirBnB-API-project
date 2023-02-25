@@ -51,7 +51,7 @@ function CurrentUserBookings() {
                                 <div className='booking-spot'>
                                     <Link to={`/spots/${booking.spotId}`}>
                                         <div className='Booking-spot-image'>
-                                            <img className='spot-image-booking' src={booking.Spot?.previewImage} alt='Spot preview image' />
+                                            <img className='spot-image-booking' src={booking.Spot?.previewImage} alt='Spot preview image' onError={e =>{e.currentTarget.src = "https://cici-aa.s3.us-west-1.amazonaws.com/error.jpg"}}/>
                                         </div>
                                     </Link>
                                     <div className='user-booking-spotInfo'>

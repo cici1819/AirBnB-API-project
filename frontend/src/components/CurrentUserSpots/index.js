@@ -46,7 +46,7 @@ const CurrentUserSpots = () => {
 
                             <div className='spot-card1' onClick={() => goToSpot(spot.id)} >
                                 <div className='spot-image-div'>
-                                <img className='spot-image' src={spot?.previewImage} alt={spot.description} />
+                                <img className='spot-image' src={spot?.previewImage} alt={spot.description} onError={e =>{e.currentTarget.src = "https://cici-aa.s3.us-west-1.amazonaws.com/error.jpg"}}/>
                                 </div>
 
                                 <div className='location'>{`${spot.city}, ${spot.state}`}</div>

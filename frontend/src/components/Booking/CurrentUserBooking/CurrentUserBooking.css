@@ -37,8 +37,8 @@
     color: white;
     background-color: rgb(255, 56, 92);
     cursor: pointer;
-    margin-top:32.9vh;
-    margin-left: -22vh;
+    margin-top:32vh;
+    margin-left: -25vh;
 
 
 }
@@ -52,7 +52,7 @@
     color: white;
     background-color: rgb(255, 56, 92);
     cursor: pointer;
-    margin-top: 33vh;
+    margin-top: 32vh;
     margin-left: -31vw;
 }
 .booking-setting-div{

@@ -29,49 +29,49 @@ module.exports = {
       description: "Just in time for Halloween, stay in comfort on a fully decorated pirate ship! ",
       city: "Callao",
       state: "Virginia",
-      address: "43 Emerson St",
+      address: "2066 Peckatone Rd",
       country: "United States",
-      lat: 35.783160,
-      lng: -100.448510,
+      lat: 38.095650,
+      lng: -76.582498,
       price: 299.00,
       ownerId: 2
     },
     {
       name: "Gorgeous Home with Lake Views",
       description: "Amazing Victorian House , one of the best places to have a magnificent view of the Lake.",
-      address: "Beaver Lake Marina",
-      city: "Bentonville",
-      state: "AR",
+      address: "790 South Shore Road",
+      city: "Port Angeles",
+      state: "WA",
       country: "United States",
       price: 200,
-      lat: 37.0902,
-      lng: 95.7129,
+      lat: 48.073406,
+      lng: -123.694936,
       ownerId: 3
     },
     {
       name: 'Lovely house on the hill',
       description: "Enter via private entrance on side of house.",
-      address: '4928 Forest Avenue',
-      city: 'New York',
-      state: 'New York',
+      address: '134 Sports Camp Dr',
+      city: 'Woodward',
+      state: 'PA',
       country: "United States",
-      lat: -74.063934,
-      lng: 40.722752,
+      lat: 40.898664,
+      lng: -77.364671,
       price: 220,
       ownerId: 4
     },
 
     {
-      name: '2 bedroom unit right near Dodger Stadium',
-      description: '2 bedroom unit minutes from LA Dodgers stadium. Beautiful parks nearby.',
+      name: 'Pegasus Malibu',
+      description: 'Perched above the Pacific Ocean, Eagle’s Watch has the best unobstructed panoramic view in Malibu.',
       ownerId: 5,
-      city: 'Los Angeles',
+      city: 'Malibu',
       state: "CA",
       country: "United States",
       price: 118,
-      address: '1245 Innes Ave',
-      lat: 34.071422,
-      lng: -118.249808
+      address: '21458 Rambla Vista',
+      lat: 34.039551,
+      lng: -118.642341
     },
     {
       name: 'Caboose in the redwoods just outside of Cupertino',
@@ -81,9 +81,9 @@ module.exports = {
       state: "CA",
       country: "United States",
       price: 190,
-      address: '10682 Flora Vista Ave',
-      lat: 34.071425,
-      lng: -120.249807
+      address: '13100 Montebello Rd',
+      lat: 37.289570,
+      lng: -122.084877
     },
     {
       name: 'Unique & private hidden gem with spectacular views',
@@ -93,9 +93,9 @@ module.exports = {
       state: "CA",
       country: "United States",
       price: 558,
-      address: '475 N HUMBOLDT AVE',
-      lat: 37.947948,
-      lng: -122.038651
+      address: '3970 Leavesley Rd',
+      lat: 37.042787,
+      lng: -121.509720
     },
     {
       name: 'Anemomilos',
@@ -105,9 +105,9 @@ module.exports = {
       state: "Volime",
       country: "Greece",
       price: 180,
-      address: 'village Volimes',
-      lat: 37.947948,
-      lng: -122.038651
+      address: 'Korithi Zakynthos',
+      lat: 37.919154,
+      lng: 20.697878
     },
     {
       name: 'Modern Farmhouse on Vineyard w Deck + Bocce Court',
@@ -134,16 +134,16 @@ module.exports = {
       lng: -122.322170
     },
     {
-      name: 'Sunny Spacious 3BR/2BA Home-Hot Tub Retreat ',
-      description: "It's nestled on the edge of an open field of trees, creeks, grassy fields, and wild animals!",
+      name: "Sage Lodge A-frame Cabin",
+      description: "Sage Lodge is a 70s A-Frame cabin in the woods. (Adults over 21 only) Look out at the majestic pine trees, or start a fire in the stone-covered fireplace.",
       ownerId: 2,
-      city: 'Sonoma',
-      state: "CA",
-      country: "United States",
-      price: 348,
-      address: '23105 Millerick Rd',
-      lat: 38.240530,
-      lng: -122.449080
+      city: 'Running Springs',
+      state: 'California',
+      country: 'United States',
+      price: 228,
+      address: '31845 Ridge Way',
+      lat: 34.20840107973068,
+      lng: -117.10843957392245,
 
     },
     {
@@ -154,9 +154,9 @@ module.exports = {
       state: "CA",
       country: "United States",
       price: 300,
-      address: 'Mineral King Rd',
-      lat: 38.240520,
-      lng: -122.448809
+      address: '43365 Sierra Dr',
+      lat: 36.448072,
+      lng: -118.903242
     },
 
     ]);

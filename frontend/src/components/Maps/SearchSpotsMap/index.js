@@ -5,7 +5,7 @@ import './SearchSpotsMap.css';
 
 const containerStyle = {
     width: '53vw',
-    height: 'calc(100vh - 95px)',
+    height: 'calc(100vh - 130px)',
 
 };
 

@@ -78,14 +78,14 @@ const SingleSpot = () => {
                     <div className='spot-images'>
                         <div className='spot-imgs-prview-div'>
                             {/* {spot.SpotImages.map(img => ( */}
-                            <img src={spot?.SpotImages[0]?.url} alt={spot?.SpotImages[0]?.url} className="spot-imgs-prview" />
+                            <img src={spot?.SpotImages[0]?.url} alt={spot?.SpotImages[0]?.url} className="spot-imgs-prview" onError={e =>{e.currentTarget.src = "https://cici-aa.s3.us-west-1.amazonaws.com/error.jpg"}}/>
 
                         </div>
                         <div className='spot-imgs-small'>
-                            <img src={spot.SpotImages[1] ? spot.SpotImages[1].url : spot.SpotImages[0]?.url} alt={spot.SpotImages[0]?.url} className="samll-img1" />
-                            <img src={spot.SpotImages[2] ? spot.SpotImages[2].url : spot.SpotImages[0]?.url} alt={spot.SpotImages[0]?.url} className="small-img2" />
-                            <img src={spot.SpotImages[3] ? spot.SpotImages[3].url : spot.SpotImages[0]?.url} alt={spot.SpotImages[0]?.url} className="small-img3" />
-                            <img src={spot.SpotImages[4] ? spot.SpotImages[4].url : spot.SpotImages[0]?.url} alt={spot.SpotImages[0]?.url} className="small-img4" />
+                            <img src={spot.SpotImages[1] ? spot.SpotImages[1].url : spot.SpotImages[0]?.url} alt={spot.SpotImages[0]?.url} className="samll-img1" onError={e =>{e.currentTarget.src = "https://cici-aa.s3.us-west-1.amazonaws.com/error.jpg"}}/>
+                            <img src={spot.SpotImages[2] ? spot.SpotImages[2].url : spot.SpotImages[0]?.url} alt={spot.SpotImages[0]?.url} className="small-img2" onError={e =>{e.currentTarget.src = "https://cici-aa.s3.us-west-1.amazonaws.com/error.jpg"}}/>
+                            <img src={spot.SpotImages[3] ? spot.SpotImages[3].url : spot.SpotImages[0]?.url} alt={spot.SpotImages[0]?.url} className="small-img3" onError={e =>{e.currentTarget.src = "https://cici-aa.s3.us-west-1.amazonaws.com/error.jpg"}}/>
+                            <img src={spot.SpotImages[4] ? spot.SpotImages[4].url : spot.SpotImages[0]?.url} alt={spot.SpotImages[0]?.url} className="small-img4" onError={e =>{e.currentTarget.src = "https://cici-aa.s3.us-west-1.amazonaws.com/error.jpg"}}/>
 
                         </div>
                     </div>
@@ -97,7 +97,7 @@ const SingleSpot = () => {
 
                         <div className='spot-owner'>
                             <h3>{name[0] + " "} Hosted By {spot.Owner?.firstName} {spot.Owner?.lastName}</h3>
-                            <img src={spot.SpotImages[0]?.url} alt={spot.SpotImages.url} className="small-preview" />
+                            <img src={spot.SpotImages[0]?.url} alt={spot.SpotImages.url} className="small-preview" onError={e =>{e.currentTarget.src = "https://cici-aa.s3.us-west-1.amazonaws.com/error.jpg"}}/>
                         </div>
                         <div className='host-div1'>
                             <div className='host-div'>
