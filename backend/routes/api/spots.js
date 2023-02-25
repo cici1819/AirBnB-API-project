@@ -653,12 +653,12 @@ router.get('/search/:keyword', async (req, res) => {
     const Spots = await Spot.findAll({
         where: {
             [Op.or]: [
-                {
-                    name: Sequelize.where(
-                        Sequelize.fn("LOWER", Sequelize.col("name")),
-                        { [Op.like]: `%${keyword}%` }
-                    )
-                },
+                // {
+                //     name: Sequelize.where(
+                //         Sequelize.fn("LOWER", Sequelize.col("name")),
+                //         { [Op.like]: `%${keyword}%` }
+                //     )
+                // },
                 {
                     city: Sequelize.where(
                         Sequelize.fn("LOWER", Sequelize.col("city")),
