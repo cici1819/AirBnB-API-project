@@ -59,20 +59,23 @@ function ProfileButton({ user }) {
 
                     </div>
                     {/* <div className="user-spot-info"> */}
+                    <div className="user-b-r-s">
+                        <div className="user-spot-info">
+                            <NavLink to={'/bookings/current'}>
+                                My Trips
+                            </NavLink>
+                        </div>
+                        <div className='user-spot-info'>
+                            <NavLink to={'/spots/current'}>My Spots</NavLink>
+                        </div>
 
-                    <div className='user-spot-info'>
-                        <NavLink to={'/spots/current'}>My Spots</NavLink>
-                    </div>
+                        <div className='user-spot-info'>
+                            <NavLink to={'/reviews/current'} className="p-review-title">My Reviews</NavLink>
+                        </div>
 
-                    <div className='user-spot-info'>
-                        <NavLink to={'/reviews/current'}>My Reviews</NavLink>
+                        <div onClick={logout} className="user-spot-info" id="log-out">Log Out</div>
+
                     </div>
-                    <div className="user-spot-info">
-                        <NavLink to={'/bookings/current'}>
-                           My Trips
-                        </NavLink>
-                    </div>
-                    <div onClick={logout} className="user-spot-info" id="log-out">Log Out</div>
 
                     {/* <li>
                                 <NavLink className='add-spot' to={'/spots'}>Become a Host</NavLink>

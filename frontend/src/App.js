@@ -17,7 +17,7 @@ import CurrentUserSpots from "./components/CurrentUserSpots";
 import Reviews from "./components/Reviews"
 import CurrentUserReviews from "./components/CurrentUserReview";
 import CurrentUserBookings from "./components/Booking/CurrentUserBooking";
-
+import FourOhFourPage from './components/404Page';
 function App() {
   const dispatch = useDispatch();
   const [isLoaded, setIsLoaded] = useState(false);
@@ -49,7 +49,7 @@ function App() {
             <CurrentUserReviews />
           </Route>
           <Route exact path="/bookings/current">
-            <CurrentUserBookings/>
+            <CurrentUserBookings />
           </Route>
           <Route exact path={"/spots/current"}>
             <CurrentUserSpots />
@@ -74,6 +74,9 @@ function App() {
           <Route path="/">
           <AddSpotForm />
           </Route> */}
+          <Route>
+            <FourOhFourPage />
+          </Route>
 
         </Switch>
       )}
