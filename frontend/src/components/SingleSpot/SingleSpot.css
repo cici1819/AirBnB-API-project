@@ -305,3 +305,30 @@
 
 
  }
+ @media only screen and (min-width: 1490px) {
+    .spot-imgs-prview {
+        width: 660px;
+        height: 471px;
+
+    }
+    .spot-imgs-small {
+        width: 790px;
+        margin-left: 20px;
+        grid-gap:15px ;
+
+    }
+    .spot-imgs-small img {
+        width: 350px;
+
+    }
+    .small-img2 {
+
+        margin-left: -30px;
+    }
+
+    .small-img4 {
+
+        margin-left: -30px;
+    }
+
+ }
