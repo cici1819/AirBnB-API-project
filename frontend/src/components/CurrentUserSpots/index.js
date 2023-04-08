@@ -37,7 +37,7 @@ const CurrentUserSpots = () => {
             <div className="user-spots-page">
 
                 <div className="title-user">
-                    <h2> {sessionUser?.firstName}'s Spots</h2>
+                    <h2> {sessionUser?.firstName}'s spots</h2>
                 </div>
                 <div className='user-spots'>
 

@@ -1,4 +1,6 @@
 .add-spot-wrap2 {
+    width: 600px;
+    height: 630px;
     display: flex;
     flex-direction: column;
     text-align: center;
@@ -10,12 +12,12 @@
 }
 
 .update-spot-form {
-    width: 600px;
-    height: 620px;
+    height: 100%;
+    width: 100%;
     padding-top: 10px;
     background-color: white;
     border-radius: 8px;
-    margin-top: 50px;
+
 }
 
 .add-spot-title {
